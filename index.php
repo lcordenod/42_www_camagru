@@ -1,11 +1,16 @@
+<?php
+header('Content-Type: text/html; charset=utf-8');
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <title>Welcome to Camagru</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-        <h1>Camagru</h1>
-        <p>What a nice day today right?  <?php echo date('d/m/Y h:i:s'); ?>.</p>
+    <?php
+    include('view/header.php')
+    ?>
     </body>
 </html>
