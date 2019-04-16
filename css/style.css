@@ -110,19 +110,19 @@ input[type=text], input[type=password] {
     display: inline-block;
     border: none;
     background: #f1f1f1;
-  }
+}
 
-  input[type=text]:focus, input[type=password]:focus {
+input[type=text]:focus, input[type=password]:focus {
     background-color: #ddd;
     outline: none;
-  }
+}
 
-  hr {
+hr {
     border: 1px solid #f1f1f1;
     margin-bottom: 25px;
-  }
+}
 
-  .register-btn {
+#register-btn {
     background-color: #fffc00;
     font-size: 14px; 
     color: #262626;
@@ -133,23 +133,27 @@ input[type=text], input[type=password] {
     width: 100%;
     opacity: 0.9;
     border-radius: 10px;
-  }
+}
 
-  .register-btn:hover {
+#register-btn:hover {
     opacity: 0.7;
-  }
+}
 
-  a {
+#register-btn:disabled {
+    opacity: 0.3;
+}
+
+a {
     color: dodgerblue;
-  }
+}
 
-  .register-signin-link {
+.register-signin-link {
     background-color: #f1f1f1;
     text-align: center;
     line-height: 25px;
-  }
+}
 
-  #password-message {
+#password-message {
     display: none;
     background-color: #f1f1f1;
     color: #000;
@@ -158,35 +162,35 @@ input[type=text], input[type=password] {
     margin-top: -5px;
     margin-bottom: 20px;
     font-size: 12px;
+}
+
+.valid {
+    color: green;
+    margin-left: 20px;
+}
+
+.valid:before {
+    content: "✔";
+    position: relative;
+    left: -10px;
+}
+
+.invalid {
+    color: red;
+    margin-left: 20px;
+}
+
+.invalid:before {
+    content: "✖";
+    position: relative;
+    left: -10px;
   }
 
-  .valid {
-      color: green;
-      margin-left: 20px;
-  }
-
-  .valid:before {
-      content: "✔";
-      position: relative;
-      left: -10px;
-  }
-
-  .invalid {
-      color: red;
-      margin-left: 20px;
-  }
-
-  .invalid:before {
-      content: "✖";
-      position: relative;
-      left: -10px;
-  }
-
-  #error-email, #error-password-rpt, #error-password {
-      display: none;
-      margin-top: -18px;
-      margin-bottom: 5px;
-      font-size: 12px;
-      padding: 5px;
-      color: red;
-  }
+#error-username, #error-email, #error-password, #error-password-rpt, #error-password {
+    display: none;
+    margin-top: -18px;
+    margin-bottom: 5px;
+    font-size: 12px;
+    padding: 5px;
+    color: red;
+}
