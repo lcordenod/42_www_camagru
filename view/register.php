@@ -5,25 +5,61 @@ require_once '../config/connect.php';
 header('Content-Type: text/html; charset=utf-8');
 session_start();
 
-if ($_POST['username'] !== '' && $_POST['email'] !== '' && $_POST['password'] !== '' && $_POST['password-rpt'] !== '' && $_POST['submit'] !== "OK")
+if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password-rpt']) && $_POST['submit'] !== "OK")
 {
+    $DB_con = db_connect();
+    // GET INPUT
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password']);
-    $password_rpt = password_hash($_POST['password-rpt']);
+    $password = hash('whirlpool', $_POST["password"]);
+    $password_rpt = hash('whirlpool', $_POST["password-rpt"]);
 
-/*     $username_check = $DB_con->exec("SELECT username FROM user WHERE username='$username'");
-    $email_check = $DB_con->exec("SELECT email FROM user WHERE email='$email'");
-    
-    if ($username_check !== '' && $email_check !== '')
+    // CHECK INPUT INITIALISATION
+    $username_check = $DB_con->prepare("SELECT COUNT(`user_name`) FROM user WHERE `user_name`=:username");
+    $username_check->bindParam(':username', $username);
+    $username_check->execute();
+    $username_check = $username_check->fetchColumn();
+    $email_check = $DB_con->prepare("SELECT COUNT(`user_email`) FROM user WHERE `user_email`=:email");
+    $email_check->bindParam(':email', $email);
+    $email_check->execute();
+    $email_check = $email_check->fetchColumn();
+    $password_diff = strcmp($password, $password_rpt);
+
+    // ERROR MESSAGES
+    $state = "display:none";
+    $username_error = "Username already exists, please enter another one";
+    $email_error = "Email is already used, please enter another one or connect with that one";
+    $password_error = "Password entered isn't valid";
+
+    // CHECK BEFORE SUBMIT
+    if ($username_check)
     {
-        $DB_con->exec("INSERT INTO user
-                    SET username = '$username'
-                    ");
+        $state = "display:block";
+        $error_backend = $username_error;
+        return (false);
+    }
+    else if ($email_check)
+    {
+
+        $state = "display:block";
+        $error_backend = $email_error;
+        return (false);
+    }
+    else if ($password_diff)
+    {
+        $state = "display:block";
+        $error_backend = $password_error;
+        return (false);
     }
     else
-        return (false); */
+    {
+        $submit = $DB_con->prepare("INSERT INTO user (`user_name`, user_email, user_pwd)
+                            VALUES ('$username', '$email', '$password')");
+        $submit->execute();
+    }
 }
+
+// `{$username}`, `{$email}`, `{$password}`)
 
 ?>
 
@@ -63,6 +99,7 @@ if ($_POST['username'] !== '' && $_POST['email'] !== '' && $_POST['password'] !=
             <span id="error-password-rpt">Please enter a password repeat that matches password</span>
             <hr>
             <button type="submit" id="register-btn" value="OK">Register Now</button>
+            <span id="error-backend" style="<?php echo $state ?>"><?php echo $error_backend ?></span>
         </div>
         <div class="register-signin-link">
             <p>Already have an account? <a href="login.php">Log in here</a>.</p>

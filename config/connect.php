@@ -1,11 +1,19 @@
 <?php
 
-require_once 'database.php';
-
-$DB_NAME = "camagru";
-
 function    db_connect() {
-    $DB_con = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+    $DB_DSN_LONG = 'mysql:host=127.0.0.1:3306;dbname=camagru';
+    $DB_USER = 'root';
+    $DB_PASSWORD = 'azerty123';
+    try
+    {
+        $DB_con = new PDO($DB_DSN_LONG, $DB_USER, $DB_PASSWORD);
+        if ($DB_con)
+            return ($DB_con);
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
 }
 
 ?>

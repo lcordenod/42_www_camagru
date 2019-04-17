@@ -22,7 +22,7 @@ header('Content-Type: text/html; charset=utf-8');
             <label for="password"><b>Password</b></label>
             <input type="text" placeholder="Enter Password" name="password" required>
             <hr>
-            <button type="submit" class="register-btn">Log In</button>
+            <button type="submit" id="login-btn" value="OK">Log In</button>
         </div>
         <div class="register-signin-link">
             <p>Forgotten your password? <a href="forgot-password.php">Retrieve it here</a>.</p>

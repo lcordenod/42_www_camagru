@@ -135,6 +135,19 @@ hr {
     border-radius: 10px;
 }
 
+#login-btn {
+    background-color: #fffc00;
+    font-size: 14px; 
+    color: #262626;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    border-radius: 10px;
+}
+
 #register-btn:hover {
     opacity: 0.7;
 }
@@ -186,7 +199,7 @@ a {
     left: -10px;
   }
 
-#error-username, #error-email, #error-password, #error-password-rpt, #error-password {
+#error-username, #error-email, #error-password, #error-password-rpt, #error-password, #error-backend {
     display: none;
     margin-top: -18px;
     margin-bottom: 5px;

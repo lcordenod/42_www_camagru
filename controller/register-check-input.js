@@ -21,7 +21,6 @@ var password_length_state = 0;
 var password_rpt_state = 0;
 
 // CHECK FOR USERNAME
-
 function    checkUsername() {
     if (username_input.value === "")
     {
@@ -36,7 +35,6 @@ function    checkUsername() {
 }
 
 // CHECK FOR EMAIL
-
 function    checkEmail() {
     var atpos = email_input.value.indexOf("@");
     var dotpos = email_input.value.lastIndexOf(".");
@@ -53,7 +51,6 @@ function    checkEmail() {
 }
 
 // CHECKS FOR PASSWORD
-
 var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");
 var number = document.getElementById("number");
@@ -127,7 +124,6 @@ function    checkPassword() {
 }
 
 // CHECKS FOR REPEAT PASSWORD
-
 function    checkRepeatPassword() {
     if (password_input.value !== password_rpt_input.value && password_input.value !== "")
     {
@@ -141,7 +137,6 @@ function    checkRepeatPassword() {
 }
 
 // BUTTON SUBMIT
-
 function    disableSubmitButton()
 {
     if (!username_state || !email_state || !password_state || !password_rpt_state)
