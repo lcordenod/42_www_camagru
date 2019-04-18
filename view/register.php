@@ -14,7 +14,7 @@ function console_log( $data ){
 
 if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password-rpt']) && $_POST['submit'] !== "OK")
 {
-    console_log("testtttttttt");
+    console_log("test login 2");
     $DB_con = db_connect();
     // GET INPUT
     $username = strtolower($_POST['username']);
@@ -106,6 +106,8 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
         $submit = $DB_con->prepare("INSERT INTO user (`user_name`, user_email, user_pwd)
                             VALUES ('$username', '$email', '$password')");
         $submit->execute();
+        header("Location: login.php");
+        return;
     }
 }
 
