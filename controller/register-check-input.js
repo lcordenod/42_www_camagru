@@ -20,9 +20,26 @@ var password_number_state = 0;
 var password_length_state = 0;
 var password_rpt_state = 0;
 
+// CHECK FOR WHITESPACE AND SPECIAL CHARS IN INPUT
+function    checkUsernameChars(string) {
+    var regex = /^[a-zA-Z0-9_.-]*$/;
+    if (string.match(regex))
+        return (1);
+    else
+        return (0);
+}
+
+function    checkEmailChars(string) {
+    var regex = /\s/;
+    if (string.match(regex) == null)
+        return (1);
+    else
+        return (0);
+}
+
 // CHECK FOR USERNAME
 function    checkUsername() {
-    if (username_input.value === "")
+    if (username_input.value === "" || checkUsernameChars(username_input.value) == 0)
     {
         username_error.style.display = "block";
         username_state = 0;
@@ -38,7 +55,7 @@ function    checkUsername() {
 function    checkEmail() {
     var atpos = email_input.value.indexOf("@");
     var dotpos = email_input.value.lastIndexOf(".");
-    if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email_input.length)
+    if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email_input.length || checkEmailChars(email_input.value) == 0)
     {
         email_error.style.display = "block";
         email_state = 0;

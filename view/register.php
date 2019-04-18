@@ -14,14 +14,15 @@ function console_log( $data ){
 
 if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password-rpt']) && $_POST['submit'] !== "OK")
 {
+    console_log("testtttttttt");
     $DB_con = db_connect();
     // GET INPUT
-    $username = $_POST['username'];
-    $email = $_POST['email'];
+    $username = strtolower($_POST['username']);
+    $email = strtolower($_POST['email']);
     $password = hash('whirlpool', $_POST["password"]);
     $password_rpt = hash('whirlpool', $_POST["password-rpt"]);
 
-    // CHECK INPUT INITIALISATION
+    // CHECK INPUT QUERY
     $username_check = $DB_con->prepare("SELECT COUNT(`user_name`) FROM user WHERE `user_name`=:username");
     $username_check->bindParam(':username', $username);
     $username_check->execute();
@@ -32,11 +33,29 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
     $email_check = $email_check->fetchColumn();
     $password_diff = strcmp($password, $password_rpt);
 
+    // CHECK INPUT
+    function    check_username_chars($string) {
+        if (preg_match('/^[a-zA-Z0-9_.-]*$/', $string))
+            return (1);
+        else
+            return (0);
+    }
+
+    function    check_email_chars($string) {
+        if (preg_match('/\s/', $string) == null)
+            return (1);
+        else
+            return (0);
+    }
+    
+
     // ERROR MESSAGES
     $state = "display:none";
     $username_error = "Username already exists, please enter another one";
+    $username_wrong_format = "Username entered format is wrong (only letters and numbers)";
     $username_toolong = "Please make sure username is equal or less than 30 characters";
     $email_error = "Email is already used, please enter another one or connect with that one";
+    $email_wrong_format = "Email entered format is wrong (example@email.com)";
     $email_toolong = "Please make sure email is equal or less than 50 characters";
     $password_error = "Password entered isn't valid";
     $password_toolong = "Please make sure password is equal or less than 50 characters";
@@ -46,13 +65,21 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
     {
         $state = "display:block";
         $error_backend = $username_error;
-        $myvar = array($state, $error_backend);
-        console_log( $myvar );
+    }
+    else if (!check_username_chars($username))
+    {
+        $state = "display:block";
+        $error_backend = $username_wrong_format;
     }
     else if ($email_check)
     {
         $state = "display:block";
         $error_backend = $email_error;
+    }
+    else if (!check_email_chars($email))
+    {
+        $state = "display:block";
+        $error_backend = $email_wrong_format;
     }
     else if ($password_diff)
     {
@@ -101,7 +128,7 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
             <hr>
             <label for="username"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" id="username" maxlength="30" onfocusout="checkUsername()" required>
-            <span id="error-username">Please enter a username</span>
+            <span id="error-username">Please enter a valid username (only letters and numbers)</span>
             <label for="email"><b>Email</b></label>
             <input type="text" placeholder="Enter Email" name="email" id="email" maxlength="50" onfocusout="checkEmail()" required>
             <span id="error-email">Please enter a valid email (example@email.com)</span>
