@@ -5,6 +5,13 @@ require_once '../config/connect.php';
 header('Content-Type: text/html; charset=utf-8');
 session_start();
 
+// DEBUGGING PHP
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+  }
+
 if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password-rpt']) && $_POST['submit'] !== "OK")
 {
     $DB_con = db_connect();
@@ -28,28 +35,44 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
     // ERROR MESSAGES
     $state = "display:none";
     $username_error = "Username already exists, please enter another one";
+    $username_toolong = "Please make sure username is equal or less than 30 characters";
     $email_error = "Email is already used, please enter another one or connect with that one";
+    $email_toolong = "Please make sure email is equal or less than 50 characters";
     $password_error = "Password entered isn't valid";
+    $password_toolong = "Please make sure password is equal or less than 50 characters";
 
     // CHECK BEFORE SUBMIT
     if ($username_check)
     {
         $state = "display:block";
         $error_backend = $username_error;
-        return (false);
+        $myvar = array($state, $error_backend);
+        console_log( $myvar );
     }
     else if ($email_check)
     {
-
         $state = "display:block";
         $error_backend = $email_error;
-        return (false);
     }
     else if ($password_diff)
     {
         $state = "display:block";
         $error_backend = $password_error;
-        return (false);
+    }
+    else if (strlen($username) > 30)
+    {
+        $state = "display:block";
+        $error_backend = $username_toolong;
+    }
+    else if (strlen($email) > 50)
+    {
+        $state = "display:block";
+        $error_backend = $email_toolong;
+    }
+    else if (strlen($_POST["password"]) > 30)
+    {
+        $state = "display:block";
+        $error_backend = $password_toolong;
     }
     else
     {
@@ -58,8 +81,6 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
         $submit->execute();
     }
 }
-
-// `{$username}`, `{$email}`, `{$password}`)
 
 ?>
 
@@ -79,13 +100,13 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
             <p>Fill in this form to create your SnapCat account and make fun with amazing picture filters</p>
             <hr>
             <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" id="username" onfocusout="checkUsername()" required>
+            <input type="text" placeholder="Enter Username" name="username" id="username" maxlength="30" onfocusout="checkUsername()" required>
             <span id="error-username">Please enter a username</span>
             <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" id="email" onfocusout="checkEmail()" required>
+            <input type="text" placeholder="Enter Email" name="email" id="email" maxlength="50" onfocusout="checkEmail()" required>
             <span id="error-email">Please enter a valid email (example@email.com)</span>
             <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" id="password" onfocusout="checkPassword()" required>
+            <input type="password" placeholder="Enter Password" name="password" id="password" maxlength="30" onfocusout="checkPassword()" required>
             <span id="error-password">Please enter a valid password</span>
             <div id="password-message">
                 <h3>Password must contain the following:</h3>
@@ -95,11 +116,11 @@ if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['passwor
                 <p id="length" class="invalid">Minimum <b>8 characters</b></p>
             </div>
             <label for="password-rpt"><b>Repeat password</b></label>
-            <input type="password" placeholder="Repeat Password" name="password-rpt" id="password-rpt" onfocusout="checkRepeatPassword()" required>
+            <input type="password" placeholder="Repeat Password" name="password-rpt" id="password-rpt" maxlength="30" onfocusout="checkRepeatPassword()" required>
             <span id="error-password-rpt">Please enter a password repeat that matches password</span>
             <hr>
             <button type="submit" id="register-btn" value="OK">Register Now</button>
-            <span id="error-backend" style="<?php echo $state ?>"><?php echo $error_backend ?></span>
+            <span class="invalid" id="error-backend" style="<?php echo $state ?>"><?php echo $error_backend ?></span>
         </div>
         <div class="register-signin-link">
             <p>Already have an account? <a href="login.php">Log in here</a>.</p>
