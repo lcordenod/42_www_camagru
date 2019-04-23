@@ -122,20 +122,7 @@ hr {
     margin-bottom: 25px;
 }
 
-#register-btn {
-    background-color: #fffc00;
-    font-size: 14px; 
-    color: #262626;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-    border-radius: 10px;
-}
-
-#login-btn {
+#register-btn, #login-btn, #account-modify-btn {
     background-color: #fffc00;
     font-size: 14px; 
     color: #262626;
@@ -211,4 +198,9 @@ a {
 #error-backend {
     margin-top: 10px;
     text-align: center;
+}
+
+#title-account {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
