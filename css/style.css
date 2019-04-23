@@ -148,11 +148,11 @@ hr {
     border-radius: 10px;
 }
 
-#register-btn:hover {
+#register-btn:hover, #login-btn:hover {
     opacity: 0.7;
 }
 
-#register-btn:disabled {
+#register-btn:disabled, #login-btn:disabled {
     opacity: 0.3;
 }
 
@@ -199,7 +199,7 @@ a {
     left: -10px;
   }
 
-#error-username, #error-email, #error-password, #error-password-rpt, #error-password, #error-backend {
+#error-username, #error-email, #error-password, #error-password-rpt, #error-password, #error-backend, #error-username-email, #error-password-login {
     display: none;
     margin-top: -18px;
     margin-bottom: 5px;

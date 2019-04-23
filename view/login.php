@@ -1,5 +1,8 @@
 <?php
+require_once '../config/connect.php';
+
 header('Content-Type: text/html; charset=utf-8');
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -8,25 +11,29 @@ header('Content-Type: text/html; charset=utf-8');
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
-    <body>
+    <body onload="disableLoginButton()">
     <?php
     include('header.php')
     ?>
-    <form action="" id="register-form">
+    <form action="" id="login-form" onfocusout="disableLoginButton()">
         <div class="register-container">
             <h1>Log In</h1>
             <p>Please enter your account details in order to log in to SnapCat</p>
             <hr>
             <label for="email"><b>Username or Email</b></label>
-            <input type="text" placeholder="Enter Username or Email" name="username-email" required>
+            <input type="text" placeholder="Enter Username or Email" name="username-email" id="username-email" maxlength="50" onfocusout="checkUsernameEmailLogin()" required>
+            <span id="error-username-email">Please enter a valid username or email</span>
             <label for="password"><b>Password</b></label>
-            <input type="text" placeholder="Enter Password" name="password" required>
+            <input type="password" placeholder="Enter Password" name="password-login" id="password-login" maxlength="30" onfocusout="checkPasswordLogin()" required>
+            <span id="error-password-login">Please enter a valid password</span>
             <hr>
             <button type="submit" id="login-btn" value="OK">Log In</button>
+            <span class="invalid" id="error-backend" style="<?php echo $state ?>"><?php echo $error_backend ?></span>
         </div>
         <div class="register-signin-link">
             <p>Forgotten your password? <a href="forgot-password.php">Retrieve it here</a>.</p>
         </div>
     </form>
+    <script type="text/javascript" src="../controller/login-check-input.js"></script>
     </body>
 </html>
