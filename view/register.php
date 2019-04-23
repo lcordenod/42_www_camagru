@@ -10,11 +10,15 @@ function console_log( $data ){
     echo '<script>';
     echo 'console.log('. json_encode( $data ) .')';
     echo '</script>';
-  }
+}
 
-if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password-rpt']) && $_POST['submit'] !== "OK")
+if ($_SESSION['auth'])
 {
-    console_log("test login 2");
+    header("Location: /camagru/index.php");
+    return;
+}
+else if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password-rpt']) && $_POST['submit'] !== "OK")
+{
     $DB_con = db_connect();
     // GET INPUT
     $username = strtolower($_POST['username']);
