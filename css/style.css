@@ -122,7 +122,7 @@ hr {
     margin-bottom: 25px;
 }
 
-#register-btn, #login-btn, #account-modify-btn {
+#register-btn, #login-btn, #account-modify-btn, #verify-login {
     background-color: #fffc00;
     font-size: 14px; 
     color: #262626;
@@ -184,7 +184,7 @@ a {
     content: "✖";
     position: relative;
     left: -10px;
-  }
+}
 
 #error-username, #error-email, #error-password, #error-password-rpt, #error-password, #error-backend, #error-username-email, #error-password-login {
     display: none;

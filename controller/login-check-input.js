@@ -72,3 +72,7 @@ function    disableLoginButton()
         document.getElementById("login-btn").innerText = "Log In";
     }
 }
+
+setTimeout(function(){
+    document.getElementById("error-backend").style.display = "none";
+}, 3000)
