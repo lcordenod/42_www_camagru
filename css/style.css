@@ -204,3 +204,12 @@ a {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+#valid-email-html {
+    text-align: center;
+    padding: 10px 10px;
+    font-weight: bold;
+    background-color: red;
+    color: white;
+    opacity: 0.8;
+}

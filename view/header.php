@@ -1,9 +1,16 @@
 <?php
+    function console_logg( $data ){
+        echo '<script>';
+        echo 'console.log('. json_encode( $data ) .')';
+        echo '</script>';
+    }
+
     $url = $_SERVER['REQUEST_URI'];
 
     $active_index = "";
     $active_second_css = "";
     $active_third_css = "";
+    $valid_email_html = "";
     
     if (isset($_SESSION['auth']))
     {
@@ -15,6 +22,10 @@
             $active_index = 'class="active"';
         else if (strpos($url,'account.php'))
             $active_second_css = 'class="active"';
+            console_logg("test");
+            console_logg($_SESSION['auth']->user_valid);
+        if (!$_SESSION['auth']->user_valid)
+            $valid_email_html = '<div id="valid-email-html">Please validate your email to access all your account settings</div>';
     } else {
         $second_url = "/camagru/view/register.php";
         $third_url = "/camagru/view/login.php";
@@ -38,3 +49,4 @@
         <a <?php echo $active_third_css ?> href="<?php echo $third_url ?>"><?php echo $third_txt ?></a>
     </div>
 </div>
+<?php echo $valid_email_html ?>
