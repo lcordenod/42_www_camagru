@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 session_start();
-require_once '../controller/verify-controller.php';
+require_once '../controller/verify-account-controller.php';
 
 if (isset($_GET['email']) && isset($_GET['key']))
 { 

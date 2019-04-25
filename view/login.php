@@ -30,7 +30,7 @@ require_once '../controller/login-controller.php';
             <span class="invalid" id="error-backend" style="<?php echo $state ?>"><?php echo $error_backend ?></span>
         </div>
         <div class="register-signin-link">
-            <p>Forgotten your password? <a href="forgot-password.php">Retrieve it here</a>.</p>
+            <p>Forgotten your password? <a href="forgot-password-reset.php">Retrieve it here</a>.</p>
         </div>
     </form>
     <script type="text/javascript" src="../controller/login-check-input.js"></script>

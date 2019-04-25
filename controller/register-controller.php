@@ -1,6 +1,6 @@
 <?php
 require_once '../config/connect.php';
-require_once '../controller/verify-controller.php';
+require_once '../controller/verify-account-controller.php';
 
 if ($_SESSION['auth'])
 {

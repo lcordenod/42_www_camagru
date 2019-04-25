@@ -1,7 +1,30 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 session_start();
-require_once '../controller/register-controller.php';
+require_once '../controller/forgot-password-controller.php';
+
+if (isset($_GET['email']) && isset($_GET['key']))
+{ 
+    if (!isResetPasswordKeyValid($_GET['email'], $_GET['key']))
+        header("Location: /camagru/index.php");
+    else {
+        $password = hash('whirlpool', $_POST["password"]);
+        $password_rpt = hash('whirlpool', $_POST["password-rpt"]);
+        $password_diff = strcmp($password, $password_rpt);
+        if ($password_diff)
+            header("Location: /camagru/view/forgot-password-return.php?message=different-passwords");
+        else if (strlen($_POST["password"]) > 30)
+            header("Location: /camagru/view/forgot-password-return?message=password-too-long");
+        else {
+            updatePassword($password);
+            header("Location: /camagru/view/forgot-password-return?message=success");
+        }
+    }
+}
+else
+{
+    header("Location: /camagru/index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -10,11 +33,11 @@ require_once '../controller/register-controller.php';
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
-    <body onload="disableSubmitButton()">
+    <body onload="disableSavePasswordButton()">
     <?php
     include('header.php')
     ?>
-    <form action="" method="POST" id="register-form" onfocusout="disableSubmitButton()">
+    <form action="" method="POST" id="password-reset-form" onfocusout="disableSavePasswordButton()">
         <div class="register-container">
             <h1>New Password</h1>
             <p>Fill in this form to create your new password for your account</p>

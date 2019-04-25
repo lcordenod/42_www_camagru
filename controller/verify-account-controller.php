@@ -25,6 +25,14 @@ function    isUserKeyValid($username_email, $key) {
         return (false);
 }
 
+function    makeUserValid($username_email)
+{
+    $user_valid = db_connect()->prepare("UPDATE user SET user_valid = 1 WHERE `user_name`=:username OR `user_email`=:email");
+    $user_valid->bindParam(':username', $username_email);
+    $user_valid->bindParam(':email', $username_email);
+    $user_valid->execute();
+}
+
 function    sendVerifyEmail($email){
     try {
         $username = db_connect()->prepare("SELECT `user_name` FROM user WHERE `user_email`=:email");
@@ -49,20 +57,12 @@ function    sendVerifyEmail($email){
     Your registration has been taken into account but we will need you to confirm your email in order to finalize your account creation
     
     Click this link to activate your account:
-    http://localhost:8080/camagru/view/verify.php?email=".urlencode($email)."&key=".urlencode($key)."
+    http://localhost:8080/camagru/view/verify-account.php?email=".urlencode($email)."&key=".urlencode($key)."
 
     -----------------------------------
     Please do not reply to this email
     ";
     if (mail($email, $subject, $content, $header) == false)
         echo ("Mail wasn't sent because of an error");
-}
-
-function    makeUserValid($username_email)
-{
-    $user_valid = db_connect()->prepare("UPDATE user SET user_valid = 1 WHERE `user_name`=:username OR `user_email`=:email");
-    $user_valid->bindParam(':username', $username_email);
-    $user_valid->bindParam(':email', $username_email);
-    $user_valid->execute();
 }
 ?>

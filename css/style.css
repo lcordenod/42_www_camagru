@@ -122,7 +122,7 @@ hr {
     margin-bottom: 25px;
 }
 
-#register-btn, #login-btn, #account-modify-btn, #verify-login, #save-password-btn {
+#register-btn, #login-btn, #account-modify-btn, #verify-login, #save-password-btn, #reset-password-btn {
     background-color: #fffc00;
     font-size: 14px; 
     color: #262626;
@@ -135,7 +135,7 @@ hr {
     border-radius: 10px;
 }
 
-#register-btn:hover, #login-btn:hover {
+#register-btn:hover, #login-btn:hover, #reset-password-btn:hover {
     opacity: 0.7;
 }
 
