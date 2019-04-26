@@ -8,10 +8,14 @@ if (isset($_GET['email']) && isset($_GET['key']))
     if (!isUserValid($_GET['email']) && isUserKeyValid($_GET['email'], $_GET['key']))
     {
         makeUserValid($_GET['email']);
+        unset($_SESSION['auth']);
         $message = "Your account is now active, you may now login";
     }
     else if (isUserValid($_GET['email']) && isUserKeyValid($_GET['email'], $_GET['key']))
+    {
+        unset($_SESSION['auth']);
         $message = "Your account is already active, you may now login";
+    }
     else
         $message = "We cannot verify this account, please make sure link entered is correct";
 }
