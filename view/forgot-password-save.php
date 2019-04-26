@@ -6,7 +6,7 @@ require_once '../controller/forgot-password-controller.php';
 if (isset($_GET['email']) && isset($_GET['key']))
 { 
     if (!isResetPasswordKeyValid($_GET['email'], $_GET['key']))
-        header("Location: /camagru/index.php");
+        header("Location: /camagru/view/forgot-password-return.php?message=invalid-link");
     else if (isset($_POST["password"]) && $_POST["password-rpt"] && $_POST['submit'] !== "OK") {
         $password = hash('whirlpool', $_POST["password"]);
         $password_rpt = hash('whirlpool', $_POST["password-rpt"]);
@@ -14,18 +14,19 @@ if (isset($_GET['email']) && isset($_GET['key']))
         if ($password_diff)
             header("Location: /camagru/view/forgot-password-return.php?message=different-passwords");
         else if (strlen($_POST["password"]) > 30)
-            header("Location: /camagru/view/forgot-password-return?message=password-too-long");
+            header("Location: /camagru/view/forgot-password-return.php?message=password-too-long");
+        else if (!isNewPasswordDifferentFromOld($_GET['email'], $password))
+            header("Location: /camagru/view/forgot-password-return.php?message=same-password-as-before");
         else {
             updatePassword($_GET['email'], $password);
             disableResetPasswordKey($_GET['email'], $_GET['key']);
+            sendConfirmResetPasswordEmail($_GET['email']);
             header("Location: /camagru/view/forgot-password-return.php?message=success");
         }
     }
 }
 else
-{
-    header("Location: /camagru/index.php");
-}
+    header("Location: /camagru/view/forgot-password-return.php?message=wrong-link");
 ?>
 
 <!DOCTYPE html>

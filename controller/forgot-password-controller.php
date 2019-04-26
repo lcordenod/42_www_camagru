@@ -1,5 +1,6 @@
 <?php
 require_once '../config/connect.php';
+require_once 'debug.php';
 
 // CHECK IF RESET PASSWORD KEY FROM EMAIL LINK IS MATCHING ONE IN DB
 function    isResetPasswordKeyValid($email, $key) {
@@ -28,6 +29,19 @@ function    disableResetPasswordKey($email)
     $disable_password_key = db_connect()->prepare("UPDATE user SET reset_password_key =null WHERE `user_email`=:email");
     $disable_password_key->bindParam(':email', $email);
     $disable_password_key->execute();
+}
+
+// CHECK IF NEW PASSWORD IS SAME AS OLD ONE
+function    isNewPasswordDifferentFromOld($email, $password)
+{
+    $old_password_check = db_connect()->prepare("SELECT user_pwd FROM user WHERE `user_email`=:email");
+    $old_password_check->bindParam(':email', $email);
+    $old_password_check->execute();
+    $old_password = $old_password_check->fetch(PDO::FETCH_OBJ);
+    if ($old_password->user_pwd === $password)
+        return (false);
+    else
+        return (true);
 }
 
 // SEND RESET LINK TO USER BY EMAIL
@@ -60,6 +74,35 @@ function    sendResetPasswordEmail($email){
         echo ("Mail wasn't sent because of an error");
     else
         updateResetPasswordKey($email, $key);
+}
+
+// SEND CONFIRM RESET PASSWORD EMAIL
+function    sendConfirmResetPasswordEmail($email) {
+    try {
+        $username = db_connect()->prepare("SELECT `user_name` FROM user WHERE `user_email`=:email");
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
+    $username->bindParam(':email', $email);
+    $username->execute();
+    $username = $username->fetch(PDO::FETCH_OBJ);
+    $username = $username->user_name;
+    $subject = 'SnapCat | Your password has been changed';
+    $header = 'From: noreply@snapcat.com';
+    $content = "
+    Hi ".$username.",
+    Congrats, your new password is now effective!
+    
+    You may now login with your new password to enjoy SnapCat:
+    http://localhost:8080/camagru/view/login.php
+
+    -----------------------------------
+    Please do not reply to this email
+    ";
+    if (mail($email, $subject, $content, $header) == false)
+        echo ("Mail wasn't sent because of an error");
 }
 
 // UPDATE USER PASSWORD IN DB
