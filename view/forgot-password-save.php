@@ -7,7 +7,7 @@ if (isset($_GET['email']) && isset($_GET['key']))
 { 
     if (!isResetPasswordKeyValid($_GET['email'], $_GET['key']))
         header("Location: /camagru/index.php");
-    else {
+    else if (isset($_POST["password"]) && $_POST["password-rpt"] && $_POST['submit'] !== "OK") {
         $password = hash('whirlpool', $_POST["password"]);
         $password_rpt = hash('whirlpool', $_POST["password-rpt"]);
         $password_diff = strcmp($password, $password_rpt);
@@ -16,8 +16,9 @@ if (isset($_GET['email']) && isset($_GET['key']))
         else if (strlen($_POST["password"]) > 30)
             header("Location: /camagru/view/forgot-password-return?message=password-too-long");
         else {
-            updatePassword($password);
-            header("Location: /camagru/view/forgot-password-return?message=success");
+            updatePassword($_GET['email'], $password);
+            disableResetPasswordKey($_GET['email'], $_GET['key']);
+            header("Location: /camagru/view/forgot-password-return.php?message=success");
         }
     }
 }

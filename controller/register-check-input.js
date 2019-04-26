@@ -68,61 +68,64 @@ function    checkEmail() {
 }
 
 // CHECKS FOR PASSWORD
-var letter = document.getElementById("letter");
-var capital = document.getElementById("capital");
-var number = document.getElementById("number");
-var length = document.getElementById("length");
+if (typeof password_input !== 'undefined' && password_input !== null)
+{
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
 
-password_input.onfocus = function() {
-    document.getElementById("password-message").style.display = "block";
-}
+    password_input.onfocus = function() {
+        document.getElementById("password-message").style.display = "block";
+    }
 
-password_input.onblur = function() {
-    document.getElementById("password-message").style.display = "none";
-}
+    password_input.onblur = function() {
+        document.getElementById("password-message").style.display = "none";
+    }
 
-password_input.onkeyup = function() {
-var lowerCaseLetters = /[a-z]/g;
-if(password_input.value.match(lowerCaseLetters)) {  
-    letter.classList.remove("invalid");
-    letter.classList.add("valid");
-    password_letter_state = 1;
-} else {
-    letter.classList.remove("valid");
-    letter.classList.add("invalid");
-    password_letter_state = 0;
-}
+    password_input.onkeyup = function() {
+    var lowerCaseLetters = /[a-z]/g;
+    if(password_input.value.match(lowerCaseLetters)) {  
+        letter.classList.remove("invalid");
+        letter.classList.add("valid");
+        password_letter_state = 1;
+    } else {
+        letter.classList.remove("valid");
+        letter.classList.add("invalid");
+        password_letter_state = 0;
+    }
 
-var upperCaseLetters = /[A-Z]/g;
-if(password_input.value.match(upperCaseLetters)) {  
-    capital.classList.remove("invalid");
-    capital.classList.add("valid");
-    password_capital_state = 1;
-} else {
-    capital.classList.remove("valid");
-    capital.classList.add("invalid");
-    password_capital_state = 0;
-}
+    var upperCaseLetters = /[A-Z]/g;
+    if(password_input.value.match(upperCaseLetters)) {  
+        capital.classList.remove("invalid");
+        capital.classList.add("valid");
+        password_capital_state = 1;
+    } else {
+        capital.classList.remove("valid");
+        capital.classList.add("invalid");
+        password_capital_state = 0;
+    }
 
-var numbers = /[0-9]/g;
-if(password_input.value.match(numbers)) {
-    number.classList.remove("invalid");
-    number.classList.add("valid");
-    password_number_state = 1;
-} else {
-    number.classList.remove("valid");
-    number.classList.add("invalid");
-    password_number_state = 0;
-}
+    var numbers = /[0-9]/g;
+    if(password_input.value.match(numbers)) {
+        number.classList.remove("invalid");
+        number.classList.add("valid");
+        password_number_state = 1;
+    } else {
+        number.classList.remove("valid");
+        number.classList.add("invalid");
+        password_number_state = 0;
+    }
 
-if(password_input.value.length >= 8) {
-    length.classList.remove("invalid");
-    length.classList.add("valid");
-    password_length_state = 1;
-} else {
-    length.classList.remove("valid");
-    length.classList.add("invalid");
-    password_length_state = 0;
+    if(password_input.value.length >= 8) {
+        length.classList.remove("invalid");
+        length.classList.add("valid");
+        password_length_state = 1;
+    } else {
+        length.classList.remove("valid");
+        length.classList.add("invalid");
+        password_length_state = 0;
+        }
     }
 }
 

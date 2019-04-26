@@ -1,6 +1,7 @@
 <?php
 require_once '../config/connect.php';
 
+// CHECK IF USER HAS A VALID EMAIL
 function    isUserValid($username_email) {
     $user_valid_check = db_connect()->prepare("SELECT user_valid FROM user WHERE `user_name`=:username OR `user_email`=:email");
     $user_valid_check->bindParam(':username', $username_email);
@@ -13,6 +14,7 @@ function    isUserValid($username_email) {
         return (true);
 }
 
+// CHECK IF USER HAS A VALID EMAIL KEY
 function    isUserKeyValid($username_email, $key) {
     $user_key_check = db_connect()->prepare("SELECT user_valid_key FROM user WHERE `user_name`=:username OR `user_email`=:email");
     $user_key_check->bindParam(':username', $username_email);
@@ -25,6 +27,7 @@ function    isUserKeyValid($username_email, $key) {
         return (false);
 }
 
+// CHANGE VALID STATUS TO TRUE
 function    makeUserValid($username_email)
 {
     $user_valid = db_connect()->prepare("UPDATE user SET user_valid = 1 WHERE `user_name`=:username OR `user_email`=:email");
@@ -33,6 +36,7 @@ function    makeUserValid($username_email)
     $user_valid->execute();
 }
 
+// SEND EMAIL TO USER TO VERIFY EMAIL
 function    sendVerifyEmail($email){
     try {
         $username = db_connect()->prepare("SELECT `user_name` FROM user WHERE `user_email`=:email");

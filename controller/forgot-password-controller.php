@@ -1,6 +1,7 @@
 <?php
 require_once '../config/connect.php';
 
+// CHECK IF RESET PASSWORD KEY FROM EMAIL LINK IS MATCHING ONE IN DB
 function    isResetPasswordKeyValid($email, $key) {
     $user_key_check = db_connect()->prepare("SELECT reset_password_key FROM user WHERE `user_email`=:email");
     $user_key_check->bindParam(':email', $email);
@@ -12,6 +13,7 @@ function    isResetPasswordKeyValid($email, $key) {
         return (false);
 }
 
+// UPDATE RESET PASSWORD KEY IN DB
 function    updateResetPasswordKey($email, $reset_key)
 {
     $reset_password_key = db_connect()->prepare("UPDATE user SET reset_password_key =:reset_key WHERE `user_email`=:email");
@@ -20,6 +22,15 @@ function    updateResetPasswordKey($email, $reset_key)
     $reset_password_key->execute();
 }
 
+// DISABLE RESET PASSWORD KEY IN DB
+function    disableResetPasswordKey($email)
+{
+    $disable_password_key = db_connect()->prepare("UPDATE user SET reset_password_key =null WHERE `user_email`=:email");
+    $disable_password_key->bindParam(':email', $email);
+    $disable_password_key->execute();
+}
+
+// SEND RESET LINK TO USER BY EMAIL
 function    sendResetPasswordEmail($email){
     try {
         $username = db_connect()->prepare("SELECT `user_name` FROM user WHERE `user_email`=:email");
@@ -51,6 +62,7 @@ function    sendResetPasswordEmail($email){
         updateResetPasswordKey($email, $key);
 }
 
+// UPDATE USER PASSWORD IN DB
 function    updatePassword($email, $password) {
     $update_password = db_connect()->prepare("UPDATE user SET user_pwd =:user_pwd WHERE `user_email`=:email");
     $update_password->bindParam(':email', $email);

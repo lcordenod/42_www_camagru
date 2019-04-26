@@ -1,7 +1,9 @@
 <?php
 if (isset($_GET['message']))
 {
-    if ($_GET['message'] == "different-passwords")
+    if ($_GET['message'] == "retrieve-confirm")
+        $message = "An email has been sent to retrieve your password";
+    else if ($_GET['message'] == "different-passwords")
         $message = "Passwords entered aren't the same";
     else if ($_GET['message'] == "password-too-long")
         $message = "Password entered is too long ";

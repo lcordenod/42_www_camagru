@@ -33,6 +33,7 @@ else if (isset($_POST['email']))
     else
     {
         sendResetPasswordEmail($email);
+        header("Location: /camagru/view/forgot-password-return.php?message=retrieve-confirm");
         return;
     }
 }

@@ -22,8 +22,6 @@
             $active_index = 'class="active"';
         else if (strpos($url,'account.php'))
             $active_second_css = 'class="active"';
-            console_logg("test");
-            console_logg($_SESSION['auth']->user_valid);
         if (!$_SESSION['auth']->user_valid)
             $valid_email_html = '<div id="valid-email-html">Please validate your email to access all your account settings</div>';
     } else {
