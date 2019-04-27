@@ -1,5 +1,8 @@
 <?php
-if (isset($_GET['message']))
+header('Content-Type: text/html; charset=utf-8');
+session_start();
+
+if (isset($_GET['message']) && !($_SESSION['auth']))
 {
     $button = '<button id="verify-login" onclick="window.location.href = \'/camagru/view/login.php\';">Log In</button>';
     if ($_GET['message'] == "retrieve-confirm")

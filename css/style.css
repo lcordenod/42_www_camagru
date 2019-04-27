@@ -213,3 +213,14 @@ a {
     color: white;
     opacity: 0.8;
 }
+
+.settings-container {
+    background-color: #E8E8E8;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.title-settings {
+    font-weight: bold;
+}

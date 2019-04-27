@@ -3,7 +3,12 @@ header('Content-Type: text/html; charset=utf-8');
 session_start();
 require_once '../controller/forgot-password-controller.php';
 
-if (isset($_GET['email']) && isset($_GET['key']))
+if ($_SESSION['auth'])
+{
+    header("Location: /camagru/index.php");
+    return;
+}
+else if (isset($_GET['email']) && isset($_GET['key']))
 { 
     if (!isResetPasswordKeyValid($_GET['email'], $_GET['key']))
         header("Location: /camagru/view/forgot-password-return.php?message=invalid-link");

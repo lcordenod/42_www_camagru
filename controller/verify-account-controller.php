@@ -36,6 +36,15 @@ function    makeUserValid($username_email)
     $user_valid->execute();
 }
 
+// CHANGE VALID STATUS TO FALSE
+function    makeUserInvalid($username_email)
+{
+    $user_valid = db_connect()->prepare("UPDATE user SET user_valid = 0 WHERE `user_name`=:username OR `user_email`=:email");
+    $user_valid->bindParam(':username', $username_email);
+    $user_valid->bindParam(':email', $username_email);
+    $user_valid->execute();
+}
+
 // SEND EMAIL TO USER TO VERIFY EMAIL
 function    sendVerifyEmail($email){
     try {
