@@ -8,4 +8,5 @@
     $email_toolong = "Please make sure email is equal or less than 50 characters";
     $password_error = "Password entered isn't valid";
     $password_toolong = "Please make sure password is equal or less than 50 characters";
+    $new_password_same_error = "Please enter another password, this password is equal to current one";
 ?>

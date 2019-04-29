@@ -17,25 +17,25 @@ if (!($_SESSION['auth']))
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
-    <body onload="disableResetPasswordButton()">
+    <body onload="disableConfirmUsernameButton()">
     <?php
     include('header.php')
     ?>
-    <form action="" method="POST" id="password-sendemail-form" onfocusout="disableResetPasswordButton()">
+    <form action="" method="POST" id="password-sendemail-form" onfocusout="disableConfirmUsernameButton()">
         <div class="register-container">
-            <h1>Modify account email</h1>
-            <p>Please enter the new email you want to use for your SnapCat account</p>
+            <h1>Modify account username</h1>
+            <p>Please enter the new username you want to use for your SnapCat account</p>
             <hr>
-            <label for="email"><b>New Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" id="email" maxlength="50" onfocusout="checkEmail()" required>
-            <span id="error-email">Please enter a valid email (example@email.com)</span>
+            <label for="username"><b>New Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" id="username" maxlength="30" onfocusout="checkUsername()" required>
+            <span id="error-username">Please enter a valid username (only letters and numbers)</span>
             <hr>
-            <button type="submit" id="reset-password-btn" value="OK">Confirm email</button>
+            <button type="submit" id="confirm-username-btn" value="OK">Confirm username</button>
             <span class="invalid" id="error-backend" style="<?php echo $state ?>"><?php echo $error_backend ?></span>
             <button id="account-modify-btn" onclick="window.history.back();">Cancel</button>
         </div>
     </form>
     <script type="text/javascript" src="../javascript/register-check-input.js"></script>
-    <script type="text/javascript" src="../javascript/forgot-password.js"></script>
+    <script type="text/javascript" src="../javascript/account-modify.js"></script>
     </body>
 </html>

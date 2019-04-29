@@ -7,6 +7,7 @@ if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
 if ($_SESSION['auth']->user_valid)
     $settings_buttons = '<button id="account-modify-btn" onclick="window.location.href = \'/camagru/view/account-modify-email.php\';">Modify account email</button>
+    <button id="account-modify-btn" onclick="window.location.href = \'/camagru/view/account-modify-username.php\';">Modify account username</button>
     <button id="account-modify-btn" onclick="window.location.href = \'/camagru/view/account-modify-password.php\';">Modify account password</button>';
 else
     $settings_buttons = '<button id="account-modify-btn" onclick="sendVerifyEmail(\''.$_SESSION['auth']->user_email.'\');">Send verification email</button>';

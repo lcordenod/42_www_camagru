@@ -122,7 +122,7 @@ hr {
     margin-bottom: 25px;
 }
 
-#register-btn, #login-btn, #account-modify-btn, #verify-login, #save-password-btn, #reset-password-btn {
+#register-btn, #login-btn, #account-modify-btn, #verify-login, #save-password-btn, #reset-password-btn, #confirm-username-btn {
     background-color: #fffc00;
     font-size: 14px; 
     color: #262626;
@@ -135,11 +135,11 @@ hr {
     border-radius: 10px;
 }
 
-#register-btn:hover, #login-btn:hover, #account-modify-btn:hover, #verify-login:hover, #save-password-btn:hover, #reset-password-btn:hover {
+#register-btn:hover, #login-btn:hover, #account-modify-btn:hover, #verify-login:hover, #save-password-btn:hover, #reset-password-btn:hover, #confirm-username-btn:hover {
     opacity: 0.7;
 }
 
-#register-btn:disabled, #login-btn:disabled, #save-password-btn:disabled, #reset-password-btn:disabled {
+#register-btn:disabled, #login-btn:disabled, #save-password-btn:disabled, #reset-password-btn:disabled, #confirm-username-btn:disabled {
     opacity: 0.3;
 }
 
