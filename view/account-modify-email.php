@@ -1,13 +1,14 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 session_start();
+require_once '../controller/account-modify-controller.php';
 
 if (!($_SESSION['auth']))
 {
     header("Location: /camagru/index.php");
     return;
 }
-$username = $_SESSION['auth']->user_name;
+
 ?>
 
 <!DOCTYPE html>
