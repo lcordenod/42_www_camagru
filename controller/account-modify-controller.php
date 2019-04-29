@@ -1,6 +1,7 @@
 <?php
 require_once 'verify-account-controller.php';
 require_once 'verify-input-controller.php';
+require_once 'forgot-password-controller.php';
 require_once '../model/input-errors.php';
 
 $content = trim(file_get_contents("php://input"));
@@ -27,6 +28,32 @@ function    modifyAccountPassword($username, $new_password) {
     $update_password->bindParam(':username', $username);
     $update_password->bindParam(':new_password', $new_password);
     $update_password->execute();
+}
+
+// SEND EMAIL WHEN USERNAME IS UPDATED
+function    sendNewUsernameEmail($email){
+    try {
+        $username = db_connect()->prepare("SELECT `user_name` FROM user WHERE `user_email`=:email");
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
+    $username->bindParam(':email', $email);
+    $username->execute();
+    $username = $username->fetch(PDO::FETCH_OBJ);
+    $username = $username->user_name;
+    $subject = 'SnapCat | Your username has changed';
+    $header = 'From: noreply@snapcat.com';
+    $content = "
+    Hi ".$username.",
+    Just an email to tell you that you made a good choice, your new username rocks and is effective on SnapCat!
+
+    -----------------------------------
+    Please do not reply to this email
+    ";
+    if (mail($email, $subject, $content, $header) == false)
+        echo ("Mail wasn't sent because of an error");
 }
 
 if (isset($action))
@@ -86,6 +113,7 @@ else if (isset($_POST['username']) && $_POST['submit'] !== "OK")
     {
         modifyAccountUsername($_SESSION['auth']->user_name, $username);
         $_SESSION['auth']->user_name = $username;
+        sendNewUsernameEmail($_SESSION['auth']->user_email);
         header("Location: /camagru/view/account.php");
         return;
     }
@@ -120,6 +148,7 @@ else if (isset($_POST['password']) && isset($_POST['password-rpt']) && $_POST['s
         {
             modifyAccountPassword($_SESSION['auth']->user_name, $password);
             $_SESSION['auth']->user_pwd = $password;
+            sendConfirmResetPasswordEmail($_SESSION['auth']->user_email);
             header("Location: /camagru/view/account.php");
             return;
         }
