@@ -3,6 +3,9 @@ header('Content-Type: text/html; charset=utf-8');
 session_start();
 if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
+$list_filters = preg_grep('/^([^.])/', scandir("../sources/filters"));
+foreach ($list_filters as $filter)
+    $filters .= '<li><img class="filters-img" src="../sources/filters/'.$filter.'"></li>';
 ?>
 
 <!DOCTYPE html>
@@ -16,9 +19,14 @@ if (!($_SESSION['auth']))
     include('header.php')
     ?>
     <div class="register-container">
+        <div class="filter-selector">
+            <ul>
+                <?php echo $filters ?>
+            </ul>
+        </div>
         <div class="camera-container">
             <div class="camera-view">
-                <div class="camera-box"><video id="camera-stream">Camera stream is not available.</video></div>
+                <div id="camera-box"><video id="camera-stream">Camera stream is not available.</video></div>
                 <img id="picture-taken" alt="The screen capture will appear in this box.">
                 <button id="camera-snap-btn">Take picture</button>
                 <button id="camera-save-btn">Save</button>
@@ -29,5 +37,6 @@ if (!($_SESSION['auth']))
         </div>
     </div>
     <script type="text/javascript" src="../javascript/camera.js"></script>
+    <script type="text/javascript" src="../javascript/filters.js"></script>
     </body>
 </html>

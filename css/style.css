@@ -123,7 +123,7 @@ hr {
 }
 
 #register-btn, #login-btn, #account-modify-btn, #verify-login, #save-password-btn, #reset-password-btn, #confirm-username-btn,
-#camera-snap-btn {
+#camera-snap-btn, #camera-save-btn, #camera-retry-btn {
     background-color: #fffc00;
     font-size: 14px; 
     color: #262626;
@@ -226,7 +226,7 @@ a {
     font-weight: bold;
 }
 
-.camera-box {
+#camera-box {
     margin: 30px 0px 0px 0px;
     width: 480px;
     height: 360px;
@@ -238,4 +238,33 @@ a {
 
 #canvas {
     display: none;
+}
+
+#camera-save-btn, #camera-retry-btn {
+    display: inline-block;
+    width: 237px;
+}
+
+#picture-taken {
+    margin: 30px 0px 0px 0px;
+}
+
+.filter-selector {
+    border-radius: 30px;
+    margin-top: 30px;
+    background-color: #E8E8E8;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.filter-selector li {
+    display: inline-block;
+}
+
+.filters-img {
+    border: none;
+    max-width: 60px;
+    max-height: 60px;
+    margin: 0px 10px 0px 10px;
+    opacity: 0.5;
 }

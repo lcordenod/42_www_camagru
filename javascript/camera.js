@@ -2,18 +2,12 @@
     var width = 480;
     var height = 0;
     var streaming = false;
-    var video = null;
-    var canvas = null;
-    var picture = null;
-    var snap_button = null;
 
-    function startCamera() {
+    function    startCamera() {
         video = document.getElementById('camera-stream');
         canvas = document.getElementById('canvas');
         picture = document.getElementById('picture-taken');
         snap_button = document.getElementById('camera-snap-btn');
-        retry_button = document.getElementById('camera-retry-btn');
-        save_button = document.getElementById('camera-save-btn');
 
         navigator.mediaDevices.getUserMedia({ video: true, audio: false })
             .then(function (stream) {
@@ -43,10 +37,11 @@
             e.preventDefault();
         }, false);
 
+        hidePictureTaken();
         clearPicture();
     }
 
-    function clearPicture() {
+    function    clearPicture() {
         var context = canvas.getContext('2d');
         context.fillStyle = "#AAA";
         context.fillRect(0, 0, canvas.width, canvas.height);
@@ -61,7 +56,7 @@
     // drawing that to the screen, we can change its size and/or apply
     // other changes before drawing it.
 
-    function takePicture() {
+    function    takePicture() {
         var context = canvas.getContext('2d');
         if (width && height) {
             canvas.width = width;
@@ -70,9 +65,54 @@
 
             var data = canvas.toDataURL('image/png');
             picture.setAttribute('src', data);
+            hideCameraBox();
+            showPictureTaken();
         } else {
             clearPicture();
         }
     }
+
+    function    hideCameraBox() {
+        var camera_box = document.getElementById('camera-box');
+        var snap_button = document.getElementById('camera-snap-btn');
+        camera_box.style.display = "none";
+        snap_button.style.display = "none";
+    }
+
+    function    showCameraBox() {
+        var camera_box = document.getElementById('camera-box');
+        var snap_button = document.getElementById('camera-snap-btn');
+        camera_box.style.display = "block";
+        snap_button.style.display = "block";
+    }
+
+    function    hidePictureTaken() {
+        var picture_taken = document.getElementById('picture-taken');
+        var save_button = document.getElementById('camera-save-btn');
+        var retry_button = document.getElementById('camera-retry-btn');
+        picture_taken.style.display = "none";
+        save_button.style.display = "none";
+        retry_button.style.display = "none";
+    }
+
+    function    showPictureTaken() {
+        var picture_taken = document.getElementById('picture-taken');
+        var save_button = document.getElementById('camera-save-btn');
+        var retry_button = document.getElementById('camera-retry-btn');
+        picture_taken.style.display = "block";
+        save_button.style.display = "inline-block";
+        retry_button.style.display = "inline-block";
+
+        retry_button.addEventListener('click', function (e) {
+            resetCamera();
+            e.preventDefault();
+        }, false);
+    }
+
+    function    resetCamera() {
+        hidePictureTaken();
+        showCameraBox();
+    }
+
     window.addEventListener('load', startCamera, false);
 })();
