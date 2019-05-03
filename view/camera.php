@@ -5,7 +5,7 @@ if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
 $list_filters = preg_grep('/^([^.])/', scandir("../sources/filters"));
 foreach ($list_filters as $filter)
-    $filters .= '<li><img class="filters-img" src="../sources/filters/'.$filter.'"></li>';
+        $filters .= '<li><img class="filters-img" src="../sources/filters/'.$filter.'"></li>';
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +26,15 @@ foreach ($list_filters as $filter)
         </div>
         <div class="camera-container">
             <div class="camera-view">
-                <div id="camera-box"><video id="camera-stream">Camera stream is not available.</video></div>
+                <div id="camera-box">
+                    <video id="camera-stream">Camera stream is not available.</video>
+                    <div class="bottom-left">Bottom Left</div>
+                    <div class="top-left">Top Left</div>
+                    <div class="top-right">Top Right</div>
+                    <div class="bottom-right">Bottom Right</div>
+                    <div class="centered">Centered</div>
+                    <img id="filter-img-active" src="../sources/filters/beer.png">
+                </div>
                 <img id="picture-taken" alt="The screen capture will appear in this box.">
                 <button id="camera-snap-btn">Take picture</button>
                 <button id="camera-save-btn">Save</button>
