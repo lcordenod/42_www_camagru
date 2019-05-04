@@ -68,6 +68,7 @@
             picture.setAttribute('src', data);
             hideCameraBox();
             showPictureTaken();
+            disableFilters();
         } else {
             clearPicture();
         }
@@ -113,6 +114,7 @@
     function    resetCamera() {
         hidePictureTaken();
         showCameraBox();
+        enableFilters();
     }
 
     window.addEventListener('load', startCamera, false);

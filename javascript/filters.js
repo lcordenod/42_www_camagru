@@ -1,33 +1,39 @@
 // Selection and display of the filter image on top of camera-box
-(function () {
-    var list_filters = document.getElementsByClassName("filters-img");
-    var filter_selected = false;
-    var filter_active = document.getElementById("filter-img-active");
+var list_filters = document.getElementsByClassName("filters-img");
+var filter_selected = false;
+var filter_active = document.getElementById("filter-img-active");
+var filters_enabled = true;
+var filter_current = false;
 
-    function    unselectOtherFilters(array, exclude) {
-        for (var i = 0; i < array.length; i++)
-        {
-            if (array[i] !== exclude)
-                array[i].style.opacity = "0.5";;
-        }
+function    unselectOtherFilters(array, exclude) {
+    for (var i = 0; i < array.length; i++)
+    {
+        if (array[i] !== exclude)
+            array[i].style.opacity = "0.5";
     }
+}
 
+(function () {
     for (var i = 0; i < list_filters.length; i++)
     {
         list_filters[i].addEventListener('click', function (e) {
-            unselectOtherFilters(list_filters, this);
-            this.style.opacity = "1";
-            filter_selected = true;
-            if (this !== list_filters[0])
+            if (filters_enabled === true)
             {
-                filter_active.style.display = "block";
-                filter_active.src = this.src;
+                unselectOtherFilters(list_filters, this);
+                this.style.opacity = "1";
+                filter_selected = true;
+                filter_current = this;
+                if (this !== list_filters[0])
+                {
+                    filter_active.style.display = "block";
+                    filter_active.src = this.src;
+                }
+                else
+                    filter_active.style.display = "none";
+                if (filter_selected == true)
+                    document.getElementById('camera-snap-btn').disabled = false;
+                e.preventDefault();
             }
-            else
-                filter_active.style.display = "none";
-            if (filter_selected == true)
-                document.getElementById('camera-snap-btn').disabled = false;
-            e.preventDefault();
         }, false);
     }
 })();
@@ -39,12 +45,16 @@ var box = document.querySelector("#camera-box");
 box.addEventListener("click", getClickPosition, false);
 
 function getClickPosition(e) {
+    var filter_display = filter_active.style.display;
     var parentPosition = getPosition(e.currentTarget);
     var xPosition = e.clientX - parentPosition.x - (filter.clientWidth / 2);
     var yPosition = e.clientY - parentPosition.y - (filter.clientHeight / 2);
 
-    filter.style.left = xPosition + "px";
-    filter.style.top = yPosition + "px";
+    if (filter_display == "block")
+    {
+        filter.style.left = xPosition + "px";
+        filter.style.top = yPosition + "px";
+    }
 }
 
 function getPosition(el) {
@@ -68,4 +78,14 @@ function getPosition(el) {
         x: xPos,
         y: yPos
     };
+}
+
+function    disableFilters() {
+    unselectOtherFilters(list_filters, false);
+    filters_enabled = false;
+}
+
+function    enableFilters() {
+    filters_enabled = true;
+    filter_current.style.opacity = "1";
 }
