@@ -2,6 +2,7 @@
     var width = 480;
     var height = 0;
     var streaming = false;
+    document.getElementById('camera-snap-btn').disabled = true;
 
     function    startCamera() {
         video = document.getElementById('camera-stream');

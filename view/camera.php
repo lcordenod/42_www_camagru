@@ -5,7 +5,7 @@ if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
 $list_filters = preg_grep('/^([^.])/', scandir("../sources/filters"));
 foreach ($list_filters as $filter)
-        $filters .= '<li><img class="filters-img" src="../sources/filters/'.$filter.'"></li>';
+        $filters .= '<li><img class="filters-img" title="filter" src="../sources/filters/'.$filter.'"></li>';
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +19,7 @@ foreach ($list_filters as $filter)
     include('header.php')
     ?>
     <div class="register-container">
+        <h1 id="title-filters">Please select a filter</h1>
         <div class="filter-selector">
             <ul>
                 <?php echo $filters ?>
@@ -28,11 +29,6 @@ foreach ($list_filters as $filter)
             <div class="camera-view">
                 <div id="camera-box">
                     <video id="camera-stream">Camera stream is not available.</video>
-                    <div class="bottom-left">Bottom Left</div>
-                    <div class="top-left">Top Left</div>
-                    <div class="top-right">Top Right</div>
-                    <div class="bottom-right">Bottom Right</div>
-                    <div class="centered">Centered</div>
                     <img id="filter-img-active" src="../sources/filters/beer.png">
                 </div>
                 <img id="picture-taken" alt="The screen capture will appear in this box.">
@@ -44,7 +40,7 @@ foreach ($list_filters as $filter)
             </canvas>
         </div>
     </div>
-    <script type="text/javascript" src="../javascript/camera.js"></script>
     <script type="text/javascript" src="../javascript/filters.js"></script>
+    <script type="text/javascript" src="../javascript/camera.js"></script>
     </body>
 </html>
