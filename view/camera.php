@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 session_start();
+require_once '../controller/camera-controller.php';
+
 if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
 $list_filters = preg_grep('/^([^.])/', scandir("../sources/filters"));
