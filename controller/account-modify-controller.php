@@ -59,7 +59,7 @@ function    sendNewUsernameEmail($email){
 if (isset($action))
 {
     if ($action == "send-reset-password-email")
-    {    
+    {
         sendVerifyEmail($email);
         echo "{\"status\": \"success\"}";
     }

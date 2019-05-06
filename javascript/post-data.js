@@ -1,4 +1,4 @@
-function postData(url, data = {}) {
+function    postData(url, data = {}) {
     return fetch(url, {
         method: "POST",
         headers: {
@@ -7,7 +7,6 @@ function postData(url, data = {}) {
         },
         body: JSON.stringify(data),
         })
-    .then(response => {
-        return response.json()
-    })
+        .then(res => res.text())
+        .then(text => console.log(text))
 }

@@ -43,6 +43,8 @@ foreach ($list_filters as $filter)
         </div>
     </div>
     <script type="text/javascript" src="../javascript/filters.js"></script>
+    <script type="text/javascript" src="../javascript/post-data.js"></script>
+    <script type="text/javascript" src="../javascript/create-montage.js"></script>
     <script type="text/javascript" src="../javascript/camera.js"></script>
     </body>
 </html>

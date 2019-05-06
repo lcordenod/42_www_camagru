@@ -2,6 +2,7 @@
     var width = 480;
     var height = 0;
     var streaming = false;
+
     document.getElementById('camera-snap-btn').disabled = true;
 
     function    startCamera() {
@@ -34,6 +35,8 @@
         }, false);
 
         snap_button.addEventListener('click', function (e) {
+            picture.style.width = width;
+            var filter_elem = document.getElementById("filter-img-active");
             takePicture();
             e.preventDefault();
         }, false);
@@ -60,6 +63,7 @@
 
             var data = canvas.toDataURL('image/png');
             picture.setAttribute('src', data);
+            sendMontageDetails(width);
             hideCameraBox();
             showPictureTaken();
             disableFilters();

@@ -1,5 +1,15 @@
 <?php
-require_once 'debug.php';
+session_start();
+require_once "debug.php";
+
+$content = trim(file_get_contents("php://input"));
+$decoded = json_decode($content, true);
+$image_src = $decoded['image_src'];
+$image_width = $decoded['image_width'];
+$filter_src = $decoded['filter_src'];
+$filter_width = $decoded['filter_width'];
+$filter_top = $decoded['filter_top'];
+$filter_left = $decoded['filter_left'];
 
 function resizeImage($newWidth, $originalFile) {
         $info = getimagesize($originalFile);
@@ -33,27 +43,57 @@ function resizeImage($newWidth, $originalFile) {
 
         $newHeight = ($height / $width) * $newWidth;
         $tmp = imagecreatetruecolor($newWidth, $newHeight);
-        imagealphablending( $tmp, false );
-        imagesavealpha( $tmp, true );
+        if ($mime === 'image/png' || $mime === 'image/gif')
+        {
+                imagealphablending( $tmp, false );
+                imagesavealpha( $tmp, true );
+        }
         imagecopyresampled($tmp, $img, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
         return ($tmp);
 }
 
-$filter = '../sources/filters/dancing-cat.gif';
-/* New resize image is hardcoded as 200 but needs to be given by front end */
-$filter_resized = resizeImage(200, $filter);
-$image = imagecreatefromjpeg('https://jpeg.org/images/jpeg-home.jpg');
+function generateMontageFileName($user_id)
+{
+        $file_name = "montage-user-".$user_id."-".uniqid();
+        return ($file_name);
+}
 
-/* Margins of image are hardcoded but needs to be given by front end */
-$marge_left = 50;
-$marge_top = 50;
-$filter_x = imagesx($filter_resized);
-$filter_y = imagesy($filter_resized);
+function generateTmpImageFileName($user_id)
+{
+        $file_name = "tmp-image-user-".$user_id."-".uniqid();
+        return ($file_name);
+}
 
-imagecopy($image, $filter_resized, $marge_left, $marge_top, 0, 0, $filter_x, $filter_y);
+function createImageFromBaseSixtyFour($data, $name)
+{
+        $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
+        file_put_contents('../sources/tmp/'.$name.'.jpg', $data);
+        return ('../sources/tmp/'.$name.'.jpg');
+}
 
-header('Content-type: image/png');
-imagepng($image);
-imagedestroy($image);
+if (isset($image_src))
+{
+        if (isset($image_src) && isset($image_width) && isset($filter_src) && isset($filter_width) && isset($filter_top) && isset($filter_left))
+        {
+                $image_name = createImageFromBaseSixtyFour($image_src, generateTmpImageFileName($_SESSION['auth']->user_id));
+                $image = $image_name;
+                $image = '../sources/tmp/tmp-image-user-130-5cd075c7da6ca.jpg';
+/*                 $image = 'https://www.w3schools.com/w3css/img_lights.jpg'; */
+                $image_resized = resizeImage($image_width, $image);
+                $filter_resized = resizeImage($filter_width, $filter_src);
+                $filter_x = imagesx($filter_resized);
+                $filter_y = imagesy($filter_resized);
+                $file_name = generateMontageFileName($_SESSION['auth']->user_id);
+                $montage_url = '../sources/tmp/'.$file_name.'.png';
+                imagecopy($image_resized, $filter_resized, $filter_left, $filter_top, 0, 0, $filter_x, $filter_y);
+                imagepng($image_resized, $montage_url);
+                imagedestroy($image_resized);
+                imagedestroy($filter_resized);
+                echo "{\"status\": \"success\"}";
+        }
+        else
+                echo "{\"status\": \"failed\"}";
+                
+}
+
 ?>
