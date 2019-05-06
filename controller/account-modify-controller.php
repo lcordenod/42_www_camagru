@@ -120,38 +120,38 @@ else if (isset($_POST['username']) && $_POST['submit'] !== "OK")
 }
 else if (isset($_POST['password']) && isset($_POST['password-rpt']) && $_POST['submit'] !== "OK")
 {
-        // HASH INPUT
-        $password = hash('whirlpool', $_POST["password"]);
-        $password_rpt = hash('whirlpool', $_POST["password-rpt"]);
-    
-        // CHECK PASSWORD INPUT IS SAME
-        $password_diff = strcmp($password, $password_rpt);
-        $password_diff_old = strcmp($password, $_SESSION['auth']->user_pwd);
+    // HASH INPUT
+    $password = hash('whirlpool', $_POST["password"]);
+    $password_rpt = hash('whirlpool', $_POST["password-rpt"]);
 
-        // CHECK BEFORE SUBMIT
-        if ($password_diff)
-        {
-            $state = "display:block";
-            $error_backend = $password_error;
-        }
-        if (!$password_diff_old)
-        {
-            $state = "display:block";
-            $error_backend = $new_password_same_error;
-        }
-        else if (strlen($_POST["password"]) > 30)
-        {
-            $state = "display:block";
-            $error_backend = $password_toolong;
-        }
-        else
-        {
-            modifyAccountPassword($_SESSION['auth']->user_name, $password);
-            $_SESSION['auth']->user_pwd = $password;
-            sendConfirmResetPasswordEmail($_SESSION['auth']->user_email);
-            header("Location: /camagru/view/account.php");
-            return;
-        }
+    // CHECK PASSWORD INPUT IS SAME
+    $password_diff = strcmp($password, $password_rpt);
+    $password_diff_old = strcmp($password, $_SESSION['auth']->user_pwd);
+
+    // CHECK BEFORE SUBMIT
+    if ($password_diff)
+    {
+        $state = "display:block";
+        $error_backend = $password_error;
+    }
+    if (!$password_diff_old)
+    {
+        $state = "display:block";
+        $error_backend = $new_password_same_error;
+    }
+    else if (strlen($_POST["password"]) > 30)
+    {
+        $state = "display:block";
+        $error_backend = $password_toolong;
+    }
+    else
+    {
+        modifyAccountPassword($_SESSION['auth']->user_name, $password);
+        $_SESSION['auth']->user_pwd = $password;
+        sendConfirmResetPasswordEmail($_SESSION['auth']->user_email);
+        header("Location: /camagru/view/account.php");
+        return;
+    }
 }
 
 ?>

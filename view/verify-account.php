@@ -17,7 +17,7 @@ if (isset($_GET['email']) && isset($_GET['key']))
         $message = "Your account is already active, you may now login";
     }
     else
-        $message = "We cannot verify this account, please make sure link entered is correct";
+        $message = "We cannot verify this account, please make sure link entered is correct or latest";
 }
 else
 {

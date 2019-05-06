@@ -50,13 +50,7 @@
         var data = canvas.toDataURL('image/png');
         picture.setAttribute('src', data);
     }
-
-    // Capture a picture by fetching the current contents of the video
-    // and drawing it into a canvas, then converting that to a PNG
-    // format data URL. By drawing it on an offscreen canvas and then
-    // drawing that to the screen, we can change its size and/or apply
-    // other changes before drawing it.
-
+    
     function    takePicture() {
         var context = canvas.getContext('2d');
         if (width && height) {

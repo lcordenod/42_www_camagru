@@ -1,0 +1,3 @@
+function    sendMontageDetails(image, filter) {
+    
+}
