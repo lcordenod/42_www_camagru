@@ -10,6 +10,7 @@
         canvas = document.getElementById('canvas');
         picture = document.getElementById('picture-taken');
         snap_button = document.getElementById('camera-snap-btn');
+        save_button = document.getElementById('camera-save-btn');
 
         navigator.mediaDevices.getUserMedia({ video: true, audio: false })
             .then(function (stream) {
@@ -63,13 +64,18 @@
 
             var data = canvas.toDataURL('image/png');
             picture.setAttribute('src', data);
-            sendMontageDetails(width);
+            createMontage(width);
             hideCameraBox();
             showPictureTaken();
             disableFilters();
         } else {
             clearPicture();
         }
+    }
+
+    function    savePicture() {
+        saveMontage();
+        resetCamera();
     }
 
     function    hideCameraBox() {
@@ -105,6 +111,11 @@
 
         retry_button.addEventListener('click', function (e) {
             resetCamera();
+            e.preventDefault();
+        }, false);
+
+        save_button.addEventListener('click', function (e) {
+            savePicture();
             e.preventDefault();
         }, false);
     }

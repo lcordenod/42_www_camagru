@@ -2,6 +2,8 @@
 header('Content-Type: text/html; charset=utf-8');
 session_start();
 require_once '../controller/create-montage-controller.php';
+/* require_once '../controller/save-montage-controller.php'; */
+
 
 if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
@@ -44,7 +46,7 @@ foreach ($list_filters as $filter)
     </div>
     <script type="text/javascript" src="../javascript/filters.js"></script>
     <script type="text/javascript" src="../javascript/post-data.js"></script>
-    <script type="text/javascript" src="../javascript/create-montage.js"></script>
+    <script type="text/javascript" src="../javascript/montage-processing.js"></script>
     <script type="text/javascript" src="../javascript/camera.js"></script>
     </body>
 </html>
