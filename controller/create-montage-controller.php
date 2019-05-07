@@ -10,6 +10,7 @@ $filter_src = $decoded['filter_src'];
 $filter_width = $decoded['filter_width'];
 $filter_top = $decoded['filter_top'];
 $filter_left = $decoded['filter_left'];
+$montage_url = false;
 
 function resizeImage($newWidth, $originalFile) {
         $info = getimagesize($originalFile);
@@ -83,19 +84,22 @@ if (isset($image_src))
 {
         if (isset($image_src) && isset($image_width) && isset($filter_src) && isset($filter_width) && isset($filter_top) && isset($filter_left))
         {
+                $file_name = generateMontageFileName($_SESSION['auth']->user_id);
+                $montage_url = '../sources/tmp/'.$file_name.'.png';
+                echo $montage_url;
+                echo "{\"status\": \"success\"}";
                 $image_png = createImageFromBaseSixtyFour($image_src, generateTmpImageFileName($_SESSION['auth']->user_id));
                 $image = pngToJpg($image_png);
                 $image_resized = resizeImage($image_width, $image);
+                unlink($image);
+                unlink($image_png);
                 $filter_resized = resizeImage($filter_width, $filter_src);
                 $filter_x = imagesx($filter_resized);
                 $filter_y = imagesy($filter_resized);
-                $file_name = generateMontageFileName($_SESSION['auth']->user_id);
-                $montage_url = '../sources/tmp/'.$file_name.'.png';
                 imagecopy($image_resized, $filter_resized, $filter_left, $filter_top, 0, 0, $filter_x, $filter_y);
                 imagepng($image_resized, $montage_url);
                 imagedestroy($image_resized);
                 imagedestroy($filter_resized);
-                echo "{\"status\": \"success\"}";
         }
         else
                 echo "{\"status\": \"failed\"}";
