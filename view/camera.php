@@ -2,7 +2,7 @@
 header('Content-Type: text/html; charset=utf-8');
 session_start();
 require_once '../controller/create-montage-controller.php';
-/* require_once '../controller/save-montage-controller.php'; */
+require_once '../controller/save-montage-controller.php';
 
 
 if (!($_SESSION['auth']))

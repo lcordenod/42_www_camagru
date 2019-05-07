@@ -26,13 +26,6 @@ function generateTmpImageFileName($user_id)
         return ($file_name);
 }
 
-function createImageFromBaseSixtyFour($data, $file_path)
-{
-        $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
-        file_put_contents($file_path.'.png', $data);
-        return ($file_path.'.png');
-}
-
 function createUserMontageTempDir($user_id)
 {
         $dir_path = "../sources/tmp/user-".$user_id;

@@ -26,17 +26,18 @@ function        saveMontageToDb($user_id, $montage_path)
 function        saveMontage($user_id, $file_tmp_path)
 {
         $dest_path = createUserMontageDir($user_id);
+        console_log($dest_path);
         if ($montage_path = copyFileToDir($file_tmp_path, $dest_path) !== -1)
         {
                 $file_tmp_dir = dirname($file_tmp_path);
-                deleteFilesFromDir(dirname($file_tmp_path));
+/*                 deleteFilesFromDir(dirname($file_tmp_path)); */
                 saveMontageToDb($user_id, $montage_path);
         }
         else
                 return (-1);
 }
 
-/* if (isset($file_tmp_path))
+if (isset($file_tmp_path))
 {
         if (saveMontage($_SESSION['auth']->user_id, $file_tmp_path) !== -1)
         {
@@ -45,6 +46,6 @@ function        saveMontage($user_id, $file_tmp_path)
         }
         else
                 echo "{\"status\": \"failed\"}";
-} */
+}
 
 ?>
