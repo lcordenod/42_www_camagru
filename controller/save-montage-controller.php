@@ -18,7 +18,7 @@ function        createUserMontageDir($user_id)
 function        saveMontageToDb($user_id, $montage_path)
 {
         $date = date('Y-m-d H:i:s');
-        $save = db_connect()->prepare("INSERT INTO image (img_user, img_path, img_time)
+        $save = db_connect()->prepare("INSERT INTO images (img_user, img_path, img_time)
         VALUES ('$user_id', '$montage_path', '$date')");
         $save->execute();
 }
@@ -26,8 +26,7 @@ function        saveMontageToDb($user_id, $montage_path)
 function        saveMontage($user_id, $file_tmp_path)
 {
         $dest_path = createUserMontageDir($user_id);
-        console_log($dest_path);
-        if ($montage_path = copyFileToDir($file_tmp_path, $dest_path) !== -1)
+        if (($montage_path = copyFileToDir($file_tmp_path, $dest_path)) !== -1)
         {
                 $file_tmp_dir = preg_replace("/\/gallery\//", "/\/tmp\//", $dest_path);
                 if (!isDirEmpty($file_tmp_dir))
