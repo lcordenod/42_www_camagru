@@ -80,15 +80,34 @@ function pngToJpg($original_file) {
         return ($output_file);
 }
 
+function createUserMontageTempDir($user_id)
+{
+        $dir_path = "user-".$user_id;
+        @mkdir("../sources/tmp/".$dir_path);
+        return ($dir_path);
+}
+
+function deleteFilesFromDir($dir_path)
+{
+        $files = glob($dir_path."/*");
+
+        foreach($files as $file)
+        {
+                if (is_file($file))
+                        unlink($file);
+        }
+}
+
 if (isset($image_src))
 {
         if (isset($image_src) && isset($image_width) && isset($filter_src) && isset($filter_width) && isset($filter_top) && isset($filter_left))
         {
+                $dir_name = createUserMontageTempDir($_SESSION['auth']->user_id);
                 $file_name = generateMontageFileName($_SESSION['auth']->user_id);
-                $montage_url = '../sources/tmp/'.$file_name.'.png';
+                $montage_url = '../sources/tmp/'.$dir_name."/".$file_name.'.png';
                 echo $montage_url;
                 echo "{\"status\": \"success\"}";
-                $image_png = createImageFromBaseSixtyFour($image_src, generateTmpImageFileName($_SESSION['auth']->user_id));
+                $image_png = createImageFromBaseSixtyFour($image_src, $dir_name."/".generateTmpImageFileName($_SESSION['auth']->user_id));
                 $image = pngToJpg($image_png);
                 $image_resized = resizeImage($image_width, $image);
                 unlink($image);
@@ -96,6 +115,7 @@ if (isset($image_src))
                 $filter_resized = resizeImage($filter_width, $filter_src);
                 $filter_x = imagesx($filter_resized);
                 $filter_y = imagesy($filter_resized);
+                deleteFilesFromDir('../sources/tmp/'.$dir_name);
                 imagecopy($image_resized, $filter_resized, $filter_left, $filter_top, 0, 0, $filter_x, $filter_y);
                 imagepng($image_resized, $montage_url);
                 imagedestroy($image_resized);
@@ -103,7 +123,6 @@ if (isset($image_src))
         }
         else
                 echo "{\"status\": \"failed\"}";
-                
 }
 
 ?>
