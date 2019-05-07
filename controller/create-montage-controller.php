@@ -67,18 +67,24 @@ function generateTmpImageFileName($user_id)
 function createImageFromBaseSixtyFour($data, $name)
 {
         $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
-        file_put_contents('../sources/tmp/'.$name.'.jpg', $data);
-        return ('../sources/tmp/'.$name.'.jpg');
+        file_put_contents('../sources/tmp/'.$name.'.png', $data);
+        return ('../sources/tmp/'.$name.'.png');
+}
+
+function pngToJpg($original_file) {
+        $image = imagecreatefrompng($original_file);
+        $output_file = preg_replace('/.png/', '.jpg', $original_file);
+        imagejpeg($image, $output_file, 100);
+        imagedestroy($image);
+        return ($output_file);
 }
 
 if (isset($image_src))
 {
         if (isset($image_src) && isset($image_width) && isset($filter_src) && isset($filter_width) && isset($filter_top) && isset($filter_left))
         {
-                $image_name = createImageFromBaseSixtyFour($image_src, generateTmpImageFileName($_SESSION['auth']->user_id));
-                $image = $image_name;
-                $image = '../sources/tmp/tmp-image-user-130-5cd075c7da6ca.jpg';
-/*                 $image = 'https://www.w3schools.com/w3css/img_lights.jpg'; */
+                $image_png = createImageFromBaseSixtyFour($image_src, generateTmpImageFileName($_SESSION['auth']->user_id));
+                $image = pngToJpg($image_png);
                 $image_resized = resizeImage($image_width, $image);
                 $filter_resized = resizeImage($filter_width, $filter_src);
                 $filter_x = imagesx($filter_resized);
