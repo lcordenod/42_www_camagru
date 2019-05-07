@@ -29,8 +29,9 @@ function        saveMontage($user_id, $file_tmp_path)
         console_log($dest_path);
         if ($montage_path = copyFileToDir($file_tmp_path, $dest_path) !== -1)
         {
-                $file_tmp_dir = dirname($file_tmp_path);
-/*                 deleteFilesFromDir(dirname($file_tmp_path)); */
+                $file_tmp_dir = preg_replace("/\/gallery\//", "/\/tmp\//", $dest_path);
+                if (!isDirEmpty($file_tmp_dir))
+                        deleteFilesFromDir($file_tmp_dir);
                 saveMontageToDb($user_id, $montage_path);
         }
         else
