@@ -19,7 +19,7 @@ function    copyFileToDir($file_path, $dest_path)
 
         if (!copy($file_path, $newfile_path))
                 console_log("failed to copy $file...\n");
-        return($dest_path.$file);
+        return($dest_path."/".$file);
 }
 
 function        isDirEmpty($path) {
