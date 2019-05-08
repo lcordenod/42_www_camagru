@@ -42,9 +42,12 @@ foreach ($list_filters as $filter)
             </div>
             <canvas id="canvas">
             </canvas>
-            <?php
-                include('gallery-view.php')
-            ?>
+            <div class="pictures-taken-view">
+                <h3 id="title-pictures-taken">My pictures taken</h3>
+                <div id="pictures-taken-box">
+                </div>
+                <a id="link-pictures-taken-to-gallery" href="/camagru/view/account-my-gallery.php">See my gallery</a>
+            </div>
         </div>
     </div>
     <script type="text/javascript" src="../javascript/filters.js"></script>

@@ -2,6 +2,8 @@
     var width = 480;
     var height = 0;
     var streaming = false;
+    var save_button = document.getElementById('camera-save-btn');
+    var retry_button = document.getElementById('camera-retry-btn');
 
     document.getElementById('camera-snap-btn').disabled = true;
 
@@ -103,21 +105,23 @@
 
     function    showPictureTaken() {
         var picture_taken = document.getElementById('picture-taken');
-        var save_button = document.getElementById('camera-save-btn');
-        var retry_button = document.getElementById('camera-retry-btn');
         picture_taken.style.display = "block";
         save_button.style.display = "inline-block";
         retry_button.style.display = "inline-block";
+    }
 
-        retry_button.addEventListener('click', function (e) {
-            resetCamera();
-            e.preventDefault();
-        }, false);
+    function    showMontageInPicturesTakenBox() {
+        var pictures_taken_box = document.getElementById('pictures-taken-box');
+        var picture_taken = document.getElementById('picture-taken');
+        var new_montage = document.createElement("img");
+        var check_existing_picture = document.getElementsByClassName("pictures-taken-picture");
+        new_montage.setAttribute("src", picture_taken.src);
+        new_montage.setAttribute("class", "pictures-taken-picture");
 
-        save_button.addEventListener('click', function (e) {
-            savePicture();
-            e.preventDefault();
-        }, false);
+        if (check_existing_picture === null)
+            pictures_taken_box.appendChild(new_montage);
+        else
+            pictures_taken_box.insertBefore(new_montage, pictures_taken_box.childNodes[0]);
     }
 
     function    resetCamera() {
@@ -125,6 +129,18 @@
         showCameraBox();
         enableFilters();
     }
+
+    retry_button.addEventListener('click', function (e) {
+        resetCamera();
+        e.preventDefault();
+    }, false);
+
+    save_button.addEventListener('click', function (e) {
+        savePicture();
+        console.log("testttttt");
+        showMontageInPicturesTakenBox();
+        e.preventDefault();
+    }, false);
 
     window.addEventListener('load', startCamera, false);
 })();
