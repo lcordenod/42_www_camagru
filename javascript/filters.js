@@ -31,7 +31,10 @@ function    unselectOtherFilters(array, exclude) {
                 else
                     filter_active.style.display = "none";
                 if (filter_selected == true)
+                {
                     document.getElementById('camera-snap-btn').disabled = false;
+                    document.getElementById('message-no-pictures-taken-box').innerHTML = "Place the filter <br/> using click on camera feed<br/>👌";
+                }
                 e.preventDefault();
             }
         }, false);

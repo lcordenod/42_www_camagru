@@ -66,6 +66,8 @@
 
             var data = canvas.toDataURL('image/png');
             picture.setAttribute('src', data);
+            if (document.getElementsByClassName("pictures-taken-picture").length === 0)
+                document.getElementById('message-no-pictures-taken-box').innerHTML = "Looking good! 😎<br/>Now you can save it or retry";
             createMontage(width);
             hideCameraBox();
             showPictureTaken();
@@ -128,6 +130,8 @@
         hidePictureTaken();
         showCameraBox();
         enableFilters();
+        if (document.getElementsByClassName("pictures-taken-picture").length === 0)
+            document.getElementById('message-no-pictures-taken-box').innerHTML = "No pictures taken yet...<br/>Select a filter to start 😌";
     }
 
     retry_button.addEventListener('click', function (e) {
@@ -137,8 +141,8 @@
 
     save_button.addEventListener('click', function (e) {
         savePicture();
-        console.log("testttttt");
         showMontageInPicturesTakenBox();
+        document.getElementById('message-no-pictures-taken-box').style.display = "none";
         e.preventDefault();
     }, false);
 

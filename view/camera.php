@@ -45,6 +45,7 @@ foreach ($list_filters as $filter)
             <div class="pictures-taken-view">
                 <h3 id="title-pictures-taken">My pictures taken</h3>
                 <div id="pictures-taken-box">
+                <p id="message-no-pictures-taken-box">No pictures taken yet...<br/>Select a filter to start 😌</p>
                 </div>
                 <a id="link-pictures-taken-to-gallery" href="/camagru/view/account-my-gallery.php">See my gallery</a>
             </div>

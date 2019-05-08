@@ -294,6 +294,15 @@ a {
     margin-bottom: 10px;
 }
 
+#message-no-pictures-taken-box {
+    text-align: center;
+    border-radius: 30px;
+    margin: 20px;
+    padding: 20px 0px 20px 0px;
+    background-color:rgba(255, 178, 178, 0.4);
+    font-size: 16px;
+}
+
 #link-pictures-taken-to-gallery {
     display: block;
     text-align: center;
@@ -311,6 +320,12 @@ a {
 @media screen and (max-width: 1200px) {
     .register-container {
         margin: auto 50px auto 50px;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    #message-no-pictures-taken-box {
+        font-size: 14px;
     }
 }
 
