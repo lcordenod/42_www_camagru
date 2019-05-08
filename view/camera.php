@@ -29,8 +29,10 @@ foreach ($list_filters as $filter)
                 <?php echo $filters ?>
             </ul>
         </div>
+        <div id="error-no-camera">Your camera seems disabled, please make sure to enable it in order to use SnapCat</div>
+        <button id="no-camera-retry-btn" onclick="window.location.href = '/camagru/view/camera.php'">Retry</button>
         <div class="camera-container">
-            <div class="camera-view">
+            <div id="camera-view">
                 <div id="camera-box">
                     <video id="camera-stream">Camera stream is not available.</video>
                     <img id="filter-img-active" src="../sources/filters/beer.png">
@@ -42,7 +44,7 @@ foreach ($list_filters as $filter)
             </div>
             <canvas id="canvas">
             </canvas>
-            <div class="pictures-taken-view">
+            <div id="pictures-taken-view">
                 <h3 id="title-pictures-taken">My pictures taken</h3>
                 <div id="pictures-taken-box">
                 <p id="message-no-pictures-taken-box">No pictures taken yet...<br/>Select a filter to start 😌</p>

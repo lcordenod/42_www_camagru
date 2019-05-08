@@ -21,6 +21,9 @@
             })
             .catch(function (err) {
                 console.log("An error occurred: " + err);
+                hideCameraBox();
+                hidePicturesTakenView();
+                showNoCameraBlock();
             });
 
         video.addEventListener('canplay', function (e) {
@@ -89,6 +92,12 @@
         snap_button.style.display = "none";
     }
 
+    function    hidePicturesTakenView() {
+        var pictures_taken_view = document.getElementById('pictures-taken-view');
+
+        pictures_taken_view.style.display = "none";
+    }
+
     function    showCameraBox() {
         var camera_box = document.getElementById('camera-box');
         var snap_button = document.getElementById('camera-snap-btn');
@@ -132,6 +141,14 @@
         enableFilters();
         if (document.getElementsByClassName("pictures-taken-picture").length === 0)
             document.getElementById('message-no-pictures-taken-box').innerHTML = "No pictures taken yet...<br/>Select a filter to start 😌";
+    }
+
+    function    showNoCameraBlock() {
+        var no_camera_error = document.getElementById('error-no-camera');
+        var no_camera_retry = document.getElementById('no-camera-retry-btn');
+
+        no_camera_error.style.display = "block";
+        no_camera_retry.style.display = "block";
     }
 
     retry_button.addEventListener('click', function (e) {

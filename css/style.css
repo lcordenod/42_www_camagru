@@ -106,7 +106,7 @@ hr {
 }
 
 #register-btn, #login-btn, #account-modify-btn, #verify-login, #save-password-btn, #reset-password-btn, #confirm-username-btn,
-#camera-snap-btn, #camera-save-btn, #camera-retry-btn {
+#camera-snap-btn, #camera-save-btn, #camera-retry-btn, #no-camera-retry-btn {
     background-color: #fffc00;
     font-size: 14px; 
     color: #262626;
@@ -120,7 +120,7 @@ hr {
 }
 
 #register-btn:hover, #login-btn:hover, #account-modify-btn:hover, #verify-login:hover, #save-password-btn:hover, #reset-password-btn:hover, #confirm-username-btn:hover,
-#camera-snap-btn:hover, #camera-save-btn:hover, #camera-retry-btn:hover {
+#camera-snap-btn:hover, #camera-save-btn:hover, #camera-retry-btn:hover, #no-camera-retry-btn:hover {
     opacity: 0.7;
 }
 
@@ -218,7 +218,7 @@ a {
     position: relative;
 }
 
-.camera-view {
+#camera-view {
     width: 480px;
     float: left;
 }
@@ -244,7 +244,7 @@ a {
     white-space: nowrap;
 }
 
-.pictures-taken-view {
+#pictures-taken-view {
     overflow: hidden;
     min-width: 250px;
 }
@@ -315,6 +315,21 @@ a {
     padding: 10px;
 }
 
+#error-no-camera {
+    display: none;
+    background-color: rgba(255, 178, 178, 0.4);
+    width: 80%;
+    margin: 30px auto;
+    padding: 50px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+#no-camera-retry-btn {
+    margin: auto;
+    display: none;
+}
+
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 1200px) {
@@ -334,7 +349,7 @@ a {
         margin: auto 50px auto 50px;
     }
 
-    .camera-view {
+    #camera-view {
         margin-left: auto;
         margin-right: auto;
         float: none;
@@ -360,7 +375,7 @@ a {
         height: 225px;
     }
 
-    .camera-view {
+    #camera-view {
         width: 300px;
     }
 
@@ -368,7 +383,7 @@ a {
         width: 300px;
     }
 
-    #camera-save-btn, #camera-retry-btn {
+    #camera-save-btn, #camera-retry-btn, #no-camera-retry-btn {
         width: 100%;
         margin-bottom: 10px;
     }
