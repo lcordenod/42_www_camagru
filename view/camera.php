@@ -42,6 +42,9 @@ foreach ($list_filters as $filter)
             </div>
             <canvas id="canvas">
             </canvas>
+            <?php
+                include('gallery-view.php')
+            ?>
         </div>
     </div>
     <script type="text/javascript" src="../javascript/filters.js"></script>

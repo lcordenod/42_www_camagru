@@ -79,28 +79,11 @@ a.block, a:visited.block {
     width: 50px;
 }
 
-@media screen and (max-width: 545px) {
-    #logo-img {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 500px) {
-.header a {
-    float: none;
-    display: block;
-    text-align: left;
-}
-
-.header-right {
-    float: none;
-}
-}
-
 /* REGISTER/LOGIN */
 
 .register-container {
-    margin: 0px 50px 0px 50px;
+    margin: auto;
+    max-width: 1200px;
 }
 
 input[type=text], input[type=password] {
@@ -229,18 +212,15 @@ a {
 
 #camera-box {
     overflow: hidden;
-    margin: 30px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
     width: 480px;
     height: 360px;
     position: relative;
 }
 
-#camera-stream {
-    content: "coucou";
-}
-
 .camera-view {
     width: 480px;
+    float: left;
 }
 
 #canvas {
@@ -253,15 +233,26 @@ a {
 }
 
 #picture-taken {
-    margin: 30px 0px 0px 0px;
+    margin: 20px 0px 0px 0px;
 }
 
-.filter-selector {
+.filter-selector, .gallery-box {
     border-radius: 30px;
     margin-top: 10px;
     background-color: #E8E8E8;
     overflow: auto;
     white-space: nowrap;
+}
+
+.gallery-view {
+    overflow: hidden;
+    min-width: 250px;
+}
+
+.gallery-box {
+    margin: 20px auto 0px auto;
+    width: 80%;
+    height: 415px;
 }
 
 .filter-selector li {
@@ -288,4 +279,55 @@ a {
 #title-filters {
     margin-top: 20px;
     font-size: 25px;
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 1200px) {
+    .register-container {
+        margin: auto 50px auto 50px;
+    }
+}
+
+@media screen and (max-width: 545px) {
+    #logo-img {
+        display: none;
+    }
+
+    .register-container {
+        margin: auto 20px auto 20px;
+    }
+
+    #camera-box {
+        width: 300px;
+        height: 225px;
+    }
+    
+    #camera-stream {
+        width: 300px;
+        height: 225px;
+    }
+
+    .camera-view {
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+        width: 300px;
+    }
+
+    #picture-taken {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .header-right {
+        float: none;
+    }
 }
