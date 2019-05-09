@@ -6,7 +6,7 @@ function    createMontage(width) {
 
     image_src = image_elem.src;
     image_width = width;
-    if (image_upload.length !== 0)
+    if (image_upload.length !== 0 && image_upload.length !== undefined)
         width_scaling = 480 / image_upload.clientWidth;
     else if (document.body.clientWidth <= 545)
         width_scaling *= 1.6;
