@@ -92,3 +92,13 @@ function    enableFilters() {
     filters_enabled = true;
     filter_current.style.opacity = "1";
 }
+
+function    hideFilters() {
+    document.getElementById('title-filters').style.display = "none";
+    document.getElementById('filter-selector').style.display = "none";
+}
+
+function    showFilters() {
+    document.getElementById('title-filters').style.display = "block";
+    document.getElementById('filter-selector').style.display = "block";
+}

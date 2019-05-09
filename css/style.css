@@ -239,7 +239,7 @@ a {
     margin: 20px 0px 0px 0px;
 }
 
-.filter-selector, #pictures-taken-box {
+#filter-selector, #pictures-taken-box {
     border-radius: 30px;
     margin-top: 10px;
     background-color: #E8E8E8;
@@ -260,7 +260,7 @@ a {
     height: 335px;
 }
 
-.filter-selector li {
+#filter-selector li {
     display: inline-block;
 }
 

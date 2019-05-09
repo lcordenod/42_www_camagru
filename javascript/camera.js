@@ -122,7 +122,7 @@ function    hideNoCameraBlock() {
 function    showNoCameraBlock() {
     var no_camera_box = document.getElementById('no-camera-box');
     no_camera_box.style.display = "block";
-    disableFilters();
+    hideFilters();
 }
 
 (function () {

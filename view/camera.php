@@ -24,7 +24,7 @@ foreach ($list_filters as $filter)
     ?>
     <div class="register-container">
         <h1 id="title-filters">Please select a filter</h1>
-        <div class="filter-selector">
+        <div id="filter-selector">
             <ul>
                 <?php echo $filters ?>
             </ul>

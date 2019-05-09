@@ -41,7 +41,7 @@ function    uploadToMontage(){
         showCameraBox();
         showPicturesTakenView();
         hideNoCameraBlock();
-        filters_enabled = true;
+        showFilters();
         is_image_upload = true;
     }
 }
