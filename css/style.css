@@ -406,6 +406,7 @@ a {
 
     #camera-box, #camera-stream, #image-upload-preview {
         width: 300px;
+        height: auto;
     }
 
     #camera-view, #picture-taken {
