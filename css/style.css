@@ -364,6 +364,13 @@ a {
     display: none;
 }
 
+#image-upload {
+    display: none;
+    margin: auto;
+    max-width: 480px;
+    max-height: 360px;
+}
+
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 1200px) {
@@ -399,21 +406,12 @@ a {
         margin: auto 20px auto 20px;
     }
 
-    #camera-box {
-        width: 300px;
-        height: 225px;
-    }
-    
-    #camera-stream {
+    #camera-box, #camera-stream, #image-upload-preview {
         width: 300px;
         height: 225px;
     }
 
-    #camera-view {
-        width: 300px;
-    }
-
-    #picture-taken {
+    #camera-view, #picture-taken {
         width: 300px;
     }
 
@@ -422,8 +420,10 @@ a {
         margin-bottom: 10px;
     }
 
-    #image-upload-preview {
-        width: 300px;
+    #image-upload {
+        display: none;
+        max-width: 300px;
+        max-height: 225px;
     }
 }
 

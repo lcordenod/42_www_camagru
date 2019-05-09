@@ -49,11 +49,25 @@ function pngToJpg($original_file) {
         return ($output_file);
 }
 
-function createImageFromBaseSixtyFour($data, $file_path)
+function checkImageDataFormat($data)
+{
+        $pos  = strpos($data, ';');
+        $type = explode(':', substr($data, 0, $pos))[1];
+        return ($type);
+}
+
+function createPngImageFromBaseSixtyFour($data, $file_path)
 {
         $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
         file_put_contents($file_path.'.png', $data);
         return ($file_path.'.png');
+}
+
+function createJpgImageFromBaseSixtyFour($data, $file_path)
+{
+        $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
+        file_put_contents($file_path.'.jpg', $data);
+        return ($file_path.'.jpg');
 }
 
 

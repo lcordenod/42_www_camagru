@@ -42,8 +42,13 @@ if (isset($image_src))
                 $montage_url = $dir_path."/".$file_name.'.png';
                 echo $montage_url;
                 echo "{\"status\": \"success\"}";
-                $image_png = createImageFromBaseSixtyFour($image_src, $dir_path."/".generateTmpImageFileName($_SESSION['auth']->user_id));
-                $image = pngToJpg($image_png);
+                if (checkImageDataFormat($image_src) === "image/png")
+                {
+                        $image_png = createPngImageFromBaseSixtyFour($image_src, $dir_path."/".generateTmpImageFileName($_SESSION['auth']->user_id));
+                        $image = pngToJpg($image_png);
+                }
+                else
+                        $image = createJpgImageFromBaseSixtyFour($image_src, $dir_path."/".generateTmpImageFileName($_SESSION['auth']->user_id));
                 $image_resized = resizeImage($image_width, $image);
                 unlink($image);
                 unlink($image_png);

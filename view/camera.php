@@ -32,7 +32,7 @@ foreach ($list_filters as $filter)
         <div id="no-camera-box">
             <div id="error-no-camera">Your camera seems disabled, please make sure to enable it in order to use SnapCat</div>
             <img id="image-upload-preview">
-            <button id="upload-confirm-btn">Confirm</button>
+            <button id="upload-confirm-btn" onclick="uploadToMontage()">Confirm</button>
             <input type="file" id="image-upload-input" accept="image/*" onchange="handleImage(this)">
             <label for="image-upload-input" id="image-upload-btn">Upload an image</label>
             <p id="or-buttons-no-camera">Or</p>
@@ -42,6 +42,7 @@ foreach ($list_filters as $filter)
             <div id="camera-view">
                 <div id="camera-box">
                     <video id="camera-stream">Camera stream is not available.</video>
+                    <img id="image-upload">
                     <img id="filter-img-active" src="../sources/filters/beer.png">
                 </div>
                 <img id="picture-taken" alt="The screen capture will appear in this box.">
@@ -63,7 +64,7 @@ foreach ($list_filters as $filter)
     <script type="text/javascript" src="../javascript/filters.js"></script>
     <script type="text/javascript" src="../javascript/post-data.js"></script>
     <script type="text/javascript" src="../javascript/montage-processing.js"></script>
-    <script type="text/javascript" src="../javascript/file-upload.js"></script>
     <script type="text/javascript" src="../javascript/camera.js"></script>
+    <script type="text/javascript" src="../javascript/file-upload.js"></script>
     </body>
 </html>

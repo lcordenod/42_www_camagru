@@ -5,6 +5,8 @@ function    createMontage(width) {
 
     image_src = image_elem.src;
     image_width = width;
+    console.log(image_elem);
+    console.log(image_src);
     if (document.body.clientWidth <= 545)
         width_scaling = 1.6;
     filter_src = filter_elem.src;
@@ -16,7 +18,6 @@ function    createMontage(width) {
 
 function    saveMontage() {
     var montage = document.getElementById("picture-taken");
-
     montage_src = montage.src;
     postData("../controller/save-montage-controller.php", {file_tmp_path: montage_src});
 }
