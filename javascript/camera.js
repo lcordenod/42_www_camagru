@@ -70,7 +70,10 @@
             var data = canvas.toDataURL('image/png');
             picture.setAttribute('src', data);
             if (document.getElementsByClassName("pictures-taken-picture").length === 0)
+            {
                 document.getElementById('message-no-pictures-taken-box').innerHTML = "Looking good! 😎<br/>Now you can save it or retry";
+                document.getElementById('message-no-pictures-taken-box').style.backgroundColor = "rgba(59, 255, 59, 0.4)";
+            }
             createMontage(width);
             hideCameraBox();
             showPictureTaken();
@@ -140,7 +143,10 @@
         showCameraBox();
         enableFilters();
         if (document.getElementsByClassName("pictures-taken-picture").length === 0)
-            document.getElementById('message-no-pictures-taken-box').innerHTML = "No pictures taken yet...<br/>Select a filter to start 😌";
+        {
+            document.getElementById('message-no-pictures-taken-box').innerHTML = "Place the filter <br/> using click on camera feed<br/>👌";
+            document.getElementById('message-no-pictures-taken-box').style.backgroundColor = "rgba(78, 167, 255, 0.4)";
+        }
     }
 
     function    showNoCameraBlock() {
