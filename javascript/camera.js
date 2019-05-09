@@ -150,11 +150,9 @@
     }
 
     function    showNoCameraBlock() {
-        var no_camera_error = document.getElementById('error-no-camera');
-        var no_camera_retry = document.getElementById('no-camera-retry-btn');
-
-        no_camera_error.style.display = "block";
-        no_camera_retry.style.display = "block";
+        var no_camera_box = document.getElementById('no-camera-box');
+        no_camera_box.style.display = "block";
+        disableFilters();
     }
 
     retry_button.addEventListener('click', function (e) {

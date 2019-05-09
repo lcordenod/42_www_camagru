@@ -106,7 +106,7 @@ hr {
 }
 
 #register-btn, #login-btn, #account-modify-btn, #verify-login, #save-password-btn, #reset-password-btn, #confirm-username-btn,
-#camera-snap-btn, #camera-save-btn, #camera-retry-btn, #no-camera-retry-btn {
+#camera-snap-btn, #camera-save-btn, #camera-retry-btn, #no-camera-retry-btn, #image-upload-btn, #upload-confirm-btn {
     background-color: #fffc00;
     font-size: 14px; 
     color: #262626;
@@ -120,7 +120,7 @@ hr {
 }
 
 #register-btn:hover, #login-btn:hover, #account-modify-btn:hover, #verify-login:hover, #save-password-btn:hover, #reset-password-btn:hover, #confirm-username-btn:hover,
-#camera-snap-btn:hover, #camera-save-btn:hover, #camera-retry-btn:hover, #no-camera-retry-btn:hover {
+#camera-snap-btn:hover, #camera-save-btn:hover, #camera-retry-btn:hover, #no-camera-retry-btn:hover,  #image-upload-btn:hover, #upload-confirm-btn:hover {
     opacity: 0.7;
 }
 
@@ -210,6 +210,8 @@ a {
     font-weight: bold;
 }
 
+/* CAMERA */
+
 #camera-box {
     overflow: hidden;
     margin: 20px 0px 0px 0px;
@@ -231,6 +233,8 @@ a {
     display: inline-block;
     width: 237px;
 }
+
+/* FILTERS + PICTURES TAKEN BOX */
 
 #picture-taken {
     margin: 20px 0px 0px 0px;
@@ -315,18 +319,48 @@ a {
     padding: 10px;
 }
 
-#error-no-camera {
+/* NO CAMERA + IMAGE UPLOAD */
+
+#no-camera-box {
     display: none;
+}
+
+#error-no-camera {
     background-color: rgba(255, 178, 178, 0.4);
-    width: 80%;
+    width: 100%;
     margin: 30px auto;
     padding: 50px;
     border-radius: 30px;
     text-align: center;
 }
 
-#no-camera-retry-btn {
+#no-camera-retry-btn, #image-upload-btn, #upload-confirm-btn {
     margin: auto;
+    margin-bottom: 10px;
+}
+
+#or-buttons-no-camera {
+    text-align: center;
+    color: grey;
+    margin: 0px 0px 10px 0px;
+}
+
+#image-upload-input {
+    display: none;
+}
+
+#image-upload-btn {
+    display: block;
+    text-align: center;
+}
+
+#image-upload-preview {
+    display: none;
+    margin: 10px auto 10px auto;
+    width: 480px;
+}
+
+#upload-confirm-btn {
     display: none;
 }
 
@@ -383,9 +417,13 @@ a {
         width: 300px;
     }
 
-    #camera-save-btn, #camera-retry-btn, #no-camera-retry-btn {
+    #camera-save-btn, #camera-retry-btn, #no-camera-retry-btn,  #image-upload-btn, #upload-confirm-btn {
         width: 100%;
         margin-bottom: 10px;
+    }
+
+    #image-upload-preview {
+        width: 300px;
     }
 }
 

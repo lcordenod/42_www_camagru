@@ -29,8 +29,15 @@ foreach ($list_filters as $filter)
                 <?php echo $filters ?>
             </ul>
         </div>
-        <div id="error-no-camera">Your camera seems disabled, please make sure to enable it in order to use SnapCat</div>
-        <button id="no-camera-retry-btn" onclick="window.location.href = '/camagru/view/camera.php'">Retry</button>
+        <div id="no-camera-box">
+            <div id="error-no-camera">Your camera seems disabled, please make sure to enable it in order to use SnapCat</div>
+            <img id="image-upload-preview">
+            <button id="upload-confirm-btn">Confirm</button>
+            <input type="file" id="image-upload-input" accept="image/*" onchange="handleImage(this)">
+            <label for="image-upload-input" id="image-upload-btn">Upload an image</label>
+            <p id="or-buttons-no-camera">Or</p>
+            <button id="no-camera-retry-btn" onclick="window.location.href = '/camagru/view/camera.php'">Retry</button>
+        </div>
         <div class="camera-container">
             <div id="camera-view">
                 <div id="camera-box">
@@ -56,6 +63,7 @@ foreach ($list_filters as $filter)
     <script type="text/javascript" src="../javascript/filters.js"></script>
     <script type="text/javascript" src="../javascript/post-data.js"></script>
     <script type="text/javascript" src="../javascript/montage-processing.js"></script>
+    <script type="text/javascript" src="../javascript/file-upload.js"></script>
     <script type="text/javascript" src="../javascript/camera.js"></script>
     </body>
 </html>
