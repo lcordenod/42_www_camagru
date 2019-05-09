@@ -216,7 +216,6 @@ a {
     overflow: hidden;
     margin: 20px 0px 0px 0px;
     width: 480px;
-    height: 360px;
     position: relative;
 }
 
@@ -367,8 +366,7 @@ a {
 #image-upload {
     display: none;
     margin: auto;
-    max-width: 480px;
-    max-height: 360px;
+    width: 480px;
 }
 
 /* MEDIA QUERIES */
@@ -408,7 +406,6 @@ a {
 
     #camera-box, #camera-stream, #image-upload-preview {
         width: 300px;
-        height: 225px;
     }
 
     #camera-view, #picture-taken {
@@ -422,8 +419,7 @@ a {
 
     #image-upload {
         display: none;
-        max-width: 300px;
-        max-height: 225px;
+        width: 300px;
     }
 }
 

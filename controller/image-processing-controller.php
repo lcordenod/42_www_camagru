@@ -5,6 +5,12 @@ function resizeImage($newWidth, $originalFile) {
         $mime = $info['mime'];
 
         switch ($mime) {
+                case 'image/jpg':
+                        $image_create_func = 'imagecreatefromjpeg';
+                        $image_save_func = 'imagejpeg';
+                        $new_image_ext = 'jpg';
+                        break;
+
                 case 'image/jpeg':
                         $image_create_func = 'imagecreatefromjpeg';
                         $image_save_func = 'imagejpeg';

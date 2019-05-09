@@ -1,14 +1,15 @@
 function    createMontage(width) {
     var image_elem = document.getElementById("picture-taken");
     var filter_elem = document.getElementById("filter-img-active");
+    var image_upload = document.getElementById("image-upload");
     var width_scaling = 1;
 
     image_src = image_elem.src;
     image_width = width;
-    console.log(image_elem);
-    console.log(image_src);
-    if (document.body.clientWidth <= 545)
-        width_scaling = 1.6;
+    if (image_upload.length !== 0)
+        width_scaling = 480 / image_upload.clientWidth;
+    else if (document.body.clientWidth <= 545)
+        width_scaling *= 1.6;
     filter_src = filter_elem.src;
     filter_width = filter_elem.clientWidth * width_scaling;
     filter_top = filter_elem.offsetTop * width_scaling;
