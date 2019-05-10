@@ -6,8 +6,11 @@ require_once '../controller/verify-account-controller.php';
 if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
 if ($_SESSION['auth']->user_valid)
+{
+    $account_gallery_btn = '<button id="account-gallery-btn" onclick="window.location.href = \'/camagru/view/account-my-gallery.php\';">See my gallery</button>';
     $settings_buttons = '<button id="account-modify-btn" onclick="window.location.href = \'/camagru/view/account-modify-username.php\';">Modify account username</button>
     <button id="account-modify-btn" onclick="window.location.href = \'/camagru/view/account-modify-password.php\';">Modify account password</button>';
+}
 else
     $settings_buttons = '<button id="account-modify-btn" onclick="sendVerifyEmail(\''.$_SESSION['auth']->user_email.'\');">Send verification email</button>';
 $username = $_SESSION['auth']->user_name;
@@ -35,6 +38,7 @@ else
             <p><span class="title-settings">Username:</span> <?php echo $username ?></p>
             <p><span class="title-settings">Email:</span> <?php echo $email ?></p>
             <p><span class="title-settings">Status:</span> <?php echo $status ?></p>
+            <?php echo $account_gallery_btn ?>
         </div>
         <button id="account-modify-btn" onclick="window.location.href = '/camagru/view/account-modify-email.php'">Modify account email</button>
         <?php echo $settings_buttons ?>
