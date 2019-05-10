@@ -185,7 +185,7 @@ a {
     text-align: center;
 }
 
-#title-account {
+#title-account, .title-index {
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -400,6 +400,18 @@ a {
     display: block;
     width: 150px;
     opacity: 0.7;
+}
+
+/* INDEX */
+
+.title-index {
+    display: block;
+    text-align: center;
+}
+
+#index-intro {
+    display: block;
+    text-align: center;
 }
 
 /* MEDIA QUERIES */

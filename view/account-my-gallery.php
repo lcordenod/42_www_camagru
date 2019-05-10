@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 session_start();
+require_once "../controller/gallery-controller.php";
+require_once "gallery-view.php";
 
 if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
@@ -24,14 +26,14 @@ $username = $_SESSION['auth']->user_name;
         <h1 id="title-account">Your gallery</h1>
         <div class="settings-container">
             <p><span class="title-settings">Username:</span> <?php echo $username ?></p>
-            <p><span class="title-settings">Number of pictures:</span> <?php echo $email ?></p>
-            <p><span class="title-settings">Number of likes:</span> <?php echo $email ?></p>
-            <p><span class="title-settings">Number of comments:</span> <?php echo $status ?></p>
+            <p><span class="title-settings">Number of pictures:</span> <?php echo $nb_pictures ?></p>
+            <p><span class="title-settings">Number of likes:</span> <?php echo $nb_likes ?></p>
+            <p><span class="title-settings">Number of comments:</span> <?php echo $nb_comments ?></p>
             <button id="account-gallery-btn" onclick="window.location.href = '/camagru/view/camera.php'">Add a picture</button>
         </div>
         <div id="my-gallery-feed">
         </div>
-        <div id ="my-gallery-empty-box">
+        <div id ="my-gallery-empty-box" <?php echo $display_empty_box ?>>
             <div id="my-gallery-empty-message">
                 <span class="empty-gallery-text">No picture available yet</span>
                 <img id="empty-gallery-img" src="/camagru/sources/crying-cat.png">
