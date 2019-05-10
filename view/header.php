@@ -40,7 +40,7 @@
 ?>
 <div class="header">
     <a href="/camagru/index.php" class="logo">SnapCat</a>
-    <img id="logo-img" src="http://localhost:8080/camagru/sources/cat-img.png">
+    <img id="logo-img" src="/camagru/sources/cat-img.png">
     <div class="header-right">
         <a <?php echo $active_camera_css ?> href="<?php echo $camera_url ?>"><?php echo $camera_txt ?></a>
         <a <?php echo $active_second_css ?> href="<?php echo $second_url ?>"><?php echo $second_txt ?></a>

@@ -202,7 +202,7 @@ a {
 .settings-container {
     background-color: #E8E8E8;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 15px;
     margin-bottom: 10px;
 }
 
@@ -236,6 +236,7 @@ a {
 /* FILTERS + PICTURES TAKEN BOX */
 
 #picture-taken {
+    width: 480px;
     margin: 20px 0px 0px 0px;
 }
 
@@ -327,7 +328,7 @@ a {
 #error-no-camera {
     background-color: rgba(255, 178, 178, 0.4);
     width: 100%;
-    margin: 30px auto;
+    margin: 30px auto 20px auto;
     padding: 50px;
     border-radius: 30px;
     text-align: center;
@@ -355,7 +356,7 @@ a {
 
 #image-upload-preview {
     display: none;
-    margin: 10px auto 10px auto;
+    margin: 20px auto 20px auto;
     width: 480px;
 }
 
@@ -374,6 +375,31 @@ a {
 #account-gallery-btn {
     background-color: #787878;
     color: white;
+}
+
+#my-gallery-empty-box {
+    margin-top: 20px;
+}
+
+#my-gallery-empty-message {
+    display: block;
+    text-align: center;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 178, 178, 0.4);
+}
+
+.empty-gallery-text {
+    display: block;
+    line-height: 60px;
+}
+
+#empty-gallery-img {
+    margin: 10px auto;
+    padding: 10px;
+    display: block;
+    width: 150px;
+    opacity: 0.7;
 }
 
 /* MEDIA QUERIES */
