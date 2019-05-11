@@ -4,7 +4,7 @@ session_start();
 
 if (!($_SESSION['auth']))
 {
-    $body_background = ' style="background-image: url(https://images.pexels.com/photos/122458/pexels-photo-122458.jpeg); "';
+    $body_background = ' style="background-image: url(/camagru/sources/background-glare-2.jpg); "';
     $loggedin_display = ' style="display: none;" ';
     $loggedout_display = ' style="display: block;" ';
 }
@@ -34,7 +34,7 @@ else
         <div id="index-loggedout-box" <?php echo $loggedout_display ?>>
             <h1 class="title-index">Welcome to SnapCat ;)</h1>
             <span id="index-intro">Take pictures and add filters to create and share great montages</span>
-        </div>   
+        </div>
     </div>
     </body>
 </html>

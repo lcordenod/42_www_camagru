@@ -2,13 +2,14 @@
 header('Content-Type: text/html; charset=utf-8');
 session_start();
 require_once "../controller/gallery-controller.php";
-require_once "gallery-view.php";
+require_once "social-view.php";
 
 if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
 else if ($_SESSION['auth']->user_valid === 0)
     header("Location: /camagru/index.php");
 $username = $_SESSION['auth']->user_name;
+$pictures = getUserPictures($_SESSION['auth']->user_id);
 
 ?>
 
@@ -32,8 +33,15 @@ $username = $_SESSION['auth']->user_name;
             <button id="account-gallery-btn" onclick="window.location.href = '/camagru/view/camera.php'">Add a picture</button>
         </div>
         <div id="my-gallery-feed">
+            <?php
+            foreach($pictures as $picture)
+                echo '<div class="pictures-gallery-box">
+                        <img class="pictures-gallery" src="'.$picture["img_path"].'">
+                        '.$social.'
+                    </div>';
+            ?>
         </div>
-        <div id ="my-gallery-empty-box" <?php echo $display_empty_box ?>>
+        <div id ="my-gallery-empty-box">
             <div id="my-gallery-empty-message">
                 <span class="empty-gallery-text">No picture available yet</span>
                 <img id="empty-gallery-img" src="/camagru/sources/crying-cat.png">

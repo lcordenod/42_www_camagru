@@ -106,7 +106,7 @@ hr {
 }
 
 #register-btn, #login-btn, #account-modify-btn, #verify-login, #save-password-btn, #reset-password-btn, #confirm-username-btn,
-#camera-snap-btn, #camera-save-btn, #camera-retry-btn, #no-camera-retry-btn, #image-upload-btn, #upload-confirm-btn, #account-gallery-btn {
+#camera-snap-btn, #camera-save-btn, #camera-retry-btn, #no-camera-retry-btn, #image-upload-btn, #upload-confirm-btn, #account-gallery-btn, .comment-post-btn {
     background-color: #fffc00;
     font-size: 14px; 
     color: #262626;
@@ -120,7 +120,7 @@ hr {
 }
 
 #register-btn:hover, #login-btn:hover, #account-modify-btn:hover, #verify-login:hover, #save-password-btn:hover, #reset-password-btn:hover, #confirm-username-btn:hover,
-#camera-snap-btn:hover, #camera-save-btn:hover, #camera-retry-btn:hover, #no-camera-retry-btn:hover,  #image-upload-btn:hover, #upload-confirm-btn:hover, #account-gallery-btn:hover {
+#camera-snap-btn:hover, #camera-save-btn:hover, #camera-retry-btn:hover, #no-camera-retry-btn:hover,  #image-upload-btn:hover, #upload-confirm-btn:hover, #account-gallery-btn:hover, .comment-post-btn:hover {
     opacity: 0.7;
 }
 
@@ -379,6 +379,7 @@ a {
 
 #my-gallery-empty-box {
     margin-top: 20px;
+    display: none;
 }
 
 #my-gallery-empty-message {
@@ -402,16 +403,81 @@ a {
     opacity: 0.7;
 }
 
+.pictures-gallery-box {
+    width: 100%;
+    border: solid 1px #E8E8E8;
+    margin-bottom: 10px;
+}
+
+.pictures-gallery {
+    margin: 10px auto;
+    display: block;
+    max-height: 360px;
+    margin-bottom: 10px;
+}
+
+/* GALLERY SOCIAL */
+
+.gallery-social-block {
+    width: 100%;
+    margin: auto;
+    padding: 2px;
+    border-top: solid 1px #E8E8E8;
+}
+
+.gallery-social-icons {
+    width: 100%;
+    padding: 5px;
+    border-bottom: solid 1px #E8E8E8;
+    margin-bottom: 10px;
+    font-size: 160%;
+}
+
+.gallery-social-comments {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.gallery-social-comment {
+    margin-top: 5px;
+}
+
+.comment-text-box {
+    overflow: hidden;
+    height: 40px;
+    margin-left: 5px;
+    padding: 10px;
+    width: calc(100% - 120px);
+    border: solid 1px #E8E8E8;
+    border-radius: 30px;
+}
+
+.comment-post-btn {
+    float: right;
+    width: 100px;
+    height: 40px;
+    padding: 5px;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
 /* INDEX */
 
 .title-index {
     display: block;
     text-align: center;
+    color: #fffc00;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
 }
 
 #index-intro {
     display: block;
     text-align: center;
+    color: #fffc00;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
 }
 
 /* MEDIA QUERIES */
@@ -466,6 +532,17 @@ a {
     #image-upload {
         display: none;
         width: 300px;
+    }
+
+    .pictures-gallery {
+        max-height: 250px;
+    }
+
+    .gallery-social-icons {
+        width: 100%;
+        padding: 5px;
+        border-bottom: solid 1px #E8E8E8;
+        font-size: 140%;
     }
 }
 
