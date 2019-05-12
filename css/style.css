@@ -106,7 +106,7 @@ hr {
 }
 
 #register-btn, #login-btn, #account-modify-btn, #verify-login, #save-password-btn, #reset-password-btn, #confirm-username-btn,
-#camera-snap-btn, #camera-save-btn, #camera-retry-btn, #no-camera-retry-btn, #image-upload-btn, #upload-confirm-btn, #account-gallery-btn, .comment-post-btn {
+#camera-snap-btn, #camera-save-btn, #camera-retry-btn, #no-camera-retry-btn, #image-upload-btn, #upload-confirm-btn, #account-gallery-btn, #comment-post-btn {
     background-color: #fffc00;
     font-size: 14px; 
     color: #262626;
@@ -120,11 +120,11 @@ hr {
 }
 
 #register-btn:hover, #login-btn:hover, #account-modify-btn:hover, #verify-login:hover, #save-password-btn:hover, #reset-password-btn:hover, #confirm-username-btn:hover,
-#camera-snap-btn:hover, #camera-save-btn:hover, #camera-retry-btn:hover, #no-camera-retry-btn:hover,  #image-upload-btn:hover, #upload-confirm-btn:hover, #account-gallery-btn:hover, .comment-post-btn:hover {
+#camera-snap-btn:hover, #camera-save-btn:hover, #camera-retry-btn:hover, #no-camera-retry-btn:hover,  #image-upload-btn:hover, #upload-confirm-btn:hover, #account-gallery-btn:hover, #comment-post-btn:hover {
     opacity: 0.7;
 }
 
-#register-btn:disabled, #login-btn:disabled, #save-password-btn:disabled, #reset-password-btn:disabled, #confirm-username-btn:disabled, #camera-snap-btn:disabled {
+#register-btn:disabled, #login-btn:disabled, #save-password-btn:disabled, #reset-password-btn:disabled, #confirm-username-btn:disabled, #camera-snap-btn:disabled, #comment-post-btn:disabled {
     opacity: 0.3;
 }
 
@@ -452,7 +452,7 @@ a {
     border-radius: 30px;
 }
 
-.comment-post-btn {
+#comment-post-btn {
     float: right;
     width: 100px;
     height: 40px;
@@ -460,6 +460,20 @@ a {
     margin-top: 0px;
     margin-left: 10px;
     margin-right: 5px;
+}
+
+#comment-length-error, #comment-format-error, #comment-length {
+    padding: 5px;
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+
+#comment-length {
+    padding: 5px;
+    color: green;
+    font-size: 12px;
+    display: none;
 }
 
 /* INDEX */
