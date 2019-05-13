@@ -52,7 +52,11 @@ function    isCommentValid(comment) {
 }
 
 function    addCommentToDB(comment) {
-
+    var comment_text = comment.value;
+    var img_src = comment.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src;
+    var img_file = img_src.replace(/^.*[\\\/]/, '');
+    var user_id = img_file.match(/user-([0-9]*)/)[1];
+    postData("../controller/social-controller.php", {comment_text: comment_text, img_file: img_file, user_id: user_id});
 }
 
 function    displayComment(comment) {
@@ -76,6 +80,7 @@ function    displayComment(comment) {
 
 function    resetInputBox(comment) {
     comment.parentNode.parentNode.getElementsByClassName('comment-text-box')[0].value = "";
+    comment.parentNode.parentNode.getElementsByClassName("comment-post-btn")[0].disabled = true;
 }
 
 (function () {
@@ -91,6 +96,7 @@ function    resetInputBox(comment) {
         }, false);
         comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('comment-post-btn')[0].addEventListener('click', function (e) {
             displayComment(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+            addCommentToDB(this.parentNode.getElementsByClassName('comment-text-box')[0]);
             resetInputBox(this.parentNode.getElementsByClassName('comment-text-box')[0]);
             e.preventDefault();
         }, false);
