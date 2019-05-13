@@ -3,12 +3,12 @@ var comments_text_boxes = document.getElementsByClassName('comment-text-box');
 function    isCommentFormatValid(comment) {
     if (comment.value.length === 0)
     {
-        document.getElementById('comment-format-error').style.display = "block";
+        comment.parentNode.parentNode.getElementsByClassName('comment-format-error')[0].style.display = "block";
         return (false);
     }
     else
     {
-        document.getElementById('comment-format-error').style.display = "none";
+        comment.parentNode.parentNode.getElementsByClassName('comment-format-error')[0].style.display = "none";
         return (true);
     }
 }
@@ -17,15 +17,15 @@ function    isCommentLengthValid(comment) {
     var len = comment.value.length;
     if (len >= 150)
     {
-        document.getElementById('comment-length-error').style.display = "block";
-        document.getElementById('comment-length').style.display = "none";
+        comment.parentNode.parentNode.getElementsByClassName('comment-length-error')[0].style.display = "block";
+        comment.parentNode.parentNode.getElementsByClassName('comment-length')[0].style.display = "none";
         return (false);
     }
     else
     {
-        document.getElementById('comment-length').innerHTML = comment.value.length;
-        document.getElementById('comment-length').style.display = "block";
-        document.getElementById('comment-length-error').style.display = "none";
+        comment.parentNode.parentNode.getElementsByClassName('comment-length')[0].innerHTML = comment.value.length;
+        comment.parentNode.parentNode.getElementsByClassName('comment-length')[0].style.display = "block";
+        comment.parentNode.parentNode.getElementsByClassName('comment-length-error')[0].style.display = "none";
         return (true);
     }
 }
@@ -34,19 +34,19 @@ function    isCommentValid(comment) {
     if (!isCommentFormatValid(comment))
     {
         isCommentLengthValid(comment);
-        comment.parentNode.querySelector("#comment-post-btn").disabled = true;
-        document.getElementById('comment-length').style.display = "none";
+        comment.parentNode.parentNode.getElementsByClassName("comment-post-btn")[0].disabled = true;
+        comment.parentNode.parentNode.getElementsByClassName('comment-length')[0].style.display = "none";
         return (false);
     }
     else if (!isCommentLengthValid(comment))
     {
         isCommentFormatValid(comment);
-        comment.parentNode.querySelector("#comment-post-btn").disabled = true;
+        comment.parentNode.parentNode.getElementsByClassName("comment-post-btn")[0].disabled = true;
         return (false);
     }
     else
     {
-        comment.parentNode.querySelector("#comment-post-btn").disabled = false;
+        comment.parentNode.parentNode.getElementsByClassName("comment-post-btn")[0].disabled = false;
         return (true);
     }
 }
@@ -67,7 +67,7 @@ function    displayComment(comment) {
             e.preventDefault;
         }, false);
         comments_text_boxes[i].addEventListener('focusout', function (e) {
-            document.getElementById('comment-format-error').style.display = "none";
+            this.parentNode.parentNode.getElementsByClassName('comment-format-error')[0].style.display = "none";
             e.preventDefault;
         }, false);
     }
