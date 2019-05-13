@@ -1,7 +1,7 @@
 <?php
 
 $icons = '<div class="gallery-social-icons">👍 💬</div>';
-$comments = '<div class="gallery-social-comments">Coucou les copains</div>';
+$comments = '<div class="gallery-social-comments"></div>';
 $comment_input = '<div class="gallery-social-comment">
                 <textarea placeholder="Write a comment..." name="comment" class="comment-text-box"></textarea>
                 <button class="comment-post-btn" disabled>Post</button>

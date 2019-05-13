@@ -436,6 +436,9 @@ a {
 .gallery-social-comments {
     margin-left: 10px;
     margin-bottom: 10px;
+    max-height: 80px;
+    overflow: scroll;
+    overflow-x:hidden;
 }
 
 .gallery-social-comment {
@@ -474,6 +477,20 @@ a {
     color: green;
     font-size: 12px;
     display: none;
+}
+
+.single-comment {
+    margin: 5px 0px 5px 0px;
+    font-size: 85%;
+}
+
+.user-comment {
+    display: inline-block;
+}
+
+.username-comment {
+    display: inline-block;
+    font-weight: bold;
 }
 
 /* INDEX */
