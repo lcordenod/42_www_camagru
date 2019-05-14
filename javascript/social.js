@@ -55,7 +55,7 @@ function    addCommentToDB(comment) {
     var comment_text = comment.value;
     var img_src = comment.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src;
     var img_file = img_src.replace(/^.*[\\\/]/, '');
-    postData("../controller/social-controller.php", {comment_text: comment_text, img_file: img_file});
+    console.log (postData("../controller/social-controller.php", {comment_text: comment_text, img_file: img_file}));
 }
 
 function    addLikeToDb(img_src) {
@@ -107,7 +107,7 @@ function    resetInputBox(comment) {
 
 (function () {
     for (var i = 0; i < comments_text_boxes.length; i++)
-    {   var times_clicked = 0;
+    {
         comments_text_boxes[i].addEventListener('keyup', function (e) {
             isCommentValid(this);
             e.preventDefault();
@@ -117,20 +117,23 @@ function    resetInputBox(comment) {
             e.preventDefault();
         }, false);
         comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('comment-post-btn')[0].addEventListener('click', function (e) {
-            displayComment(this.parentNode.getElementsByClassName('comment-text-box')[0]);
-            incrementCommentCount(this.parentNode.getElementsByClassName('comment-text-box')[0]);
-            addCommentToDB(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+            if (addCommentToDB(this.parentNode.getElementsByClassName('comment-text-box')[0]) == "comment success")
+            {
+                displayComment(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+                incrementCommentCount(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+            }
+            else
+                alert("Comment format is incorrect")
             resetInputBox(this.parentNode.getElementsByClassName('comment-text-box')[0]);
             e.preventDefault();
         }, false);
         comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('social-like-icon')[0].addEventListener('click', function (e) {
-            times_clicked++;
-            if (times_clicked % 2 == 0) {
-                decrementLikeCount(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+/*             if (times_clicked % 2 == 0) {
+                decrementLikeCount(this.parentNode.parentNode.getElementsByClassName('comment-text-box')[0]);
             } else {
-                incrementLikeCount(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+                incrementLikeCount(this.parentNode.parentNode.getElementsByClassName('comment-text-box')[0]);
             }
-            addLikeToDb(this.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src);
+            addLikeToDb(this.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src); */
             e.preventDefault();
         }, false);
     }

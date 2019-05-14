@@ -46,6 +46,9 @@ require_once '../controller/register-controller.php';
             <p>Already have an account? <a href="login.php">Log in here</a>.</p>
         </div>
     </form>
+    <?php
+    include('footer.php')
+    ?>
     <script type="text/javascript" src="../javascript/register-check-input.js"></script>
     </body>
 </html>

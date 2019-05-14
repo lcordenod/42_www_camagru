@@ -65,7 +65,8 @@ else if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['pa
     else
     {
         $submit = $DB_con->prepare("INSERT INTO user (`user_name`, user_email, user_pwd)
-                            VALUES ('$username', '$email', '$password')");
+                            VALUES (:username, '$email', '$password')");
+        $submit->bindParam(':username', $username);
         $submit->execute();
         sendVerifyEmail($email);
         header("Location: login.php");

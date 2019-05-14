@@ -35,6 +35,9 @@ if (!($_SESSION['auth']))
             <button id="account-modify-btn" onclick="window.history.back();">Cancel</button>
         </div>
     </form>
+    <?php
+    include('footer.php')
+    ?>
     <script type="text/javascript" src="../javascript/register-check-input.js"></script>
     <script type="text/javascript" src="../javascript/forgot-password.js"></script>
     </body>

@@ -63,6 +63,9 @@ foreach ($list_filters as $filter)
             </div>
         </div>
     </div>
+    <?php
+    include('footer.php')
+    ?>
     <script type="text/javascript" src="../javascript/filters.js"></script>
     <script type="text/javascript" src="../javascript/post-data.js"></script>
     <script type="text/javascript" src="../javascript/montage-processing.js"></script>

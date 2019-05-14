@@ -45,6 +45,9 @@ $pictures = getUserPictures($_SESSION['auth']->user_id);
             <button id="account-modify-btn" onclick="window.location.href = '/camagru/view/camera.php'">Take a picture 📸</button>
         </div>
     </div>
+    <?php
+    include('footer.php')
+    ?>
     <script type="text/javascript" src="../javascript/post-data.js"></script>
     <script type="text/javascript" src="../javascript/gallery.js"></script>
     <script type="text/javascript" src="../javascript/social.js"></script>

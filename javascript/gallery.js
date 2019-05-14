@@ -22,7 +22,11 @@ function    hideUserGalleryBox() {
 
 }
 
-function    getAllUserImagesData() {
+function    getUserGalleryData() {
+
+}
+
+function    getUsersGalleryData() {
     // get all user data in one request to the server
 }
 

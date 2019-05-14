@@ -1,10 +1,4 @@
 <?php
-    function console_logg( $data ){
-        echo '<script>';
-        echo 'console.log('. json_encode( $data ) .')';
-        echo '</script>';
-    }
-
     $url = $_SERVER['REQUEST_URI'];
 
     $active_camera_css = "";

@@ -65,6 +65,9 @@ else if (isset($_POST['email']))
             <p>Remember your password? <a href="login.php">Log in here</a>.</p>
         </div>
     </form>
+    <?php
+    include('footer.php')
+    ?>
     <script type="text/javascript" src="../javascript/register-check-input.js"></script>
     <script type="text/javascript" src="../javascript/forgot-password.js"></script>
     </body>

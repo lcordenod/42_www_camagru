@@ -33,6 +33,9 @@ require_once '../controller/login-controller.php';
             <p>Forgotten your password? <a href="forgot-password-reset.php">Retrieve it here</a>.</p>
         </div>
     </form>
+    <?php
+    include('footer.php')
+    ?>
     <script type="text/javascript" src="../javascript/login-check-input.js"></script>
     </body>
 </html>

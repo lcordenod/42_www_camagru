@@ -44,6 +44,9 @@ else
         <?php echo $settings_buttons ?>
         <button id="account-modify-btn" onclick="window.location.href = '/camagru/view/logout.php'">Log Out</button>
     </div>
+    <?php
+    include('footer.php')
+    ?>
     <script type="text/javascript" src="../javascript/post-data.js"></script>
     <script type="text/javascript" src="../javascript/account-modify.js"></script>
     </body>
