@@ -20,7 +20,9 @@
         $camera_txt = "Snap";
         $second_txt = "My Account";
         $third_txt = "Log Out";
-        if (strpos($url,'camera.php') && !($_SESSION['auth']->user_valid === 0))
+        if (!$_SESSION['auth']->user_valid)
+            $active_camera_css = 'style="display:none;';
+        else if (strpos($url,'camera.php'))
             $active_camera_css = 'class="active"';
         else if (strpos($url,'account.php'))
             $active_second_css = 'class="active"';

@@ -7,7 +7,7 @@ require_once '../controller/save-montage-controller.php';
 
 if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
-else if ($_SESSION['auth']->user_valid === 0)
+else if (!$_SESSION['auth']->user_valid)
     header("Location: /camagru/index.php");
 $list_filters = preg_grep('/^([^.])/', scandir("../sources/filters"));
 foreach ($list_filters as $filter)

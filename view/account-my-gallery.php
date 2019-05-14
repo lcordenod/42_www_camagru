@@ -1,8 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
 session_start();
-require_once "../controller/gallery-controller.php";
-require_once "social-view.php";
+require_once "my-gallery-view.php";
 
 if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
@@ -34,11 +33,7 @@ $pictures = getUserPictures($_SESSION['auth']->user_id);
         </div>
         <div id="my-gallery-feed">
             <?php
-            foreach($pictures as $picture)
-                echo '<div class="pictures-gallery-box">
-                        <img class="pictures-gallery" src="'.$picture["img_path"].'">
-                        '.$social.'
-                    </div>';
+                echo $gallery;
             ?>
         </div>
         <div id ="my-gallery-empty-box">
