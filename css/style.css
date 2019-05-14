@@ -493,6 +493,10 @@ a {
     font-weight: bold;
 }
 
+.social-like-icon {
+    cursor: pointer;
+}
+
 /* INDEX */
 
 .title-index {

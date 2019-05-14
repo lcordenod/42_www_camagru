@@ -1,3 +1,5 @@
+var upload_src = "";
+
 function    returnFileExtension(file_name)
 {
     var file_extension = file_name.replace(/^.*\./, '');
@@ -20,6 +22,7 @@ function    handleImage(e) {
                 document.getElementById('image-upload-preview').src = file_reader.result;
                 document.getElementById('image-upload-btn').innerHTML = "Upload another image";
                 document.getElementById('upload-confirm-btn').style.display = "block";
+                upload_src = file_reader.result;
             }
             file_reader.readAsDataURL(files[0]);
         }
@@ -31,8 +34,6 @@ function    handleImage(e) {
 }
 
 function    uploadToMontage(){
-    var upload_src = document.getElementById('image-upload-preview').src;
-
     if (upload_src)
     {
         document.getElementById('camera-stream').style.display = "none";

@@ -14,7 +14,7 @@ foreach($pictures as $picture)
     {
         $comments .= '<p class="single-comment"><span class="username-comment">'.getUsernameFromId($comment["comment_user"]).'</span><span> - </span><span class="user-comment">'.$comment["comment_txt"].'</span></p>';
     }
-    $icons = '<div class="gallery-social-icons">👍 '.count(getImageComments($picture["img_id"])).' 💬</div>';
+    $icons = '<div class="gallery-social-icons"><span class="like-count">'.count(getImageLikes($picture["img_id"])).'</span><span class="social-like-icon">👍</span> <span class="comment-count">'.count(getImageComments($picture["img_id"])).'</span> 💬</div>';
     $comments_container = '<div class="gallery-social-comments">'.$comments.'</div>';
     $comment_input = '<div class="gallery-social-comment">
                     <textarea placeholder="Write a comment..." name="comment" class="comment-text-box"></textarea>

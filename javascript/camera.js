@@ -36,9 +36,7 @@ function    takePicture() {
             var data = canvas.toDataURL('image/png');
         }
         else
-        {
-            var data = document.getElementById('image-upload').src;
-        }
+            var data = upload_src;
         picture.setAttribute('src', data);
 
         if (document.getElementsByClassName("pictures-taken-picture").length === 0)
@@ -46,7 +44,7 @@ function    takePicture() {
             document.getElementById('message-no-pictures-taken-box').innerHTML = "Looking good! 😎<br/>Now you can save it or retry";
             document.getElementById('message-no-pictures-taken-box').style.backgroundColor = "rgba(59, 255, 59, 0.4)";
         }
-        createMontage(width);
+        createMontage(width, picture.src);
         hideCameraBox();
         showPictureTaken();
         disableFilters();

@@ -55,8 +55,12 @@ function    addCommentToDB(comment) {
     var comment_text = comment.value;
     var img_src = comment.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src;
     var img_file = img_src.replace(/^.*[\\\/]/, '');
-    var user_id = img_file.match(/user-([0-9]*)/)[1];
-    postData("../controller/social-controller.php", {comment_text: comment_text, img_file: img_file, user_id: user_id});
+    postData("../controller/social-controller.php", {comment_text: comment_text, img_file: img_file});
+}
+
+function    addLikeToDb(img_src) {
+    var img_file = img_src.replace(/^.*[\\\/]/, '');
+    postData("../controller/social-controller.php", {img_file: img_file});
 }
 
 function    displayComment(comment) {
@@ -78,6 +82,24 @@ function    displayComment(comment) {
     single_comment.appendChild(new_comment);
 }
 
+function    incrementCommentCount(comment) {
+    var count = parseInt(comment.parentNode.parentNode.getElementsByClassName('comment-count')[0].innerHTML, 10);
+    count++;
+    comment.parentNode.parentNode.getElementsByClassName('comment-count')[0].innerHTML = count.toString(10);
+}
+
+function    incrementLikeCount(comment) {
+    var count = parseInt(comment.parentNode.parentNode.getElementsByClassName('like-count')[0].innerHTML, 10);
+    count++;
+    comment.parentNode.parentNode.getElementsByClassName('like-count')[0].innerHTML = count.toString(10);
+}
+
+function    decrementLikeCount(comment) {
+    var count = parseInt(comment.parentNode.parentNode.getElementsByClassName('like-count')[0].innerHTML, 10);
+    count--;
+    comment.parentNode.parentNode.getElementsByClassName('like-count')[0].innerHTML = count.toString(10);
+}
+
 function    resetInputBox(comment) {
     comment.parentNode.parentNode.getElementsByClassName('comment-text-box')[0].value = "";
     comment.parentNode.parentNode.getElementsByClassName("comment-post-btn")[0].disabled = true;
@@ -85,7 +107,7 @@ function    resetInputBox(comment) {
 
 (function () {
     for (var i = 0; i < comments_text_boxes.length; i++)
-    {
+    {   var times_clicked = 0;
         comments_text_boxes[i].addEventListener('keyup', function (e) {
             isCommentValid(this);
             e.preventDefault();
@@ -96,8 +118,19 @@ function    resetInputBox(comment) {
         }, false);
         comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('comment-post-btn')[0].addEventListener('click', function (e) {
             displayComment(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+            incrementCommentCount(this.parentNode.getElementsByClassName('comment-text-box')[0]);
             addCommentToDB(this.parentNode.getElementsByClassName('comment-text-box')[0]);
             resetInputBox(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+            e.preventDefault();
+        }, false);
+        comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('social-like-icon')[0].addEventListener('click', function (e) {
+            times_clicked++;
+            if (times_clicked % 2 == 0) {
+                decrementLikeCount(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+            } else {
+                incrementLikeCount(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+            }
+            addLikeToDb(this.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src);
             e.preventDefault();
         }, false);
     }

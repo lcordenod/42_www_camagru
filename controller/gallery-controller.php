@@ -24,4 +24,12 @@ function    getImageComments($image_id)
     return ($get_img_comments->fetchAll());
 }
 
+function    getImageLikes($image_id)
+{
+    $get_img_likes = db_connect()->prepare("SELECT * FROM likes WHERE like_img = :img_id");
+    $get_img_likes->bindParam(':img_id', $image_id);
+    $get_img_likes->execute();
+    return ($get_img_likes->fetchAll());
+}
+
 ?>

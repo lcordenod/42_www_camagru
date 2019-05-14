@@ -16,6 +16,5 @@ function    postData(url, data = {}) {
                 var montage_url = text.substr(start, end - start + 4);
                 picture_taken.src = montage_url;
             }
-            return (text);
         })
 }
