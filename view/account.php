@@ -43,6 +43,7 @@ else
         <button id="account-modify-btn" onclick="window.location.href = '/camagru/view/account-modify-email.php'">Modify account email</button>
         <?php echo $settings_buttons ?>
         <button id="account-modify-btn" onclick="window.location.href = '/camagru/view/logout.php'">Log Out</button>
+        <button id="account-delete-btn" onclick="window.location.href = '/camagru/view/account-delete-confirmation.php'">Delete account</button>
     </div>
     <?php
     include('footer.php')

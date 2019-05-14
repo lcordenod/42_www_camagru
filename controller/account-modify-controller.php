@@ -2,6 +2,7 @@
 require_once 'verify-account-controller.php';
 require_once 'verify-input-controller.php';
 require_once 'forgot-password-controller.php';
+require_once '../controller/files-directories-management-controller.php';
 require_once '../model/input-errors.php';
 
 $content = trim(file_get_contents("php://input"));
@@ -28,6 +29,37 @@ function    modifyAccountPassword($username, $new_password) {
     $update_password->bindParam(':username', $username);
     $update_password->bindParam(':new_password', $new_password);
     $update_password->execute();
+}
+
+function    deleteUserComments($user_id)
+{
+    $delete_user_comments = db_connect()->prepare("DELETE FROM comments WHERE `comment_user` =:u_id");
+    $delete_user_comments->bindParam(':u_id', $user_id);
+    $delete_user_comments->execute();
+}
+
+function    deleteUserImages($user_id)
+{
+    $delete_user_images = db_connect()->prepare("DELETE FROM images WHERE `img_user` =:u_id");
+    $delete_user_images->bindParam(':u_id', $user_id);
+    $delete_user_images->execute();
+}
+
+function    deleteUserLikes($user_id)
+{
+    $delete_user_likes = db_connect()->prepare("DELETE FROM likes WHERE `like_user` =:u_id");
+    $delete_user_likes->bindParam(':u_id', $user_id);
+    $delete_user_likes->execute();
+}
+
+function    deleteUserAccount($user_id)
+{
+    $delete_user = db_connect()->prepare("DELETE FROM user WHERE `user_id` =:u_id");
+    $delete_user->bindParam(':u_id', $user_id);
+    $delete_user->execute();
+    deleteUserComments($user_id);
+    deleteUserImages($user_id);
+    deleteUserLikes($user_id);
 }
 
 // SEND EMAIL WHEN USERNAME IS UPDATED
@@ -150,6 +182,35 @@ else if (isset($_POST['password']) && isset($_POST['password-rpt']) && $_POST['s
         $_SESSION['auth']->user_pwd = $password;
         sendConfirmResetPasswordEmail($_SESSION['auth']->user_email);
         header("Location: /camagru/view/account.php");
+        return;
+    }
+}
+else if (isset($_POST['password']) && $_POST['submit'] !== "DEL")
+{
+    // HASH INPUT
+    $password = hash('whirlpool', $_POST["password"]);
+
+    // CHECK PASSWORD INPUT IS SAME
+    $password_diff_old = strcmp($password, $_SESSION['auth']->user_pwd);
+
+    // CHECK BEFORE SUBMIT
+    if ($password_diff_old)
+    {
+        $state = "display:block";
+        $error_backend = $account_delete_password_error;
+    }
+    else if (strlen($_POST["password"]) > 30)
+    {
+        $state = "display:block";
+        $error_backend = $password_toolong;
+    }
+    else
+    {
+        $dest_path = "../sources/gallery/user-".$_SESSION['auth']->user_id;
+        deleteFilesFromDir($dest_path);
+        deleteUserAccount($_SESSION['auth']->user_id);
+        session_destroy();
+        header("Location: /camagru/view/account-delete-final.php");
         return;
     }
 }

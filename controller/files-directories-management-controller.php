@@ -1,5 +1,4 @@
 <?php
-require_once "debug.php";
 
 function deleteFilesFromDir($dir_path)
 {
