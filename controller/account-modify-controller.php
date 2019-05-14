@@ -206,8 +206,10 @@ else if (isset($_POST['password']) && $_POST['submit'] !== "DEL")
     }
     else
     {
-        $dest_path = "../sources/gallery/user-".$_SESSION['auth']->user_id;
-        deleteFilesFromDir($dest_path);
+        $dest_gallery = "../sources/gallery/user-".$_SESSION['auth']->user_id;
+        $dest_tmp = "../sources/tmp/user-".$_SESSION['auth']->user_id;
+        deleteFilesFromDir($dest_gallery);
+        deleteFilesFromDir($dest_tmp);
         deleteUserAccount($_SESSION['auth']->user_id);
         session_destroy();
         header("Location: /camagru/view/account-delete-final.php");
