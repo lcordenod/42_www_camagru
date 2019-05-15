@@ -4,7 +4,7 @@ session_start();
 
 if (!($_SESSION['auth']))
 {
-    $body_background = ' style="background-image: url(/camagru/sources/background-glare-2.jpg); "';
+    $body_background = ' style="background-image: url(/camagru/sources/background-glare-2.jpg);"';
     $loggedin_display = ' style="display: none;" ';
     $loggedout_display = ' style="display: block;" ';
 }
@@ -29,11 +29,14 @@ else
     ?>
     <div class="register-container">
         <div id="index-loggedin-box" <?php echo $loggedin_display ?>>
-            User is logged in
+            <h1 class="title-index">Welcome <?php echo $_SESSION['auth']->user_name ?> ;)</h1>
+            <span id="index-intro">SnapCat Feed</span>
         </div>
         <div id="index-loggedout-box" <?php echo $loggedout_display ?>>
             <h1 class="title-index">Welcome to SnapCat ;)</h1>
             <span id="index-intro">Take pictures and add filters to create and share great montages</span>
+            <img id="screenshot-index" src="/camagru/sources/screenshot.png">
+            <img id="screenshot-mobile-index" src="/camagru/sources/screenshot-mobile.png">
         </div>
     </div>
     </body>

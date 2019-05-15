@@ -31,11 +31,11 @@ function    getUsersGalleryData() {
 }
 
 function    initFirstContentPage() {
-    // initialize the page with 5 images
+    // to be completed
 }
 
 function    loadNextContentElem() {
-    // load the 5 next elem
+
 }
 
 (function () {

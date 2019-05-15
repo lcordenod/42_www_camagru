@@ -55,7 +55,7 @@ foreach ($list_filters as $filter)
             <canvas id="canvas">
             </canvas>
             <div id="pictures-taken-view">
-                <h3 id="title-pictures-taken">My pictures taken</h3>
+                <h3 id="title-pictures-taken">My pictures saved</h3>
                 <div id="pictures-taken-box">
                 <p id="message-no-pictures-taken-box">No pictures taken yet...<br/>Select a filter to start 😌</p>
                 </div>

@@ -35,6 +35,7 @@ $pictures = getUserPictures($_SESSION['auth']->user_id);
             <?php
                 echo $gallery;
             ?>
+            <button id="show-more-images">Show more images</button>
         </div>
         <div id ="my-gallery-empty-box">
             <div id="my-gallery-empty-message">

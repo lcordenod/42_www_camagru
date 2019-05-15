@@ -117,13 +117,9 @@ function    resetInputBox(comment) {
             e.preventDefault();
         }, false);
         comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('comment-post-btn')[0].addEventListener('click', function (e) {
-            if (addCommentToDB(this.parentNode.getElementsByClassName('comment-text-box')[0]) == "comment success")
-            {
-                displayComment(this.parentNode.getElementsByClassName('comment-text-box')[0]);
-                incrementCommentCount(this.parentNode.getElementsByClassName('comment-text-box')[0]);
-            }
-            else
-                alert("Comment format is incorrect")
+            addCommentToDB(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+            displayComment(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+            incrementCommentCount(this.parentNode.getElementsByClassName('comment-text-box')[0]);
             resetInputBox(this.parentNode.getElementsByClassName('comment-text-box')[0]);
             e.preventDefault();
         }, false);

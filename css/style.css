@@ -530,9 +530,23 @@ a {
 #index-intro {
     display: block;
     text-align: center;
-    color: #fffc00;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
+    font-size: 125%;
+    font-weight: 600;
+    opacity: 0.8;
+    color: black;
+}
+
+#screenshot-index, #screenshot-mobile-index {
+    display: block;
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 30px;
+}
+
+#screenshot-mobile-index
+{
+    display: none;
 }
 
 /* MEDIA QUERIES */
@@ -598,6 +612,16 @@ a {
         padding: 5px;
         border-bottom: solid 1px #E8E8E8;
         font-size: 120%;
+    }
+
+    #screenshot-index
+    {
+        display: none;
+    }
+
+    #screenshot-mobile-index
+    {
+        display: block;
     }
 }
 

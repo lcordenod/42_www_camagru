@@ -32,4 +32,8 @@ foreach($pictures as $picture)
     $comments = "";
 }
 
+
+// button endpoint :
+// monfichierajax?offset=100000
+// select .... offset 1 from MAX 100
 ?>
