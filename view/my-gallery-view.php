@@ -1,11 +1,16 @@
 <?php
-require_once '../controller/debug.php';
 require_once "../controller/gallery-controller.php";
 require_once "../controller/social-controller.php";
 session_start();
 
-$new_gallery_count = $_POST['gallery-count'];
-$pictures = getUserPicturesLimitBy($_SESSION['auth']->user_id, $new_gallery_count);
+$action = $_POST['action'];
+$gallery_count = $_POST['gallery-count'];
+$offset = $_POST['offset'];
+
+if ($action === "init")
+    $pictures = getUserPicturesLimitBy($_SESSION['auth']->user_id, $gallery_count);
+else if ($action === "check")
+    $pictures = getUserPicturesLimitByFromOffset($_SESSION['auth']->user_id, $gallery_count, $offset);
 
 foreach($pictures as $picture)
 {

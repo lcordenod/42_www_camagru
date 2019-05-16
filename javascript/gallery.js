@@ -3,10 +3,7 @@ var comments_text_boxes = document.getElementsByClassName('comment-text-box');
 
 function    isUserGalleryEmpty() {
     if (comments_text_boxes.length === 0)
-    {
-        console.log(comments_text_boxes.length);
         showEmptyGalleryBox();
-    }
 }
 
 function    showEmptyGalleryBox() {
@@ -33,11 +30,31 @@ function    getUsersGalleryData() {
     // get all user data in one request to the server
 }
 
-function    loadNextContentElem() {
-
+function    doesNextPageExist(gallery_count, offset)
+{
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            if (this.responseText)
+            {
+                console.log(this.responseText);
+                var node = document.createElement("button");
+                var textnode = document.createTextNode("Load more images");
+                node.appendChild(textnode);
+                document.getElementById("my-gallery-feed").appendChild(node);
+            }
+        }
+    };
+    xmlhttp.open("POST", "../view/my-gallery-view.php", true);
+    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xmlhttp.send("action=check" + "&gallery-count=" + gallery_count + "&offset=" + offset);
 }
 
-function    initFirstContentPage() {
+function    loadNextContentElem() {
+    
+}
+
+function    initFirstContentPageSec() {
     var gallery_count = 5;
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
@@ -48,11 +65,13 @@ function    initFirstContentPage() {
     };
     xmlhttp.open("POST", "../view/my-gallery-view.php", true);
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xmlhttp.send("gallery-count=" + gallery_count + "&offset=lol");
+    xmlhttp.send("action=init" + "&gallery-count=" + gallery_count);
 }
+
 
 (function () {
     window.addEventListener('load', function(e) {
         initFirstContentPage();
     });
+    doesNextPageExist(5, 5);
 })();

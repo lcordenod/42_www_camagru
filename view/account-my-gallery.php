@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
-session_start();
 require_once "my-gallery-view.php";
+session_start();
 
 if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
@@ -32,7 +32,6 @@ $pictures = getUserPictures($_SESSION['auth']->user_id);
             <button id="account-gallery-btn" onclick="window.location.href = '/camagru/view/camera.php'">Add a picture</button>
         </div>
         <div id="my-gallery-feed">
-            <button id="show-more-images">Show more images</button>
         </div>
         <div id ="my-gallery-empty-box">
             <div id="my-gallery-empty-message">
