@@ -54,7 +54,7 @@ function    loadNextContentElem() {
     
 }
 
-function    initFirstContentPageSec() {
+function    initFirstContentPage() {
     var gallery_count = 5;
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
