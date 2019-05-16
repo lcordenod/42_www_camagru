@@ -32,9 +32,6 @@ $pictures = getUserPictures($_SESSION['auth']->user_id);
             <button id="account-gallery-btn" onclick="window.location.href = '/camagru/view/camera.php'">Add a picture</button>
         </div>
         <div id="my-gallery-feed">
-            <?php
-                echo $gallery;
-            ?>
             <button id="show-more-images">Show more images</button>
         </div>
         <div id ="my-gallery-empty-box">
@@ -49,7 +46,6 @@ $pictures = getUserPictures($_SESSION['auth']->user_id);
     <?php
     include('footer.php')
     ?>
-    <script type="text/javascript" src="../javascript/post-data.js"></script>
     <script type="text/javascript" src="../javascript/gallery.js"></script>
     <script type="text/javascript" src="../javascript/social.js"></script>
     </body>

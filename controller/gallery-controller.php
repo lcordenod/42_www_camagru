@@ -17,6 +17,7 @@ function    getUserPictures($user_id) {
 }
 
 function    getUserPicturesLimitBy($user_id, $limit_by) {
+    $limit_by = (int)$limit_by;
     $get_pictures = db_connect()->prepare("SELECT * FROM images WHERE `img_user`=:id_user ORDER BY img_time DESC LIMIT :limit_by");
     $get_pictures->bindParam(':id_user', $user_id);
     $get_pictures->bindParam(':limit_by', $limit_by, PDO::PARAM_INT);

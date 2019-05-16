@@ -4,7 +4,8 @@ require_once "../controller/gallery-controller.php";
 require_once "../controller/social-controller.php";
 session_start();
 
-$pictures = getUserPictures($_SESSION['auth']->user_id);
+$new_gallery_count = $_POST['gallery-count'];
+$pictures = getUserPicturesLimitBy($_SESSION['auth']->user_id, $new_gallery_count);
 
 foreach($pictures as $picture)
 {
@@ -31,9 +32,5 @@ foreach($pictures as $picture)
     </div>';
     $comments = "";
 }
-
-
-// button endpoint :
-// monfichierajax?offset=100000
-// select .... offset 1 from MAX 100
+echo $gallery;
 ?>
