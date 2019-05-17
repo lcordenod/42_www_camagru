@@ -1,11 +1,6 @@
 var empty_gallery = document.getElementById('my-gallery-empty-box');
 var comments_text_boxes = document.getElementsByClassName('comment-text-box');
 
-function    isUserGalleryEmpty() {
-    if (comments_text_boxes.length === 0)
-        showEmptyGalleryBox();
-}
-
 function    showEmptyGalleryBox() {
     empty_gallery.style.display = "block";
 }
@@ -29,7 +24,7 @@ function    generateSingleUserGallery(img_path, comments, likes)
     var comment = "";
     if (comments != 0 && comments != undefined)
     {
-        for (j = 0; j < comments.length; j++)
+        for (var j = 0; j < comments.length; j++)
             comment += '<p class="single-comment"><span class="username-comment">' + comments[j][0] + '</span><span> - </span><span class="user-comment">' + comments[j][1] +'</span></p>';
     }
     var comments_container = document.createElement("div");
@@ -59,9 +54,11 @@ function    generateSingleUserGallery(img_path, comments, likes)
     social.appendChild(comments_container);
     comment_input.appendChild(text_area);
     comment_input.appendChild(comment_btn);
+    comment_input.appendChild(comment_length);
+    comment_input.appendChild(comment_length);
     social.appendChild(comment_input);
-    social.appendChild(comment_format_error);
-    social.appendChild(comment_length_error);
+    comment_input.appendChild(comment_format_error);
+    comment_input.appendChild(comment_length_error);
     gallery.appendChild(social);
 }
 
@@ -77,17 +74,22 @@ function    getUserGallery() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            var gallery_array = JSON.parse(this.responseText);
-            for (i = 0; i < gallery_array.length; i++)
-                generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4]);
+            if (this.responseText != "null" && this.responseText != "undefined")
+            {
+                var gallery_array = JSON.parse(this.responseText);
+                for (var i = 0; i < gallery_array.length; i++)
+                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4]);
+                document.getElementById("my-gallery-pictures-count").innerHTML = gallery_array[0][0];
+                checkInput();
+            }
+            else
+                showEmptyGalleryBox();
         }
     };
     xmlhttp.open("POST", "../view/my-gallery-view.php", true);
     xmlhttp.send();
 }
 
-(function () {
-    window.addEventListener('load', function(e) {
-        getUserGallery();
-    });
-})();
+window.addEventListener('load', function(e) {
+    getUserGallery();
+});

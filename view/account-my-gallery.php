@@ -24,9 +24,7 @@ $username = $_SESSION['auth']->user_name;
         <h1 id="title-account">Your gallery</h1>
         <div class="settings-container">
             <p><span class="title-settings">Username:</span> <?php echo $username ?></p>
-            <p><span class="title-settings">Number of pictures:</span> <?php echo $nb_pictures ?></p>
-            <p><span class="title-settings">Number of likes:</span> <?php echo $nb_likes ?></p>
-            <p><span class="title-settings">Number of comments:</span> <?php echo $nb_comments ?></p>
+            <p><span class="title-settings">Number of pictures: </span><span id="my-gallery-pictures-count">0</span></p>
             <button id="account-gallery-btn" onclick="window.location.href = '/camagru/view/camera.php'">Add a picture</button>
         </div>
         <div id="my-gallery-feed">
@@ -43,7 +41,8 @@ $username = $_SESSION['auth']->user_name;
     <?php
     include('footer.php')
     ?>
-    <script type="text/javascript" src="../javascript/gallery.js"></script>
+    <script type="text/javascript" src="../javascript/post-data.js"></script>
     <script type="text/javascript" src="../javascript/social.js"></script>
+    <script type="text/javascript" src="../javascript/gallery.js"></script>
     </body>
 </html>

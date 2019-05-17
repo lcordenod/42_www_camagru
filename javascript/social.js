@@ -15,6 +15,7 @@ function    isCommentFormatValid(comment) {
 
 function    isCommentLengthValid(comment) {
     var len = comment.value.length;
+    console.log(comment);
     if (len >= 150)
     {
         comment.parentNode.parentNode.getElementsByClassName('comment-length-error')[0].style.display = "block";
@@ -55,7 +56,7 @@ function    addCommentToDB(comment) {
     var comment_text = comment.value;
     var img_src = comment.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src;
     var img_file = img_src.replace(/^.*[\\\/]/, '');
-    console.log (postData("../controller/social-controller.php", {comment_text: comment_text, img_file: img_file}));
+    postData("../controller/social-controller.php", {comment_text: comment_text, img_file: img_file});
 }
 
 function    addLikeToDb(img_src) {
@@ -105,7 +106,7 @@ function    resetInputBox(comment) {
     comment.parentNode.parentNode.getElementsByClassName("comment-post-btn")[0].disabled = true;
 }
 
-(function () {
+function checkInput() {
     for (var i = 0; i < comments_text_boxes.length; i++)
     {
         comments_text_boxes[i].addEventListener('keyup', function (e) {
@@ -133,4 +134,4 @@ function    resetInputBox(comment) {
             e.preventDefault();
         }, false);
     }
-})();
+}
