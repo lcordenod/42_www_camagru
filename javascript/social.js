@@ -122,6 +122,7 @@ function checkInput() {
             displayComment(this.parentNode.getElementsByClassName('comment-text-box')[0]);
             incrementCommentCount(this.parentNode.getElementsByClassName('comment-text-box')[0]);
             resetInputBox(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+            this.parentNode.parentNode.getElementsByClassName('comment-length')[0].style.display = "none";
             e.preventDefault();
         }, false);
         comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('social-like-icon')[0].addEventListener('click', function (e) {

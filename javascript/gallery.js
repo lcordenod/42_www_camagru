@@ -66,11 +66,18 @@ function    getAllUsersGallery() {
     // get all user data in one request to the server
 }
 
+function    displayMoreImagesBtn() {
+    var more_images_btn = document.createElement("button");
+    more_images_btn.setAttribute("id", "more-images-btn");
+    more_images_btn.innerHTML = "More images";
+    document.getElementsByClassName("register-container")[0].appendChild(more_images_btn);
+}
+
 function    loadNextContentElem() {
     
 }
 
-function    getUserGallery() {
+function    getUserGallery(offset) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -81,15 +88,21 @@ function    getUserGallery() {
                     generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4]);
                 document.getElementById("my-gallery-pictures-count").innerHTML = gallery_array[0][0];
                 checkInput();
+                if (gallery_array[0][0] > 5 && !document.getElementById("more-images-btn"))
+                    displayMoreImagesBtn();
+                document.getElementById("more-images-btn").addEventListener("click", function() {
+                    getUserGallery(offset + 5);
+                });
             }
             else
                 showEmptyGalleryBox();
         }
     };
     xmlhttp.open("POST", "../view/my-gallery-view.php", true);
-    xmlhttp.send();
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("offset=" + offset);
 }
 
 window.addEventListener('load', function(e) {
-    getUserGallery();
+    getUserGallery(0);
 });

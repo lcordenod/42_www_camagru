@@ -4,7 +4,8 @@ require_once "../controller/social-controller.php";
 require_once "../controller/debug.php";
 session_start();
 
-$gallery = getUserImagesLimitByFrom($_SESSION['auth']->user_id, 0);
+$offset = (int)$_POST['offset'];
+$gallery = getUserImagesLimitByFrom($_SESSION['auth']->user_id, $offset);
 
 foreach ($gallery as $value) {
     $user_img_count = countUserPicturesSaved($_SESSION['auth']->user_id);
