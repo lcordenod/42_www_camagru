@@ -1,6 +1,5 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');
-require_once "my-gallery-view.php";
 session_start();
 
 if (!($_SESSION['auth']))
@@ -8,7 +7,6 @@ if (!($_SESSION['auth']))
 else if ($_SESSION['auth']->user_valid === 0)
     header("Location: /camagru/index.php");
 $username = $_SESSION['auth']->user_name;
-$pictures = getUserPictures($_SESSION['auth']->user_id);
 
 ?>
 
