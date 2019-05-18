@@ -64,22 +64,25 @@ function    addOrRemoveLikeFromDb(img_src) {
 }
 
 function    displayComment(comment) {
-    var single_comment = document.createElement("p");
-    var separator = document.createElement("span");
-    var comment_username = document.createElement("span");
-    var new_comment = document.createElement("span");
-    single_comment.setAttribute("class", "single-comment");
-    new_comment.setAttribute("class", "user-comment");
-    comment_username.setAttribute("class", "username-comment");
-    var text = comment.value;
-    var text_node = document.createTextNode(text);
-    separator.innerHTML = " - ";
-    comment_username.innerHTML = document.getElementsByClassName("title-settings")[0].parentNode.innerHTML.slice(46);
-    new_comment.appendChild(text_node);
-    comment.parentNode.parentNode.getElementsByClassName("gallery-social-comments")[0].appendChild(single_comment);
-    single_comment.appendChild(comment_username);
-    single_comment.appendChild(separator);
-    single_comment.appendChild(new_comment);
+    if (comment.value != "")
+    {
+        var single_comment = document.createElement("p");
+        var separator = document.createElement("span");
+        var comment_username = document.createElement("span");
+        var new_comment = document.createElement("span");
+        single_comment.setAttribute("class", "single-comment");
+        new_comment.setAttribute("class", "user-comment");
+        comment_username.setAttribute("class", "username-comment");
+        var text = comment.value;
+        var text_node = document.createTextNode(text);
+        separator.innerHTML = " - ";
+        comment_username.innerHTML = document.getElementsByClassName("title-settings")[0].parentNode.innerHTML.slice(46);
+        new_comment.appendChild(text_node);
+        comment.parentNode.parentNode.getElementsByClassName("gallery-social-comments")[0].appendChild(single_comment);
+        single_comment.appendChild(comment_username);
+        single_comment.appendChild(separator);
+        single_comment.appendChild(new_comment);
+    }
 }
 
 function    incrementCommentCount(comment) {
@@ -130,7 +133,7 @@ function    postSocial(url, data = {}) {
         })
 }
 
-function checkInput() {
+function    checkInput() {
     for (var i = 0; i < comments_text_boxes.length; i++)
     {
         comments_text_boxes[i].addEventListener('keyup', function (e) {
@@ -154,4 +157,12 @@ function checkInput() {
             e.preventDefault();
         }, false);
     }
+}
+
+// Cloning gallery-feed to reset eventlisteners and avoid having multiple check inputs when more than one page
+function    cloneNode()
+{
+    var old_elem = document.getElementById("my-gallery-feed");
+    var new_elem = old_elem.cloneNode(true);
+    old_elem.parentNode.replaceChild(new_elem, old_elem);
 }

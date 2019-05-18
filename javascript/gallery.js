@@ -1,5 +1,4 @@
 var empty_gallery = document.getElementById('my-gallery-empty-box');
-var comments_text_boxes = document.getElementsByClassName('comment-text-box');
 
 function    showEmptyGalleryBox() {
     empty_gallery.style.display = "block";
@@ -94,6 +93,7 @@ function    getUserGallery(offset) {
                     hideMoreImagesBtn();
                 document.getElementById("more-images-btn").addEventListener("click", function() {
                     offset += 5;
+                    cloneNode();
                     getUserGallery(offset);
                 });
             }
