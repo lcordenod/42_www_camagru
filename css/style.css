@@ -198,7 +198,7 @@ a {
     text-align: center;
 }
 
-#title-account, .title-index {
+#title-account, #title-index, #title-index-username {
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -519,7 +519,7 @@ a {
 
 /* INDEX */
 
-.title-index {
+#title-index, #title-index-username {
     display: block;
     text-align: center;
     color: #fffc00;

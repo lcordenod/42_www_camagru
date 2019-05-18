@@ -55,12 +55,12 @@ function    addCommentToDB(comment) {
     var comment_text = comment.value;
     var img_src = comment.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src;
     var img_file = img_src.replace(/^.*[\\\/]/, '');
-    postSocial("../controller/social-controller.php", {comment_text: comment_text, img_file: img_file});
+    postSocial("/camagru/controller/social-controller.php", {comment_text: comment_text, img_file: img_file});
 }
 
 function    addOrRemoveLikeFromDb(img_src) {
     var img_file = img_src.replace(/^.*[\\\/]/, '');
-    postSocial("../controller/social-controller.php", {img_file: img_file});
+    postSocial("/camagru/controller/social-controller.php", {img_file: img_file});
 }
 
 function    displayComment(comment) {
@@ -76,7 +76,12 @@ function    displayComment(comment) {
         var text = comment.value;
         var text_node = document.createTextNode(text);
         separator.innerHTML = " - ";
-        comment_username.innerHTML = document.getElementsByClassName("title-settings")[0].parentNode.innerHTML.slice(46);
+        if (comment_username.innerHTML = document.getElementsByClassName("title-settings").length)
+            comment_username.innerHTML = document.getElementsByClassName("title-settings")[0].parentNode.innerHTML.slice(46);
+        else if (document.getElementById("title-index-username") != undefined)
+            comment_username.innerHTML = document.getElementById("title-index-username").innerHTML.slice(8, -3);
+        else
+            alert("Couldn't add comment, please try later");
         new_comment.appendChild(text_node);
         comment.parentNode.parentNode.getElementsByClassName("gallery-social-comments")[0].appendChild(single_comment);
         single_comment.appendChild(comment_username);
@@ -119,7 +124,14 @@ function    postSocial(url, data = {}) {
         })
         .then(res => res.text())
         .then(text => { console.log(text);
-        if (text == "comment fail")
+        if (text == "comment success")
+        {
+            displayComment(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-text-box')[0]);
+            incrementCommentCount(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-text-box')[0]);
+            resetInputBox(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-text-box')[0]);
+            document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-length')[0].style.display = "none";
+        }
+        else if (text == "comment fail")
             alert("Comment failed - please try again later");
         else if (text == "like added" || text == "like removed")
         {
@@ -146,10 +158,6 @@ function    checkInput() {
         }, false);
         comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('comment-post-btn')[0].addEventListener('click', function (e) {
             addCommentToDB(this.parentNode.getElementsByClassName('comment-text-box')[0]);
-            displayComment(this.parentNode.getElementsByClassName('comment-text-box')[0]);
-            incrementCommentCount(this.parentNode.getElementsByClassName('comment-text-box')[0]);
-            resetInputBox(this.parentNode.getElementsByClassName('comment-text-box')[0]);
-            this.parentNode.parentNode.getElementsByClassName('comment-length')[0].style.display = "none";
             e.preventDefault();
         }, false);
         comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('social-like-icon')[0].addEventListener('click', function (e) {

@@ -61,10 +61,6 @@ function    generateSingleUserGallery(img_path, comments, likes)
     gallery.appendChild(social);
 }
 
-function    getAllUsersGallery() {
-    // get all user data in one request to the server
-}
-
 function    displayMoreImagesBtn() {
     var more_images_btn = document.createElement("button");
     more_images_btn.setAttribute("id", "more-images-btn");
@@ -109,6 +105,41 @@ function    getUserGallery(offset) {
     xmlhttp.send("offset=" + offset);
 }
 
+function    getAllUsersGallery(offset) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText != "null" && this.responseText != "undefined")
+            {
+                var gallery_array = JSON.parse(this.responseText);
+                for (var i = 0; i < gallery_array.length; i++)              
+                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4]);
+                checkInput();
+                if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
+                    displayMoreImagesBtn();
+                else if (document.getElementById("more-images-btn"))
+                    hideMoreImagesBtn();
+                if (document.getElementById("more-images-btn"))
+                {
+                    document.getElementById("more-images-btn").addEventListener("click", function() {
+                        offset += 5;
+                        cloneNode();
+                        getUserGallery(offset);
+                    });
+                }
+            }
+            else
+                showEmptyGalleryBox();
+        }
+    };
+    xmlhttp.open("POST", "/camagru/view/all-gallery-view.php", true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("offset=" + offset);
+}
+
 window.addEventListener('load', function(e) {
-    getUserGallery(0);
+    if (window.location.href.indexOf("index.php") != -1)
+        getAllUsersGallery(0);
+    else if (window.location.href.indexOf("account-my-gallery.php") != -1)
+        getUserGallery(0);
 });
