@@ -73,8 +73,8 @@ function    displayMoreImagesBtn() {
     document.getElementsByClassName("register-container")[0].appendChild(more_images_btn);
 }
 
-function    loadNextContentElem() {
-    
+function    hideMoreImagesBtn() {
+    document.getElementById("more-images-btn").style.display = "none";
 }
 
 function    getUserGallery(offset) {
@@ -88,10 +88,13 @@ function    getUserGallery(offset) {
                     generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4]);
                 document.getElementById("my-gallery-pictures-count").innerHTML = gallery_array[0][0];
                 checkInput();
-                if (gallery_array[0][0] > 5 && !document.getElementById("more-images-btn"))
+                if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
                     displayMoreImagesBtn();
+                else
+                    hideMoreImagesBtn();
                 document.getElementById("more-images-btn").addEventListener("click", function() {
-                    getUserGallery(offset + 5);
+                    offset += 5;
+                    getUserGallery(offset);
                 });
             }
             else
