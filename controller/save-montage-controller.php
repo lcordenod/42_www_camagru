@@ -18,6 +18,7 @@ function        createUserMontageDir($user_id)
 function        saveMontageToDb($user_id, $montage_path)
 {
         $date = date('Y-m-d H:i:s');
+        $montage_path = str_replace("../", "/camagru/", $montage_path);
         $save = db_connect()->prepare("INSERT INTO images (img_user, img_path, img_time)
         VALUES ('$user_id', '$montage_path', '$date')");
         $save->execute();

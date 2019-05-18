@@ -89,13 +89,16 @@ function    getUserGallery(offset) {
                 checkInput();
                 if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
                     displayMoreImagesBtn();
-                else
+                else if (document.getElementById("more-images-btn"))
                     hideMoreImagesBtn();
-                document.getElementById("more-images-btn").addEventListener("click", function() {
-                    offset += 5;
-                    cloneNode();
-                    getUserGallery(offset);
-                });
+                if (document.getElementById("more-images-btn"))
+                {
+                    document.getElementById("more-images-btn").addEventListener("click", function() {
+                        offset += 5;
+                        cloneNode();
+                        getUserGallery(offset);
+                    });
+                }
             }
             else
                 showEmptyGalleryBox();
