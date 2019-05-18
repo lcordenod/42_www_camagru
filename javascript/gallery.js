@@ -124,7 +124,7 @@ function    getAllUsersGallery(offset) {
                     document.getElementById("more-images-btn").addEventListener("click", function() {
                         offset += 5;
                         cloneNode();
-                        getUserGallery(offset);
+                        getAllUsersGallery(offset);
                     });
                 }
             }

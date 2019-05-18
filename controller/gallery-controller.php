@@ -11,6 +11,12 @@ function    countUserPicturesSaved($user_id) {
     return ($total_pictures->fetchColumn());
 }
 
+function    countAllUsersPicturesSaved() {
+    $total_pictures = db_connect()->prepare("SELECT COUNT(*) FROM images");
+    $total_pictures->execute();
+    return ($total_pictures->fetchColumn());
+}
+
 function    getUserImagesLimitByFrom($user_id, $offset) {
     $get_gallery = db_connect()->prepare("SELECT * FROM images WHERE `img_user`=:id_user ORDER BY img_time DESC LIMIT 5 OFFSET :offset_img");
     $get_gallery->bindParam(':id_user', $user_id);
