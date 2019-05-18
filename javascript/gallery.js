@@ -84,7 +84,7 @@ function    getUserGallery(offset) {
             if (this.responseText != "null" && this.responseText != "undefined")
             {
                 var gallery_array = JSON.parse(this.responseText);
-                for (var i = 0; i < gallery_array.length; i++)
+                for (var i = 0; i < gallery_array.length; i++)              
                     generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4]);
                 document.getElementById("my-gallery-pictures-count").innerHTML = gallery_array[0][0];
                 checkInput();

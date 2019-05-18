@@ -68,9 +68,15 @@ function    likeOrDislikeAction($user_id, $img_file)
     $check->bindParam(':img_id', $get_img_id);
     $check->execute();
     if ($check->rowCount())
+    {
         removeLikeFromDb($user_id, $get_img_id);
+        echo "like removed";
+    }
     else
+    {
         saveLikeToDb($user_id, $get_img_id);
+        echo "like added";
+    }
 }
 
 function    saveLikeToDb($user_id, $img_id)
@@ -94,9 +100,8 @@ if (isset($comment_text))
     {
         if (checkComment($user_id, $comment_text, $img_file))
         {
-            $ret = array(getUsernameFromId($user_id), "comment success");
             saveCommentToDb($user_id, $comment_text, $img_file);
-            echo json_encode($ret);
+            echo "comment success";
         }
         else
             echo "comment fail";
@@ -109,10 +114,7 @@ else if (isset($img_file))
     if (isset($img_file) && isset($user_id))
     {
         if (checkImageFile($img_file))
-        {
             likeOrDislikeAction($user_id, $img_file);
-            echo "like success";
-        }
         else
             echo "like fail";
     }

@@ -15,7 +15,6 @@ function    isCommentFormatValid(comment) {
 
 function    isCommentLengthValid(comment) {
     var len = comment.value.length;
-    console.log(comment);
     if (len >= 150)
     {
         comment.parentNode.parentNode.getElementsByClassName('comment-length-error')[0].style.display = "block";
@@ -56,12 +55,12 @@ function    addCommentToDB(comment) {
     var comment_text = comment.value;
     var img_src = comment.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src;
     var img_file = img_src.replace(/^.*[\\\/]/, '');
-    postData("../controller/social-controller.php", {comment_text: comment_text, img_file: img_file});
+    postSocial("../controller/social-controller.php", {comment_text: comment_text, img_file: img_file});
 }
 
-function    addLikeToDb(img_src) {
+function    addOrRemoveLikeFromDb(img_src) {
     var img_file = img_src.replace(/^.*[\\\/]/, '');
-    postData("../controller/social-controller.php", {img_file: img_file});
+    postSocial("../controller/social-controller.php", {img_file: img_file});
 }
 
 function    displayComment(comment) {
@@ -106,6 +105,31 @@ function    resetInputBox(comment) {
     comment.parentNode.parentNode.getElementsByClassName("comment-post-btn")[0].disabled = true;
 }
 
+function    postSocial(url, data = {}) {
+    return fetch(url, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+        })
+        .then(res => res.text())
+        .then(text => { console.log(text);
+        if (text == "comment fail")
+            alert("Comment failed - please try again later");
+        else if (text == "like added" || text == "like removed")
+        {
+            if (text == "like added")
+                incrementLikeCount(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-text-box')[0]);
+            else if (text == "like removed")
+                decrementLikeCount(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-text-box')[0]);
+        }
+        else if (text == "like fail")
+            alert("Like failed - please try again later");
+        })
+}
+
 function checkInput() {
     for (var i = 0; i < comments_text_boxes.length; i++)
     {
@@ -126,12 +150,7 @@ function checkInput() {
             e.preventDefault();
         }, false);
         comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('social-like-icon')[0].addEventListener('click', function (e) {
-/*             if (times_clicked % 2 == 0) {
-                decrementLikeCount(this.parentNode.parentNode.getElementsByClassName('comment-text-box')[0]);
-            } else {
-                incrementLikeCount(this.parentNode.parentNode.getElementsByClassName('comment-text-box')[0]);
-            }
-            addLikeToDb(this.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src); */
+            addOrRemoveLikeFromDb(this.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src);
             e.preventDefault();
         }, false);
     }

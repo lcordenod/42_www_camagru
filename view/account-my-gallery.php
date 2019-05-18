@@ -41,7 +41,6 @@ $username = $_SESSION['auth']->user_name;
     <?php
     include('footer.php')
     ?>
-    <script type="text/javascript" src="../javascript/post-data.js"></script>
     <script type="text/javascript" src="../javascript/social.js"></script>
     <script type="text/javascript" src="../javascript/gallery.js"></script>
     </body>
