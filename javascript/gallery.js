@@ -4,7 +4,7 @@ function    showEmptyGalleryBox() {
     empty_gallery.style.display = "block";
 }
 
-function    generateSingleUserGallery(img_path, comments, likes, username)
+function    generateSingleUserGallery(img_path, comments, likes, username, img_id)
 {
     var gallery = document.createElement("div");
     gallery.setAttribute("class", "pictures-gallery-box");
@@ -47,7 +47,7 @@ function    generateSingleUserGallery(img_path, comments, likes, username)
     var comment_format_error = document.createElement("div");
     comment_format_error.setAttribute("class", "comment-format-error");
     comment_format_error.innerHTML = "Comment format is incorrect";
-    if (username)
+    if (username && username != undefined)
     {
         var posted_by = document.createElement("div");
         posted_by.setAttribute("class", "gallery-posted-by");
@@ -55,7 +55,15 @@ function    generateSingleUserGallery(img_path, comments, likes, username)
         document.getElementById("my-gallery-feed").appendChild(posted_by)
     }
     document.getElementById("my-gallery-feed").appendChild(gallery);
-    gallery.appendChild(picture);
+    if (img_id && img_id != undefined)
+    {
+        img_link = document.createElement("a");
+        img_link.setAttribute("href", "/camagru/view/image.php?id=" + img_id);
+        img_link.appendChild(picture);
+        gallery.appendChild(img_link);
+    }
+    else
+        gallery.appendChild(picture);
     social.appendChild(icons);
     social.appendChild(comments_container);
     comment_input.appendChild(text_area);
@@ -87,7 +95,7 @@ function    getUserGallery(offset) {
             {
                 var gallery_array = JSON.parse(this.responseText);
                 for (var i = 0; i < gallery_array.length; i++)              
-                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4]);
+                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4], undefined, gallery_array[i][1]);
                 document.getElementById("my-gallery-pictures-count").innerHTML = gallery_array[0][0];
                 checkInput(gallery_array[0][5]);
                 if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
@@ -120,7 +128,7 @@ function    getAllUsersGallery(offset) {
             {
                 var gallery_array = JSON.parse(this.responseText);
                 for (var i = 0; i < gallery_array.length; i++)              
-                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4], gallery_array[i][5]);
+                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4], gallery_array[i][5], gallery_array[i][1]);
                 checkInput(gallery_array[0][6]);
                 if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
                     displayMoreImagesBtn();
@@ -144,9 +152,37 @@ function    getAllUsersGallery(offset) {
     xmlhttp.send("offset=" + offset);
 }
 
+function    getImageView(img_id) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText != "null" && this.responseText != "undefined")
+            {
+                var image_array = JSON.parse(this.responseText);          
+                generateSingleUserGallery(image_array[0], image_array[1], image_array[2], image_array[3]);
+                checkInput(image_array[4]);
+            }
+            else
+                alert("An error happened when loading the image");
+        }
+    };
+    xmlhttp.open("POST", "/camagru/view/image-view.php", true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("img_id=" + img_id);
+}
+
 window.addEventListener('load', function(e) {
     if (window.location.href.indexOf("index.php") != -1)
         getAllUsersGallery(0);
     else if (window.location.href.indexOf("account-my-gallery.php") != -1)
         getUserGallery(0);
+    else if (window.location.href.indexOf("image.php") != -1)
+    {
+        var urlParams = new URLSearchParams(location.search);
+        if ((img_param = urlParams.get('id')) != undefined)
+        {
+            img_param = img_param.toString();
+            getImageView(img_param);
+        }
+    }
 });

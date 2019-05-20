@@ -198,7 +198,7 @@ a {
     text-align: center;
 }
 
-#title-account, #title-index, #title-index-username {
+#title-account, #title-index, #title-index-username, #title-image-username {
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -569,6 +569,17 @@ a {
     border-radius: 30px;
     margin: auto;
     width: 100%;
+}
+
+/* IMAGE PAGE */
+
+#image-info {
+    font-style: italic;
+    font-size: 12px;
+    background-color: #E8E8E8;
+    border-radius: 30px;
+    padding: 8px;
+    margin-bottom: 10px;
 }
 
 /* MEDIA QUERIES */

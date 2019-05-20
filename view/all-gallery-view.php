@@ -1,7 +1,6 @@
 <?php
 require_once "../controller/gallery-controller.php";
 require_once "../controller/social-controller.php";
-require_once "../controller/debug.php";
 session_start();
 
 $offset = (int)$_POST['offset'];

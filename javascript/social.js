@@ -95,6 +95,8 @@ function    displayComment(comment) {
             comment_username.innerHTML = document.getElementsByClassName("title-settings")[0].parentNode.innerHTML.slice(46);
         else if (document.getElementById("title-index-username") != undefined)
             comment_username.innerHTML = document.getElementById("title-index-username").innerHTML.slice(8, -3);
+        else if (document.getElementById("image-info-username") != undefined)
+            comment_username.innerHTML = document.getElementById("image-info-username").innerHTML;
         else
             alert("Couldn't add comment, please try later");
         new_comment.appendChild(text_node);

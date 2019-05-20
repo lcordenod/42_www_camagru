@@ -32,6 +32,13 @@ function    getAllUsersImagesLimitByFrom($offset) {
     return ($get_gallery->fetchAll(PDO::FETCH_ASSOC));
 }
 
+function    getImage($img_id) {
+    $get_image = db_connect()->prepare("SELECT * FROM images WHERE img_id=:img_id");
+    $get_image->bindParam(':img_id', $img_id, PDO::PARAM_INT);
+    $get_image->execute();
+    return ($get_image->fetchAll(PDO::FETCH_ASSOC));
+}
+
 function    getImgComments($img_id) {
     $get_comments = db_connect()->prepare("SELECT user.user_name, comments.comment_txt FROM comments INNER JOIN user ON user.user_id=comments.comment_user WHERE comments.comment_img=:img_id ORDER BY comment_time");
     $get_comments->bindParam(':img_id', $img_id);
