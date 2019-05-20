@@ -38,8 +38,17 @@ else
             <img id="screenshot-index" src="/camagru/sources/screenshot.png">
             <img id="screenshot-mobile-index" src="/camagru/sources/screenshot-mobile.png">
         </div>
-        <div id="my-gallery-feed">
-        </div>
+        <?php 
+            if (!($_SESSION['auth']))
+                echo '<h1 id="title-feed">Browse SnapCat Feed to find inspiration</h1>
+                <div id="index-loggedout-feed-box">
+                <div id="my-gallery-feed">
+                </div>
+            </div>';
+            else
+                echo '<div id="my-gallery-feed">
+                </div>';
+        ?>
     </div>
     <script type="text/javascript" src="javascript/social.js"></script>
     <script type="text/javascript" src="javascript/gallery.js"></script>

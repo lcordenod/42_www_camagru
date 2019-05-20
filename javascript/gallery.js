@@ -4,7 +4,7 @@ function    showEmptyGalleryBox() {
     empty_gallery.style.display = "block";
 }
 
-function    generateSingleUserGallery(img_path, comments, likes)
+function    generateSingleUserGallery(img_path, comments, likes, username)
 {
     var gallery = document.createElement("div");
     gallery.setAttribute("class", "pictures-gallery-box");
@@ -47,6 +47,13 @@ function    generateSingleUserGallery(img_path, comments, likes)
     var comment_format_error = document.createElement("div");
     comment_format_error.setAttribute("class", "comment-format-error");
     comment_format_error.innerHTML = "Comment format is incorrect";
+    if (username)
+    {
+        var posted_by = document.createElement("div");
+        posted_by.setAttribute("class", "gallery-posted-by");
+        posted_by.innerHTML = "Posted by " + username;
+        document.getElementById("my-gallery-feed").appendChild(posted_by)
+    }
     document.getElementById("my-gallery-feed").appendChild(gallery);
     gallery.appendChild(picture);
     social.appendChild(icons);
@@ -113,7 +120,7 @@ function    getAllUsersGallery(offset) {
             {
                 var gallery_array = JSON.parse(this.responseText);
                 for (var i = 0; i < gallery_array.length; i++)              
-                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4]);
+                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4], gallery_array[i][5]);
                 checkInput();
                 if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
                     displayMoreImagesBtn();

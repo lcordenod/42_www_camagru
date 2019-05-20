@@ -10,6 +10,7 @@ foreach ($gallery as $value) {
     $user_img_count = countAllUsersPicturesSaved();
     $comments = getImgComments($value["img_id"]);
     $likes = getImgLikes($value["img_id"]);
+    $username = getUsernameFromPicture($value["img_id"]);
     $content = Array($user_img_count, $value["img_id"], $value["img_path"]);
 
     if (!empty($comments))
@@ -18,6 +19,10 @@ foreach ($gallery as $value) {
         $content[] = 0;
     if (!empty($likes))
         $content[] = $likes;
+    else
+        $content[] = 0;
+    if (!empty($username))
+        $content[] = $username;
     else
         $content[] = 0;
     $tab[] = $content;

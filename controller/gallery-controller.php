@@ -39,6 +39,13 @@ function    getImgComments($img_id) {
     return ($get_comments->fetchAll());
 }
 
+function    getUsernameFromPicture($img_id) {
+    $get_username = db_connect()->prepare("SELECT user.user_name FROM images INNER JOIN user ON user.user_id=images.img_user WHERE images.img_id=:img_id");
+    $get_username->bindParam(':img_id', $img_id);
+    $get_username->execute();
+    return ($get_username->fetchColumn());
+}
+
 function    getImgLikes($img_id) {
     $get_likes = db_connect()->prepare("SELECT count(*) FROM likes WHERE `like_img`=:img_id");
     $get_likes->bindParam(':img_id', $img_id);
