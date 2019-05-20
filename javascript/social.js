@@ -6,6 +6,12 @@ function    isCommentFormatValid(comment) {
         comment.parentNode.parentNode.getElementsByClassName('comment-format-error')[0].style.display = "block";
         return (false);
     }
+    else if (comment.value.replace(/\s/g, '').length === 0)
+    {
+        console.log("test");
+        comment.parentNode.parentNode.getElementsByClassName('comment-format-error')[0].style.display = "block";
+        return (false);
+    }
     else
     {
         comment.parentNode.parentNode.getElementsByClassName('comment-format-error')[0].style.display = "none";
@@ -44,6 +50,11 @@ function    isCommentValid(comment) {
         comment.parentNode.parentNode.getElementsByClassName("comment-post-btn")[0].disabled = true;
         return (false);
     }
+    else if (isCommentLengthValid(comment) && !isCommentFormatValid(comment))
+    {
+        comment.parentNode.parentNode.getElementsByClassName("comment-post-btn")[0].disabled = true;
+        return (false);
+    }
     else
     {
         comment.parentNode.parentNode.getElementsByClassName("comment-post-btn")[0].disabled = false;
@@ -52,7 +63,9 @@ function    isCommentValid(comment) {
 }
 
 function    addCommentToDB(comment) {
-    var comment_text = comment.value;
+    var comment_text = comment.value.trim();
+    comment_text = comment_text.replace(/ +(?= )/g,'');
+    comment_text = comment_text.replace(/(\r\n|\n|\r)/gm,"");
     var img_src = comment.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src;
     var img_file = img_src.replace(/^.*[\\\/]/, '');
     postSocial("/camagru/controller/social-controller.php", {comment_text: comment_text, img_file: img_file});
@@ -73,7 +86,9 @@ function    displayComment(comment) {
         single_comment.setAttribute("class", "single-comment");
         new_comment.setAttribute("class", "user-comment");
         comment_username.setAttribute("class", "username-comment");
-        var text = comment.value;
+        var text = comment.value.trim();
+        text = text.replace(/ +(?= )/g,'');
+        text = text.replace(/(\r\n|\n|\r)/gm,"");
         var text_node = document.createTextNode(text);
         separator.innerHTML = " - ";
         if (comment_username.innerHTML = document.getElementsByClassName("title-settings").length)

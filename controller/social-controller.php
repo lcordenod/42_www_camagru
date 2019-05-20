@@ -44,16 +44,18 @@ function    checkComment($user_id, $comment_text, $img_file)
 
 function    saveCommentToDb($user_id, $comment_text, $img_file)
 {
-        $date = date('Y-m-d H:i:s');
-        $get_img_id = db_connect()->prepare("SELECT img_id FROM images WHERE img_path LIKE :img_file");
-        $img_file = "%$img_file%";
-        $get_img_id->bindParam(':img_file', $img_file);
-        $get_img_id->execute();
-        $get_img_id = $get_img_id->fetch(PDO::FETCH_OBJ)->img_id;
-        $save = db_connect()->prepare("INSERT INTO comments (comment_user, comment_img, comment_txt, comment_time)
-        VALUES ('$user_id', '$get_img_id', :comment_txt, '$date')");
-        $save->bindParam(':comment_txt', $comment_text);
-        $save->execute();
+    $comment_text = trim(str_replace(array("\r", "\n"), '', $comment_text));
+    $comment_text = preg_replace('/\s+/', ' ', $comment_text);
+    $date = date('Y-m-d H:i:s');
+    $get_img_id = db_connect()->prepare("SELECT img_id FROM images WHERE img_path LIKE :img_file");
+    $img_file = "%$img_file%";
+    $get_img_id->bindParam(':img_file', $img_file);
+    $get_img_id->execute();
+    $get_img_id = $get_img_id->fetch(PDO::FETCH_OBJ)->img_id;
+    $save = db_connect()->prepare("INSERT INTO comments (comment_user, comment_img, comment_txt, comment_time)
+    VALUES ('$user_id', '$get_img_id', :comment_txt, '$date')");
+    $save->bindParam(':comment_txt', $comment_text);
+    $save->execute();
 }
 
 function    likeOrDislikeAction($user_id, $img_file)
