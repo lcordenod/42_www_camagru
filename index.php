@@ -4,7 +4,11 @@ session_start();
 
 if (!($_SESSION['auth']))
 {
-    $body_background = ' style="background-image: url(/camagru/sources/background-glare-2.jpg);"';
+    $body_background = ' style="background:
+    linear-gradient(red, transparent),
+    linear-gradient(to top left, lime, transparent),
+    linear-gradient(to top right, blue, transparent);
+    background-blend-mode: screen;"';
     $loggedin_display = ' style="display: none;" ';
     $loggedout_display = ' style="display: block;" ';
 }
@@ -50,6 +54,9 @@ else
                 </div>';
         ?>
     </div>
+    <?php
+    include('view/footer.php')
+    ?>
     <script type="text/javascript" src="javascript/social.js"></script>
     <script type="text/javascript" src="javascript/gallery.js"></script>
     </body>

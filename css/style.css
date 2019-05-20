@@ -534,6 +534,7 @@ a {
 }
 
 #title-feed {
+    font-size: 24px;
     display: block;
     text-align: center;
     margin-top: 50px;
@@ -593,6 +594,13 @@ a {
         margin-left: auto;
         margin-right: auto;
         float: none;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .pictures-gallery {
+        max-height: 350px;
+        max-width: 350px;
     }
 }
 
