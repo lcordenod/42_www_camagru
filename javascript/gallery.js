@@ -89,7 +89,7 @@ function    getUserGallery(offset) {
                 for (var i = 0; i < gallery_array.length; i++)              
                     generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4]);
                 document.getElementById("my-gallery-pictures-count").innerHTML = gallery_array[0][0];
-                checkInput();
+                checkInput(gallery_array[0][5]);
                 if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
                     displayMoreImagesBtn();
                 else if (document.getElementById("more-images-btn"))
@@ -121,7 +121,7 @@ function    getAllUsersGallery(offset) {
                 var gallery_array = JSON.parse(this.responseText);
                 for (var i = 0; i < gallery_array.length; i++)              
                     generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4], gallery_array[i][5]);
-                checkInput();
+                checkInput(gallery_array[0][6]);
                 if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
                     displayMoreImagesBtn();
                 else if (document.getElementById("more-images-btn"))

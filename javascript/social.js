@@ -160,25 +160,33 @@ function    postSocial(url, data = {}) {
         })
 }
 
-function    checkInput() {
+function    checkInput(log_status) {
     for (var i = 0; i < comments_text_boxes.length; i++)
     {
-        comments_text_boxes[i].addEventListener('keyup', function (e) {
-            isCommentValid(this);
-            e.preventDefault();
-        }, false);
-        comments_text_boxes[i].addEventListener('focusout', function (e) {
-            this.parentNode.parentNode.getElementsByClassName('comment-format-error')[0].style.display = "none";
-            e.preventDefault();
-        }, false);
-        comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('comment-post-btn')[0].addEventListener('click', function (e) {
-            addCommentToDB(this.parentNode.getElementsByClassName('comment-text-box')[0]);
-            e.preventDefault();
-        }, false);
-        comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('social-like-icon')[0].addEventListener('click', function (e) {
-            addOrRemoveLikeFromDb(this.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src);
-            e.preventDefault();
-        }, false);
+        if (log_status === "logged in")
+        {
+            comments_text_boxes[i].addEventListener('keyup', function (e) {
+                isCommentValid(this);
+                e.preventDefault();
+            }, false);
+            comments_text_boxes[i].addEventListener('focusout', function (e) {
+                this.parentNode.parentNode.getElementsByClassName('comment-format-error')[0].style.display = "none";
+                e.preventDefault();
+            }, false);
+            comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('comment-post-btn')[0].addEventListener('click', function (e) {
+                addCommentToDB(this.parentNode.getElementsByClassName('comment-text-box')[0]);
+                e.preventDefault();
+            }, false);
+            comments_text_boxes[i].parentNode.parentNode.getElementsByClassName('social-like-icon')[0].addEventListener('click', function (e) {
+                addOrRemoveLikeFromDb(this.parentNode.parentNode.parentNode.getElementsByClassName('pictures-gallery')[0].src);
+                e.preventDefault();
+            }, false);
+        }
+        else
+            comments_text_boxes[i].parentNode.parentNode.addEventListener("click", function (e) {
+                window.location.href = "/camagru/view/login.php";
+                e.preventDefault();
+            }, false);
     }
 }
 

@@ -21,6 +21,10 @@ foreach ($gallery as $value) {
         $content[] = $likes;
     else
         $content[] = 0;
+    if ($_SESSION["auth"])
+        $content[] = "logged in";
+    else
+        $content[] = "logged out";
     $tab[] = $content;
 }
 echo json_encode($tab);

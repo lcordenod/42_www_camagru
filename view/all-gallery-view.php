@@ -2,6 +2,7 @@
 require_once "../controller/gallery-controller.php";
 require_once "../controller/social-controller.php";
 require_once "../controller/debug.php";
+session_start();
 
 $offset = (int)$_POST['offset'];
 $gallery = getAllUsersImagesLimitByFrom($offset);
@@ -25,6 +26,10 @@ foreach ($gallery as $value) {
         $content[] = $username;
     else
         $content[] = 0;
+    if ($_SESSION["auth"])
+        $content[] = "logged in";
+    else
+        $content[] = "logged out";
     $tab[] = $content;
 }
 echo json_encode($tab);
