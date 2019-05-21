@@ -4,7 +4,7 @@ function    showEmptyGalleryBox() {
     empty_gallery.style.display = "block";
 }
 
-function    generateSingleUserGallery(img_path, comments, likes, username, img_id)
+function    generateSingleUserGallery(img_path, comments, likes, username, img_id, log_status)
 {
     var gallery = document.createElement("div");
     gallery.setAttribute("class", "pictures-gallery-box");
@@ -55,7 +55,7 @@ function    generateSingleUserGallery(img_path, comments, likes, username, img_i
         document.getElementById("my-gallery-feed").appendChild(posted_by)
     }
     document.getElementById("my-gallery-feed").appendChild(gallery);
-    if (img_id && img_id != undefined)
+    if (img_id && img_id != undefined && log_status == "logged in")
     {
         img_link = document.createElement("a");
         img_link.setAttribute("href", "/camagru/view/image.php?id=" + img_id);
@@ -95,7 +95,7 @@ function    getUserGallery(offset) {
             {
                 var gallery_array = JSON.parse(this.responseText);
                 for (var i = 0; i < gallery_array.length; i++)              
-                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4], undefined, gallery_array[i][1]);
+                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4], undefined, gallery_array[i][1], gallery_array[0][5]);
                 document.getElementById("my-gallery-pictures-count").innerHTML = gallery_array[0][0];
                 checkInput(gallery_array[0][5]);
                 if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
@@ -128,7 +128,7 @@ function    getAllUsersGallery(offset) {
             {
                 var gallery_array = JSON.parse(this.responseText);
                 for (var i = 0; i < gallery_array.length; i++)              
-                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4], gallery_array[i][5], gallery_array[i][1]);
+                    generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4], gallery_array[i][5], gallery_array[i][1], gallery_array[0][6]);
                 checkInput(gallery_array[0][6]);
                 if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
                     displayMoreImagesBtn();
