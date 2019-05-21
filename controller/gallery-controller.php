@@ -1,8 +1,5 @@
 <?php
 require_once "../config/connect.php";
-require_once "debug.php";
-
-$action = $_POST['action'];
 
 function    countUserPicturesSaved($user_id) {
     $total_pictures = db_connect()->prepare("SELECT COUNT(*) FROM images WHERE `img_user`=:id_user");

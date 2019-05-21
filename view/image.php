@@ -1,9 +1,12 @@
 <?php
+require_once "../controller/image-controller.php";
 session_start();
 
 if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
 else if (!$_SESSION['auth']->user_valid)
+    header("Location: /camagru/index.php");
+if (!($img_data = getImage($_GET["id"])))
     header("Location: /camagru/index.php");
 
 ?>
@@ -32,6 +35,10 @@ else if (!$_SESSION['auth']->user_valid)
         </div>
         <div id="my-gallery-feed">
         </div>
+        <?php
+            if ($img_data[0]["img_user"] === $_SESSION["auth"]->user_id)
+                echo '<button id="image-delete-btn" onclick="deleteImage('.$img_data[0]["img_id"].');">Delete image</button>';
+        ?>
         <button id="account-modify-btn" onclick="window.history.back();">Go back</button>
     </div>
     <script type="text/javascript" src="../javascript/social.js"></script>

@@ -171,6 +171,26 @@ function    getImageView(img_id) {
     xmlhttp.send("img_id=" + img_id);
 }
 
+function    deleteImage(img_id)
+{
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            if (this.responseText == "Image deleted")
+            {
+                window.history.back();
+                alert("Image deleted");
+            }
+            else
+                alert("An error happened when deleting the image");
+        }
+    };
+    xmlhttp.open("POST", "/camagru/controller/image-controller.php", true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("action=delete-img&img_id=" + img_id);
+}
+
 window.addEventListener('load', function(e) {
     if (window.location.href.indexOf("index.php") != -1)
         getAllUsersGallery(0);
