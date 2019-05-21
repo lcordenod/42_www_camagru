@@ -8,7 +8,15 @@ if (!($_SESSION['auth']))
 if ($_SESSION['auth']->user_valid)
 {
     $account_gallery_btn = '<button id="account-gallery-btn" onclick="window.location.href = \'/camagru/view/account-my-gallery.php\';">See my gallery</button>';
-    $settings_buttons = '<button id="account-modify-btn" onclick="window.location.href = \'/camagru/view/account-modify-username.php\';">Modify account username</button>
+    $settings_buttons = '
+    <div id="notif-switch">
+    <span id="notif-switch-text">Comment notifications</span>
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+    </label>
+    </div>
+    <button id="account-modify-btn" onclick="window.location.href = \'/camagru/view/account-modify-username.php\';">Modify account username</button>
     <button id="account-modify-btn" onclick="window.location.href = \'/camagru/view/account-modify-password.php\';">Modify account password</button>';
 }
 else
@@ -40,8 +48,8 @@ else
             <p><span class="title-settings">Status:</span> <?php echo $status ?></p>
             <?php echo $account_gallery_btn ?>
         </div>
-        <button id="account-modify-btn" onclick="window.location.href = '/camagru/view/account-modify-email.php'">Modify account email</button>
         <?php echo $settings_buttons ?>
+        <button id="account-modify-btn" onclick="window.location.href = '/camagru/view/account-modify-email.php'">Modify account email</button>
         <button id="account-modify-btn" onclick="window.location.href = '/camagru/view/logout.php'">Log Out</button>
         <button id="account-delete-btn" onclick="window.location.href = '/camagru/view/account-delete-confirmation.php'">Delete account</button>
     </div>
