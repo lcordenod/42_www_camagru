@@ -15,3 +15,34 @@ function    disableConfirmUsernameButton()
         document.getElementById("confirm-username-btn").innerText = "Confirm username";
     }
 }
+
+function    getCommentSub()
+{
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText == "1")
+            {
+                document.getElementsByTagName("input")[0].checked = true;
+            }
+            else if (this.responseText == "0")
+                document.getElementsByTagName("input")[0].checked = false;
+        }
+    };
+    xmlhttp.open("POST", "/camagru/controller/account-modify-controller.php", true);
+    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xmlhttp.send("action-get=get-comment-sub");
+}
+
+function    postCommentSub()
+{
+    postData("../controller/account-modify-controller.php", {action: "post-comment-sub"});
+}
+
+window.addEventListener('load', function(e) {
+    if (window.location.href.indexOf("account.php") != -1)
+    {
+        getCommentSub();
+        document.getElementsByTagName("input")[0].addEventListener("click", postCommentSub);
+    }
+});

@@ -4,10 +4,12 @@ require_once 'verify-input-controller.php';
 require_once 'forgot-password-controller.php';
 require_once '../controller/files-directories-management-controller.php';
 require_once '../model/input-errors.php';
+session_start();
 
 $content = trim(file_get_contents("php://input"));
 $decoded = json_decode($content, true);
 $action = $decoded['action'];
+$action_get = $_POST['action-get'];
 $email = $decoded['email'];
 
 function    modifyAccountEmail($current_email, $new_email) {
@@ -88,8 +90,40 @@ function    sendNewUsernameEmail($email){
         echo ("Mail wasn't sent because of an error");
 }
 
-if (isset($action))
+function    getCommentSubForUser($user_id)
 {
+    $get_comment_sub = db_connect()->prepare("SELECT comment_sub FROM user WHERE `user_id` =:u_id");
+    $get_comment_sub->bindParam(':u_id', $user_id);
+    $get_comment_sub->execute();
+    return ($get_comment_sub->fetchColumn());
+}
+
+function    postCommentSubForUser($user_id)
+{
+    if (getCommentSubForUser($user_id) === "1")
+        $new_val = 0;
+    else
+        $new_val = 1;
+    $post_comment_sub = db_connect()->prepare("UPDATE user SET comment_sub=:new_val WHERE `user_id` =:u_id");
+    $post_comment_sub->bindParam(':new_val', $new_val, PDO::PARAM_INT);
+    $post_comment_sub->bindParam(':u_id', $user_id);
+    $post_comment_sub->execute();
+    return ($post_comment_sub->fetchColumn());
+}
+
+if (isset($action_get))
+{
+    echo getCommentSubForUser($_SESSION["auth"]->user_id);
+}
+else if (isset($action))
+{
+    if ($action == "post-comment-sub")
+    {
+        if (postCommentSubForUser($_SESSION["auth"]->user_id))
+            echo "{\"status\": \"success\"}";
+        else
+            echo "{\"status\": \"failed\"}";
+    }
     if ($action == "send-reset-password-email")
     {
         sendVerifyEmail($email);
