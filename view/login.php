@@ -14,16 +14,16 @@ require_once '../controller/login-controller.php';
     <?php
     include('header.php')
     ?>
-    <form action="" method="POST" id="login-form" onfocusout="disableLoginButton()">
+    <form action="" method="POST" id="login-form">
         <div class="register-container">
             <h1>Log In</h1>
             <p>Please enter your account details in order to log in to SnapCat</p>
             <hr>
             <label for="email"><b>Username or Email</b></label>
-            <input type="text" placeholder="Enter Username or Email" name="username-email" id="username-email" maxlength="50" onfocusout="checkUsernameEmailLogin()" required>
+            <input type="text" placeholder="Enter Username or Email" name="username-email" id="username-email" maxlength="50" onfocusout="checkUsernameEmailLogin();disableLoginButton()" required>
             <span id="error-username-email">Please enter a valid username or email</span>
             <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password-login" id="password-login" maxlength="30" onfocusout="checkPasswordLogin()" required>
+            <input type="password" placeholder="Enter Password" name="password-login" id="password-login" maxlength="30" onkeyup="checkPasswordLogin();disableLoginButton()" required>
             <span id="error-password-login">Please enter a valid password</span>
             <hr>
             <button type="submit" id="login-btn" value="OK">Log In</button>

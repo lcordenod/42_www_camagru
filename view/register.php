@@ -14,19 +14,19 @@ require_once '../controller/register-controller.php';
     <?php
     include('header.php')
     ?>
-    <form action="" method="POST" id="register-form" onfocusout="disableSubmitButton()">
+    <form action="" method="POST" id="register-form">
         <div class="register-container">
             <h1>Register</h1>
             <p>Fill in this form to create your SnapCat account and make fun with amazing picture filters</p>
             <hr>
             <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" id="username" maxlength="30" onfocusout="checkUsername()" required>
+            <input type="text" placeholder="Enter Username" name="username" id="username" maxlength="30" onfocusout="checkUsername();disableSubmitButton()" required>
             <span id="error-username">Please enter a valid username (only letters and numbers)</span>
             <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" id="email" maxlength="50" onfocusout="checkEmail()" required>
+            <input type="text" placeholder="Enter Email" name="email" id="email" maxlength="50" onfocusout="checkEmail();disableSubmitButton()" required>
             <span id="error-email">Please enter a valid email (example@email.com)</span>
             <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" id="password" maxlength="30" onfocusout="checkPassword()" required>
+            <input type="password" placeholder="Enter Password" name="password" id="password" maxlength="30" onfocusout="checkPassword();disableSubmitButton()" required>
             <span id="error-password">Please enter a valid password</span>
             <div id="password-message">
                 <h3>Password must contain the following:</h3>
@@ -36,7 +36,7 @@ require_once '../controller/register-controller.php';
                 <p id="length" class="invalid">Minimum <b>8 characters</b></p>
             </div>
             <label for="password-rpt"><b>Repeat password</b></label>
-            <input type="password" placeholder="Repeat Password" name="password-rpt" id="password-rpt" maxlength="30" onfocusout="checkRepeatPassword()" required>
+            <input type="password" placeholder="Repeat Password" name="password-rpt" id="password-rpt" maxlength="30" onkeyup="checkRepeatPassword();disableSubmitButton()" required>
             <span id="error-password-rpt">Please enter a password repeat that matches password</span>
             <hr>
             <button type="submit" id="register-btn" value="OK">Register Now</button>
