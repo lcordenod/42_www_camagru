@@ -96,6 +96,48 @@ function    removeLikeFromDb($user_id, $img_id)
     $save->execute();
 }
 
+// SEND EMAIL TO NOTIFY USER ON NEW COMMENT (EXCLUDING HIMSELF COMMENTS ON HIS OWN PICS)
+function    sendNewCommentNotifEmail($user_who_commented, $img_file){
+    $get_img_id = db_connect()->prepare("SELECT img_id FROM images WHERE img_path LIKE :img_file");
+    $img_file = "%$img_file%";
+    $get_img_id->bindParam(':img_file', $img_file);
+    $get_img_id->execute();
+    $get_img_id = $get_img_id->fetch(PDO::FETCH_OBJ)->img_id;
+    $user_id = db_connect()->prepare("SELECT `img_user` FROM images WHERE `img_id`=:img_id");
+    $user_id->bindParam(':img_id', $get_img_id);
+    $user_id->execute();
+    $user_id = $user_id->fetch(PDO::FETCH_OBJ);
+    $user_id = $user_id->img_user;
+    $username = db_connect()->prepare("SELECT * FROM user WHERE `user_id`=:u_id");
+    $username->bindParam(':u_id', $user_id);
+    $username->execute();
+    $username = $username->fetch(PDO::FETCH_OBJ);
+    $user_sub = $username->comment_sub;
+    $email = $username->user_email;
+    $username = $username->user_name;
+    if ($user_who_commented !== $user_id && $user_sub === "1")
+    {
+        $username_who_commented = db_connect()->prepare("SELECT * FROM user WHERE `user_id`=:u_id");
+        $username_who_commented->bindParam(':u_id', $user_who_commented);
+        $username_who_commented->execute();
+        $username_who_commented = $username_who_commented->fetch(PDO::FETCH_OBJ);
+        $username_who_commented = $username_who_commented->user_name;
+        $subject = 'SnapCat | New comment';
+        $header = 'From: noreply@snapcat.com';
+        $content = "
+        Hi ".$username.", you have a new comment from ".$username_who_commented."!
+        
+        Click this link to see your picture commented:
+        http://localhost:8080/camagru/view/image.php?id=".$get_img_id."
+
+        -----------------------------------
+        Please do not reply to this email
+        ";
+        if (mail($email, $subject, $content, $header) == false)
+            echo ("Mail wasn't sent because of an error\n");
+    }
+}
+
 if (isset($comment_text))
 {
     if (isset($comment_text) && isset($img_file) && isset($user_id))
@@ -103,6 +145,7 @@ if (isset($comment_text))
         if (checkComment($user_id, $comment_text, $img_file))
         {
             saveCommentToDb($user_id, $comment_text, $img_file);
+            sendNewCommentNotifEmail($user_id, $img_file);
             echo "comment success";
         }
         else
