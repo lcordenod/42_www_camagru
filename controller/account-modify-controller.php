@@ -119,12 +119,10 @@ else if (isset($action))
 {
     if ($action == "post-comment-sub")
     {
-        if (postCommentSubForUser($_SESSION["auth"]->user_id))
-            echo "{\"status\": \"success\"}";
-        else
-            echo "{\"status\": \"failed\"}";
+        postCommentSubForUser($_SESSION["auth"]->user_id);
+        echo "{\"status\": \"success\"}";
     }
-    if ($action == "send-reset-password-email")
+    else if ($action == "send-reset-password-email")
     {
         sendVerifyEmail($email);
         echo "{\"status\": \"success\"}";
