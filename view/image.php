@@ -23,9 +23,6 @@ if (!($img_data = getImage($_GET["id"])))
     ?>
     <div class="register-container">
     </div>
-    <?php
-    include('footer.php')
-    ?>
     <div class="register-container">
         <h1 id="title-image-username">Image review</h1>
         <div id="image-info">
@@ -41,6 +38,9 @@ if (!($img_data = getImage($_GET["id"])))
         ?>
         <button id="account-modify-btn" onclick="window.history.back();">Go back</button>
     </div>
+    <?php
+    include('footer.php')
+    ?>
     <script type="text/javascript" src="../javascript/social.js"></script>
     <script type="text/javascript" src="../javascript/gallery.js"></script>
     </body>
