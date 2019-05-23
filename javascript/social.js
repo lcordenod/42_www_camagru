@@ -143,19 +143,19 @@ function    postSocial(url, data = {}) {
         .then(text => { console.log(text);
         if (text == "comment success")
         {
-            displayComment(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-text-box')[0]);
-            incrementCommentCount(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-text-box')[0]);
-            resetInputBox(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-text-box')[0]);
-            document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-length')[0].style.display = "none";
+            displayComment(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.parentNode.getElementsByClassName('comment-text-box')[0]);
+            incrementCommentCount(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.parentNode.getElementsByClassName('comment-text-box')[0]);
+            resetInputBox(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.parentNode.getElementsByClassName('comment-text-box')[0]);
+            document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.parentNode.getElementsByClassName('comment-length')[0].style.display = "none";
         }
         else if (text == "comment fail")
             alert("Comment failed - please try again later");
         else if (text == "like added" || text == "like removed")
         {
             if (text == "like added")
-                incrementLikeCount(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-text-box')[0]);
+                incrementLikeCount(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.parentNode.getElementsByClassName('comment-text-box')[0]);
             else if (text == "like removed")
-                decrementLikeCount(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.getElementsByClassName('comment-text-box')[0]);
+                decrementLikeCount(document.querySelectorAll('img[src*="' + data['img_file']+ '"]')[0].parentNode.parentNode.getElementsByClassName('comment-text-box')[0]);
         }
         else if (text == "like fail")
             alert("Like failed - please try again later");
