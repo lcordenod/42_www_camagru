@@ -235,6 +235,7 @@ a {
 #camera-view {
     width: 480px;
     float: left;
+    margin-bottom: 100px;
 }
 
 #canvas {
@@ -685,6 +686,7 @@ input:checked + .slider:before {
         margin-left: auto;
         margin-right: auto;
         float: none;
+        margin-bottom: 0px;
     }
 }
 
