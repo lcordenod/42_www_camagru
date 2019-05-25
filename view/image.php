@@ -4,8 +4,6 @@ session_start();
 
 if (!($_SESSION['auth']))
     header("Location: /camagru/index.php");
-else if (!$_SESSION['auth']->user_valid)
-    header("Location: /camagru/index.php");
 if (!($img_data = getImage($_GET["id"])))
     header("Location: /camagru/index.php");
 

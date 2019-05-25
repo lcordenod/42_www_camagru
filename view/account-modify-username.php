@@ -22,13 +22,13 @@ if (!($_SESSION['auth']))
     <?php
     include('header.php')
     ?>
-    <form action="" method="POST" id="password-sendemail-form" onfocusout="disableConfirmUsernameButton()">
+    <form action="" method="POST" id="password-sendemail-form">
         <div class="register-container">
             <h1>Modify account username</h1>
             <p>Please enter the new username you want to use for your SnapCat account</p>
             <hr>
             <label for="username"><b>New Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" id="username" maxlength="30" onfocusout="checkUsername()" required>
+            <input type="text" placeholder="Enter Username" name="username" id="username" maxlength="30" onkeyup="checkUsername();disableConfirmUsernameButton()" required>
             <span id="error-username">Please enter a valid username (only letters and numbers)</span>
             <hr>
             <button type="submit" id="confirm-username-btn" value="OK">Confirm username</button>

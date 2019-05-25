@@ -22,13 +22,13 @@ if (!($_SESSION['auth']))
     <?php
     include('header.php')
     ?>
-    <form action="" method="POST" id="password-sendemail-form" onfocusout="disableResetPasswordButton()">
+    <form action="" method="POST" id="password-sendemail-form">
         <div class="register-container">
             <h1>Modify account email</h1>
             <p>Please enter the new email you want to use for your SnapCat account</p>
             <hr>
             <label for="email"><b>New Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" id="email" maxlength="50" onfocusout="checkEmail()" required>
+            <input type="text" placeholder="Enter Email" name="email" id="email" maxlength="50" onkeyup="checkEmail();disableResetPasswordButton()" required>
             <span id="error-email">Please enter a valid email (example@email.com)</span>
             <hr>
             <button type="submit" id="reset-password-btn" value="OK">Confirm email</button>

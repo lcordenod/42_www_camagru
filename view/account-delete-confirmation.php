@@ -21,13 +21,13 @@ if (!($_SESSION['auth']))
     <?php
     include('header.php')
     ?>
-    <form action="" method="POST" id="register-form" onfocusout="disableDeleteButton()">
+    <form action="" method="POST" id="register-form">
         <div class="register-container">
             <h1>Delete your account</h1>
             <p>If you are sure you want to delete your account, please confirm by entering your password</p>
             <hr>
             <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" id="password-login" maxlength="30" onfocusout="checkPasswordDelete()" required>
+            <input type="password" placeholder="Enter Password" name="password" id="password-login" maxlength="30" onkeyup="checkPasswordDelete();disableDeleteButton()" required>
             <span id="error-password-login">Please enter a valid password</span>
             <hr>
             <button type="submit" id="delete-account-btn" value="DEL">Delete account</button>

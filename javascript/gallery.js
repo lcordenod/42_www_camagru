@@ -161,7 +161,7 @@ function    getAllUsersGallery(offset) {
                 }
             }
             else
-                showEmptyGalleryBox();
+                document.getElementById("my-gallery-feed").innerHTML = '<span style="display:block;text-align:center;">No images yet :(</span>';
         }
     };
     xmlhttp.open("POST", "/camagru/view/all-gallery-view.php", true);
