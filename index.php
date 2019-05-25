@@ -26,13 +26,14 @@ else
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="shortcut icon" type="image/png" href="/camagru/sources/cat-img.png"/>
     </head>
     <body <?php echo $body_background ?>>
     <?php
     include('view/header.php')
     ?>
     <div class="register-container">
-        <div id="index-loggedin-box" <?php echo $loggedin_display ?>>
+        <div id="index-loggedin-box" <?php echo $loggßedin_display ?>>
             <h1 id="title-index-username">Welcome <?php echo $_SESSION['auth']->user_name ?> ;)</h1>
             <span id="index-intro">SnapCat Feed</span>
         </div>

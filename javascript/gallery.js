@@ -24,7 +24,24 @@ function    generateSingleUserGallery(img_path, comments, likes, username, img_i
     if (comments != 0 && comments != undefined)
     {
         for (var j = 0; j < comments.length; j++)
-            comment += '<p class="single-comment"><span class="username-comment">' + comments[j][0] + '</span><span> - </span><span class="user-comment">' + comments[j][1] +'</span></p>';
+        {
+            var single_comment = document.createElement("div");
+            var p_comment = document.createElement("p");
+            p_comment.setAttribute("class", "single-comment");
+            var username_comment = document.createElement("span");
+            username_comment.setAttribute("class", "username-comment");
+            username_comment.innerText = comments[j][0];
+            var separator = document.createElement("span");
+            separator.innerText = " - ";
+            var user_comment = document.createElement("span");
+            user_comment.setAttribute("class", "user-comment");
+            user_comment.innerText = comments[j][1];
+            single_comment.appendChild(p_comment);
+            p_comment.appendChild(username_comment);
+            p_comment.appendChild(separator);
+            p_comment.appendChild(user_comment);
+            comment += single_comment.innerHTML;
+        }
     }
     var comments_container = document.createElement("div");
     comments_container.setAttribute("class", "gallery-social-comments");
@@ -51,7 +68,7 @@ function    generateSingleUserGallery(img_path, comments, likes, username, img_i
     {
         var posted_by = document.createElement("div");
         posted_by.setAttribute("class", "gallery-posted-by");
-        posted_by.innerHTML = "Posted by " + username;
+        posted_by.innerText = "Posted by " + username;
         document.getElementById("my-gallery-feed").appendChild(posted_by)
     }
     document.getElementById("my-gallery-feed").appendChild(gallery);
@@ -96,7 +113,7 @@ function    getUserGallery(offset) {
                 var gallery_array = JSON.parse(this.responseText);
                 for (var i = 0; i < gallery_array.length; i++)              
                     generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4], undefined, gallery_array[i][1], gallery_array[0][5]);
-                document.getElementById("my-gallery-pictures-count").innerHTML = gallery_array[0][0];
+                document.getElementById("my-gallery-pictures-count").innerText = gallery_array[0][0];
                 checkInput(gallery_array[0][5]);
                 if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
                     displayMoreImagesBtn();

@@ -29,7 +29,7 @@ function    isCommentLengthValid(comment) {
     }
     else
     {
-        comment.parentNode.parentNode.getElementsByClassName('comment-length')[0].innerHTML = comment.value.length;
+        comment.parentNode.parentNode.getElementsByClassName('comment-length')[0].innerText = comment.value.length;
         comment.parentNode.parentNode.getElementsByClassName('comment-length')[0].style.display = "block";
         comment.parentNode.parentNode.getElementsByClassName('comment-length-error')[0].style.display = "none";
         return (true);
@@ -90,13 +90,13 @@ function    displayComment(comment) {
         text = text.replace(/ +(?= )/g,'');
         text = text.replace(/(\r\n|\n|\r)/gm,"");
         var text_node = document.createTextNode(text);
-        separator.innerHTML = " - ";
-        if (comment_username.innerHTML = document.getElementsByClassName("title-settings").length)
-            comment_username.innerHTML = document.getElementsByClassName("title-settings")[0].parentNode.innerHTML.slice(46);
+        separator.innerText = " - ";
+        if (document.getElementsByClassName("title-settings").length)
+            comment_username.innerText = document.getElementsByClassName("title-settings")[0].parentNode.innerHTML.slice(46);
         else if (document.getElementById("title-index-username") != undefined)
-            comment_username.innerHTML = document.getElementById("title-index-username").innerHTML.slice(8, -3);
+            comment_username.innerText = document.getElementById("title-index-username").innerHTML.slice(8, -3);
         else if (document.getElementById("image-info-username") != undefined)
-            comment_username.innerHTML = document.getElementById("image-info-username").innerHTML;
+            comment_username.innerText = document.getElementById("image-info-username").innerHTML;
         else
             alert("Couldn't add comment, please try later");
         new_comment.appendChild(text_node);
