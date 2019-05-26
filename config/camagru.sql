@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 25, 2019 at 12:01 PM
+-- Generation Time: May 26, 2019 at 10:07 AM
 -- Server version: 5.6.43
 -- PHP Version: 5.6.40
 
@@ -163,7 +163,13 @@ INSERT INTO `comments` (`comment_id`, `comment_user`, `comment_txt`, `comment_im
 (324, 119, '<h1>lol</h1>', 97, '2019-05-25 10:49:36'),
 (325, 119, ':D', 97, '2019-05-25 10:50:33'),
 (326, 119, '<script>alert(\"coucou\")</script>', 97, '2019-05-25 10:52:04'),
-(327, 132, 'Yes', 97, '2019-05-25 11:15:40');
+(327, 132, 'Yes', 97, '2019-05-25 11:15:40'),
+(328, 119, 'Super !', 97, '2019-05-26 08:39:33'),
+(329, 119, 'Beer is cool, be like beer', 94, '2019-05-26 08:40:00'),
+(330, 119, 'For real, beer is fucking great', 94, '2019-05-26 08:40:25'),
+(331, 119, 'I mean it', 94, '2019-05-26 08:40:38'),
+(334, 130, 'J\'avoue', 97, '2019-05-26 09:59:08'),
+(336, 130, ':)', 90, '2019-05-26 10:02:21');
 
 -- --------------------------------------------------------
 
@@ -223,7 +229,8 @@ INSERT INTO `likes` (`like_id`, `like_user`, `like_img`) VALUES
 (164, 133, 90),
 (165, 131, 89),
 (166, 130, 91),
-(167, 132, 97);
+(167, 132, 97),
+(171, 130, 97);
 
 -- --------------------------------------------------------
 
@@ -247,9 +254,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `user_name`, `user_email`, `user_pwd`, `user_valid`, `user_valid_key`, `reset_password_key`, `comment_sub`) VALUES
-(72, 'toto123', 'toto123@email.fr', 'e69da91758a993638a93e1278d72b0bbd704e6b15fd3a2e06c3eb27d233b2b46e83610565df3a8ee74b8c675dd68ce4a325a88fe8417783997e5d5306b6af9e9', 0, NULL, NULL, 1),
-(119, 'toto1234', 'toto1234@email.fr', '723c1c48ab6e71ebb0288f34755c5172cf01d895c8a91953ac7194abec7261f0b71f4a8a623efc7ba94032f48f1fee2ec441a0de4491a918995e9418aecae118', 0, '58d4d1e7b1e97b258c9ed0b37e02d087', NULL, 0),
-(130, 'lucas', 'lucas.cordenod@live.fr', 'fa866917533c836615e23d2a83456ca198f93a0b80479fefa2d149f390a8f6bfaf6d0f7a333359553de25eb353f235f7f8dcb5411992cb4899817dccb9f2ab61', 1, 'afda332245e2af431fb7b672a68b659d', NULL, 1),
+(119, 'toto1234', 'toto12345@email.fr', '723c1c48ab6e71ebb0288f34755c5172cf01d895c8a91953ac7194abec7261f0b71f4a8a623efc7ba94032f48f1fee2ec441a0de4491a918995e9418aecae118', 0, '9778d5d219c5080b9a6a17bef029331c', NULL, 0),
+(130, 'lucas', 'lucas.cordenod@live.fr', 'fa866917533c836615e23d2a83456ca198f93a0b80479fefa2d149f390a8f6bfaf6d0f7a333359553de25eb353f235f7f8dcb5411992cb4899817dccb9f2ab61', 1, '3ef815416f775098fe977004015c6193', NULL, 1),
 (131, 'raph', 'raphael.allemand@live.fr', '457c82e14bc645525b4b63c78340d6eae6a85b4ebec75af524b76d79f7f4beb0840dfd01484c173ea9b7cc4dd65fe3697d8e05ff721191f4a45f35740d9a911f', 1, '577bcc914f9e55d5e4e4f82f9f00e7d4', NULL, 1),
 (132, 'coco', 'coco@alalal.fr', 'd9c0122b6df53ad055274fb8e39683789c4109046ce1644caca3da77ae1841477d6e2416aad9b764b478175e23150c4d3d3e468fad9e7f4d520ae24fd2e653ed', 0, 'dd8eb9f23fbd362da0e3f4e70b878c16', NULL, 1),
 (133, 'jwalle', 'punktumg@gmail.com', 'deccc2956cb2d84118fc4a33c9d85c7e3d5a4d6e438d4f9d4095186e4f46d844b5d5d4c1fdacf04a58720921d1e544f5c12baf834b4a172c85d27b07ef0b615e', 1, '6512bd43d9caa6e02c990b0a82652dca', NULL, 0),
@@ -291,25 +297,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=328;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=337;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

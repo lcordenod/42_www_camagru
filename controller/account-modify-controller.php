@@ -13,102 +13,163 @@ $action_get = $_POST['action-get'];
 $email = $decoded['email'];
 
 function    modifyAccountEmail($current_email, $new_email) {
-    $update_email = db_connect()->prepare("UPDATE user SET user_email =:new_email WHERE `user_email`=:current_email");
-    $update_email->bindParam(':new_email', $new_email);
-    $update_email->bindParam(':current_email', $current_email);
-    $update_email->execute();
+    try
+    {
+        $update_email = db_connect()->prepare("UPDATE user SET user_email =:new_email WHERE `user_email`=:current_email");
+        $update_email->bindParam(':new_email', $new_email);
+        $update_email->bindParam(':current_email', $current_email);
+        $update_email->execute();
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
 }
 
 function    modifyAccountUsername($current_username, $new_username) {
-    $update_username = db_connect()->prepare("UPDATE user SET user_name =:new_username WHERE `user_name` =:current_username");
-    $update_username->bindParam(':new_username', $new_username);
-    $update_username->bindParam(':current_username', $current_username);
-    $update_username->execute();
+    try
+    {
+        $update_username = db_connect()->prepare("UPDATE user SET user_name =:new_username WHERE `user_name` =:current_username");
+        $update_username->bindParam(':new_username', $new_username);
+        $update_username->bindParam(':current_username', $current_username);
+        $update_username->execute();
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
 }
 
 function    modifyAccountPassword($username, $new_password) {
-    $update_password = db_connect()->prepare("UPDATE user SET user_pwd =:new_password WHERE `user_name` =:username");
-    $update_password->bindParam(':username', $username);
-    $update_password->bindParam(':new_password', $new_password);
-    $update_password->execute();
+    try
+    {
+        $update_password = db_connect()->prepare("UPDATE user SET user_pwd =:new_password WHERE `user_name` =:username");
+        $update_password->bindParam(':username', $username);
+        $update_password->bindParam(':new_password', $new_password);
+        $update_password->execute();
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
 }
 
 function    deleteUserComments($user_id)
 {
-    $delete_user_comments = db_connect()->prepare("DELETE FROM comments WHERE `comment_user` =:u_id");
-    $delete_user_comments->bindParam(':u_id', $user_id);
-    $delete_user_comments->execute();
+    try
+    {
+        $delete_user_comments = db_connect()->prepare("DELETE FROM comments WHERE `comment_user` =:u_id");
+        $delete_user_comments->bindParam(':u_id', $user_id);
+        $delete_user_comments->execute();
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
 }
 
 function    deleteUserImages($user_id)
 {
-    $delete_user_images = db_connect()->prepare("DELETE FROM images WHERE `img_user` =:u_id");
-    $delete_user_images->bindParam(':u_id', $user_id);
-    $delete_user_images->execute();
+    try
+    {
+        $delete_user_images = db_connect()->prepare("DELETE FROM images WHERE `img_user` =:u_id");
+        $delete_user_images->bindParam(':u_id', $user_id);
+        $delete_user_images->execute();
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
 }
 
 function    deleteUserLikes($user_id)
 {
-    $delete_user_likes = db_connect()->prepare("DELETE FROM likes WHERE `like_user` =:u_id");
-    $delete_user_likes->bindParam(':u_id', $user_id);
-    $delete_user_likes->execute();
+    try
+    {
+        $delete_user_likes = db_connect()->prepare("DELETE FROM likes WHERE `like_user` =:u_id");
+        $delete_user_likes->bindParam(':u_id', $user_id);
+        $delete_user_likes->execute();
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
 }
 
 function    deleteUserAccount($user_id)
 {
-    $delete_user = db_connect()->prepare("DELETE FROM user WHERE `user_id` =:u_id");
-    $delete_user->bindParam(':u_id', $user_id);
-    $delete_user->execute();
-    deleteUserComments($user_id);
-    deleteUserImages($user_id);
-    deleteUserLikes($user_id);
+    try
+    {
+        $delete_user = db_connect()->prepare("DELETE FROM user WHERE `user_id` =:u_id");
+        $delete_user->bindParam(':u_id', $user_id);
+        $delete_user->execute();
+        deleteUserComments($user_id);
+        deleteUserImages($user_id);
+        deleteUserLikes($user_id);
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
 }
 
 // SEND EMAIL WHEN USERNAME IS UPDATED
 function    sendNewUsernameEmail($email){
     try {
         $username = db_connect()->prepare("SELECT `user_name` FROM user WHERE `user_email`=:email");
+        $username->bindParam(':email', $email);
+        $username->execute();
+        $username = $username->fetch(PDO::FETCH_OBJ);
+        $username = $username->user_name;
+        $subject = 'SnapCat | Your username has changed';
+        $header = 'From: noreply@snapcat.com';
+        $content = "
+        Hi ".$username.",
+        Just an email to tell you that you made a good choice, your new username rocks and is effective on SnapCat!
+    
+        -----------------------------------
+        Please do not reply to this email
+        ";
+        if (mail($email, $subject, $content, $header) == false)
+            echo ("Mail wasn't sent because of an error");
     }
     catch(Exception $e)
     {
         exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
     }
-    $username->bindParam(':email', $email);
-    $username->execute();
-    $username = $username->fetch(PDO::FETCH_OBJ);
-    $username = $username->user_name;
-    $subject = 'SnapCat | Your username has changed';
-    $header = 'From: noreply@snapcat.com';
-    $content = "
-    Hi ".$username.",
-    Just an email to tell you that you made a good choice, your new username rocks and is effective on SnapCat!
-
-    -----------------------------------
-    Please do not reply to this email
-    ";
-    if (mail($email, $subject, $content, $header) == false)
-        echo ("Mail wasn't sent because of an error");
 }
 
 function    getCommentSubForUser($user_id)
 {
-    $get_comment_sub = db_connect()->prepare("SELECT comment_sub FROM user WHERE `user_id` =:u_id");
-    $get_comment_sub->bindParam(':u_id', $user_id);
-    $get_comment_sub->execute();
-    return ($get_comment_sub->fetchColumn());
+    try {
+        $get_comment_sub = db_connect()->prepare("SELECT comment_sub FROM user WHERE `user_id` =:u_id");
+        $get_comment_sub->bindParam(':u_id', $user_id);
+        $get_comment_sub->execute();
+        return ($get_comment_sub->fetchColumn());
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
 }
 
 function    postCommentSubForUser($user_id)
 {
-    if (getCommentSubForUser($user_id) === "1")
-        $new_val = 0;
-    else
-        $new_val = 1;
-    $post_comment_sub = db_connect()->prepare("UPDATE user SET comment_sub=:new_val WHERE `user_id` =:u_id");
-    $post_comment_sub->bindParam(':new_val', $new_val, PDO::PARAM_INT);
-    $post_comment_sub->bindParam(':u_id', $user_id);
-    $post_comment_sub->execute();
-    return ($post_comment_sub->fetchColumn());
+    try {
+        if (getCommentSubForUser($user_id) === "1")
+            $new_val = 0;
+        else
+            $new_val = 1;
+        $post_comment_sub = db_connect()->prepare("UPDATE user SET comment_sub=:new_val WHERE `user_id` =:u_id");
+        $post_comment_sub->bindParam(':new_val', $new_val, PDO::PARAM_INT);
+        $post_comment_sub->bindParam(':u_id', $user_id);
+        $post_comment_sub->execute();
+        return ($post_comment_sub->fetchColumn());
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
 }
 
 if (isset($action_get))

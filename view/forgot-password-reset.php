@@ -10,31 +10,38 @@ if ($_SESSION['auth'])
 }
 else if (isset($_POST['email']))
 {
-    $DB_con = db_connect();
-    // GET INPUT
-    $email = strtolower($_POST['email']);
-
-    // CHECK INPUT QUERY
-    $email_check = $DB_con->prepare("SELECT * FROM user WHERE `user_email`=:email");
-    $email_check->bindParam(':email', $email);
-    $email_check->execute();
-    $user = $email_check->fetch(PDO::FETCH_OBJ);
-
-    // ERROR MESSAGES
-    $state = "display:none";
-    $reset_password_error = "No account has been found with the email entered";
-
-    // CHECK BEFORE SUBMIT
-    if (!($user))
+    try
     {
-        $state = "display:block";
-        $error_backend = $reset_password_error;
+        $DB_con = db_connect();
+        // GET INPUT
+        $email = strtolower($_POST['email']);
+
+        // CHECK INPUT QUERY
+        $email_check = $DB_con->prepare("SELECT * FROM user WHERE `user_email`=:email");
+        $email_check->bindParam(':email', $email);
+        $email_check->execute();
+        $user = $email_check->fetch(PDO::FETCH_OBJ);
+
+        // ERROR MESSAGES
+        $state = "display:none";
+        $reset_password_error = "No account has been found with the email entered";
+
+        // CHECK BEFORE SUBMIT
+        if (!($user))
+        {
+            $state = "display:block";
+            $error_backend = $reset_password_error;
+        }
+        else
+        {
+            sendResetPasswordEmail($email);
+            header("Location: /camagru/view/forgot-password-return.php?message=retrieve-confirm");
+            return;
+        }
     }
-    else
+    catch(Exception $e)
     {
-        sendResetPasswordEmail($email);
-        header("Location: /camagru/view/forgot-password-return.php?message=retrieve-confirm");
-        return;
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
     }
 }
 ?>

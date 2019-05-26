@@ -17,11 +17,18 @@ function        createUserMontageDir($user_id)
 
 function        saveMontageToDb($user_id, $montage_path)
 {
-        $date = date('Y-m-d H:i:s');
-        $montage_path = str_replace("../", "/camagru/", $montage_path);
-        $save = db_connect()->prepare("INSERT INTO images (img_user, img_path, img_time)
-        VALUES ('$user_id', '$montage_path', '$date')");
-        $save->execute();
+        try
+        {
+                $date = date('Y-m-d H:i:s');
+                $montage_path = str_replace("../", "/camagru/", $montage_path);
+                $save = db_connect()->prepare("INSERT INTO images (img_user, img_path, img_time)
+                VALUES ('$user_id', '$montage_path', '$date')");
+                $save->execute();
+        }
+        catch(Exception $e)
+        {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+        }
 }
 
 function        saveMontage($user_id, $file_tmp_path)
