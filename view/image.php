@@ -31,6 +31,7 @@ if (!($img_data = getImage($_GET["id"])))
         </div>
         <div id="my-gallery-feed">
         </div>
+        <div class="fb-share-button" data-href="<?php echo 'http://127.0.0.1:8080'.$_SERVER[REQUEST_URI]?>" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a></div>
         <?php
             if ($img_data[0]["img_user"] === $_SESSION["auth"]->user_id)
                 echo '<button id="image-delete-btn" onclick="deleteImage('.$img_data[0]["img_id"].');">Delete image</button>';

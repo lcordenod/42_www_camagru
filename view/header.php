@@ -43,4 +43,6 @@
         <a <?php echo $active_third_css ?> href="<?php echo $third_url ?>"><?php echo $third_txt ?></a>
     </div>
 </div>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.3"></script>
 <?php echo $valid_email_html ?>
