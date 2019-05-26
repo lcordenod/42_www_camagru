@@ -42,7 +42,7 @@ if (!($_SESSION['auth']))
             <hr>
             <button type="submit" id="save-password-btn" value="OK">Register Now</button>
             <span class="invalid" id="error-backend" style="<?php echo $state ?>"><?php echo $error_backend ?></span>
-            <button id="account-modify-btn" onclick="window.history.back();">Cancel</button>
+            <button id="account-modify-btn" onclick="location.href='/camagru/view/account.php'">Cancel</button>
         </div>
     </form>
     <?php

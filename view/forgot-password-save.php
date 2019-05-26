@@ -45,13 +45,13 @@ else
     <?php
     include('header.php')
     ?>
-    <form action="" method="POST" id="password-reset-form" onfocusout="disableSavePasswordButton()">
+    <form action="" method="POST" id="password-reset-form">
         <div class="register-container">
             <h1>New Password</h1>
             <p>Fill in this form to create your new password for your account</p>
             <hr>
             <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" id="password" maxlength="30" onfocusout="checkPassword()" required>
+            <input type="password" placeholder="Enter Password" name="password" id="password" maxlength="30" onfocusout="checkPassword();disableSavePasswordButton()" required>
             <span id="error-password">Please enter a valid password</span>
             <div id="password-message">
                 <h3>Password must contain the following:</h3>
@@ -61,7 +61,7 @@ else
                 <p id="length" class="invalid">Minimum <b>8 characters</b></p>
             </div>
             <label for="password-rpt"><b>Repeat password</b></label>
-            <input type="password" placeholder="Repeat Password" name="password-rpt" id="password-rpt" maxlength="30" onfocusout="checkRepeatPassword()" required>
+            <input type="password" placeholder="Repeat Password" name="password-rpt" id="password-rpt" maxlength="30" onkeyup="checkRepeatPassword();disableSavePasswordButton()" required>
             <span id="error-password-rpt">Please enter a password repeat that matches password</span>
             <hr>
             <button type="submit" id="save-password-btn" value="OK">Save</button>
