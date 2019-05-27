@@ -432,6 +432,12 @@ a {
 
 /* ACCOUNT */
 
+#account-modify-btn {
+    display: block;
+    text-align: center;
+    margin: 12px 0px 5px 0px;
+}
+
 #account-delete-btn {
     background-color: red;
     color: white;
