@@ -100,8 +100,8 @@ function    displayMoreImagesBtn() {
     document.getElementsByClassName("register-container")[0].appendChild(more_images_btn);
 }
 
-function    hideMoreImagesBtn() {
-    document.getElementById("more-images-btn").style.display = "none";
+function    removeMoreImagesBtn() {
+    document.getElementById("more-images-btn").parentNode.removeChild(document.getElementById("more-images-btn"));
 }
 
 function    getUserGallery(offset) {
@@ -117,13 +117,14 @@ function    getUserGallery(offset) {
                 checkInput(gallery_array[0][5]);
                 if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
                     displayMoreImagesBtn();
-                else if (document.getElementById("more-images-btn"))
-                    hideMoreImagesBtn();
+                else if (gallery_array[0][0] - offset <= 5 && document.getElementById("more-images-btn"))
+                    removeMoreImagesBtn();
                 if (document.getElementById("more-images-btn"))
                 {
                     document.getElementById("more-images-btn").addEventListener("click", function() {
                         offset += 5;
                         cloneNode();
+                        removeMoreImagesBtn();
                         getUserGallery(offset);
                     });
                 }
@@ -144,18 +145,19 @@ function    getAllUsersGallery(offset) {
             if (this.responseText != "null" && this.responseText != "undefined")
             {
                 var gallery_array = JSON.parse(this.responseText);
-                for (var i = 0; i < gallery_array.length; i++)              
+                for (var i = 0; i < gallery_array.length; i++)
                     generateSingleUserGallery(gallery_array[i][2], gallery_array[i][3], gallery_array[i][4], gallery_array[i][5], gallery_array[i][1], gallery_array[0][6]);
                 checkInput(gallery_array[0][6]);
                 if (gallery_array[0][0] - offset > 5 && !document.getElementById("more-images-btn"))
                     displayMoreImagesBtn();
-                else if (document.getElementById("more-images-btn"))
-                    hideMoreImagesBtn();
+                else if (gallery_array[0][0] - offset <= 5 && document.getElementById("more-images-btn"))
+                    removeMoreImagesBtn();
                 if (document.getElementById("more-images-btn"))
                 {
                     document.getElementById("more-images-btn").addEventListener("click", function() {
                         offset += 5;
                         cloneNode();
+                        removeMoreImagesBtn();
                         getAllUsersGallery(offset);
                     });
                 }
