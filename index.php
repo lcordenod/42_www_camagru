@@ -33,7 +33,7 @@ else
     include('view/header.php')
     ?>
     <div class="register-container">
-        <div id="index-loggedin-box" <?php echo $loggßedin_display ?>>
+        <div id="index-loggedin-box" <?php echo $loggedin_display ?>>
             <h1 id="title-index-username">Welcome <?php echo $_SESSION['auth']->user_name ?> ;)</h1>
             <span id="index-intro">SnapCat Feed</span>
         </div>

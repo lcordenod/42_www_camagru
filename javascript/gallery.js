@@ -108,7 +108,9 @@ function    getUserGallery(offset) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText != "null" && this.responseText != "undefined")
+            if (this.responseText.includes("Catched exception"))
+                console.log("DB error: " + this.responseText);
+            else if (this.responseText != "null" && this.responseText != "undefined")
             {
                 var gallery_array = JSON.parse(this.responseText);
                 for (var i = 0; i < gallery_array.length; i++)              
@@ -142,7 +144,9 @@ function    getAllUsersGallery(offset) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText != "null" && this.responseText != "undefined")
+            if (this.responseText.includes("Catched exception"))
+                console.log("DB error: " + this.responseText);
+            else if (this.responseText != "null" && this.responseText != "undefined")
             {
                 var gallery_array = JSON.parse(this.responseText);
                 for (var i = 0; i < gallery_array.length; i++)
@@ -195,7 +199,6 @@ function    deleteImage(img_id)
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
             if (this.responseText == "Image deleted")
             {
                 window.history.back();

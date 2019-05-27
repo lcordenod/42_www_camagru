@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 26, 2019 at 10:07 AM
+-- Generation Time: May 27, 2019 at 05:26 AM
 -- Server version: 5.6.43
 -- PHP Version: 5.6.40
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `comments` (
   `comment_id` int(11) NOT NULL,
   `comment_user` int(11) NOT NULL,
-  `comment_txt` text NOT NULL,
+  `comment_txt` text CHARACTER SET utf8mb4 NOT NULL,
   `comment_img` int(11) NOT NULL,
   `comment_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -169,7 +169,16 @@ INSERT INTO `comments` (`comment_id`, `comment_user`, `comment_txt`, `comment_im
 (330, 119, 'For real, beer is fucking great', 94, '2019-05-26 08:40:25'),
 (331, 119, 'I mean it', 94, '2019-05-26 08:40:38'),
 (334, 130, 'J\'avoue', 97, '2019-05-26 09:59:08'),
-(336, 130, ':)', 90, '2019-05-26 10:02:21');
+(336, 130, ':)', 90, '2019-05-26 10:02:21'),
+(337, 135, '<h1>Grave</h1>', 97, '2019-05-27 01:53:50'),
+(338, 130, ':D', 84, '2019-05-27 03:09:11'),
+(339, 130, ':P', 97, '2019-05-27 03:09:28'),
+(340, 130, ':)))', 89, '2019-05-27 03:09:38'),
+(341, 130, ':D', 86, '2019-05-27 03:15:38'),
+(343, 130, ':D', 84, '2019-05-27 04:46:42'),
+(344, 130, ':o', 95, '2019-05-27 04:53:40'),
+(347, 130, 'hehe😃', 86, '2019-05-27 04:59:49'),
+(348, 130, 'lol c\'est cool !', 86, '2019-05-27 05:00:22');
 
 -- --------------------------------------------------------
 
@@ -201,7 +210,9 @@ INSERT INTO `images` (`img_id`, `img_user`, `img_path`, `img_time`) VALUES
 (94, 130, '/camagru/sources/gallery/user-130/montage-user-130-5ce96b2a36806.png', '2019-05-25 09:19:54'),
 (95, 130, '/camagru/sources/gallery/user-130/montage-user-130-5ce96b3c50d92.png', '2019-05-25 09:20:14'),
 (96, 130, '/camagru/sources/gallery/user-130/montage-user-130-5ce96b4e82a10.png', '2019-05-25 09:20:31'),
-(97, 130, '/camagru/sources/gallery/user-130/montage-user-130-5ce96b869df71.png', '2019-05-25 09:21:32');
+(97, 130, '/camagru/sources/gallery/user-130/montage-user-130-5ce96b869df71.png', '2019-05-25 09:21:32'),
+(99, 130, '/camagru/sources/gallery/user-130/montage-user-130-5cebb6ac0ad05.png', '2019-05-27 03:06:37'),
+(102, 131, '/camagru/sources/gallery/user-131/montage-user-131-5cebd6ed9f210.png', '2019-05-27 05:24:16');
 
 -- --------------------------------------------------------
 
@@ -225,12 +236,14 @@ INSERT INTO `likes` (`like_id`, `like_user`, `like_img`) VALUES
 (144, 130, 88),
 (145, 130, 85),
 (149, 130, 87),
-(155, 130, 86),
 (164, 133, 90),
 (165, 131, 89),
-(166, 130, 91),
 (167, 132, 97),
-(171, 130, 97);
+(175, 130, 97),
+(176, 130, 89),
+(178, 130, 91),
+(180, 130, 86),
+(187, 130, 95);
 
 -- --------------------------------------------------------
 
@@ -255,11 +268,12 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `user_name`, `user_email`, `user_pwd`, `user_valid`, `user_valid_key`, `reset_password_key`, `comment_sub`) VALUES
 (119, 'toto1234', 'toto12345@email.fr', '723c1c48ab6e71ebb0288f34755c5172cf01d895c8a91953ac7194abec7261f0b71f4a8a623efc7ba94032f48f1fee2ec441a0de4491a918995e9418aecae118', 0, '9778d5d219c5080b9a6a17bef029331c', NULL, 0),
-(130, 'lucas', 'lucas.cordenod@live.fr', 'fa866917533c836615e23d2a83456ca198f93a0b80479fefa2d149f390a8f6bfaf6d0f7a333359553de25eb353f235f7f8dcb5411992cb4899817dccb9f2ab61', 1, '3ef815416f775098fe977004015c6193', NULL, 1),
-(131, 'raph', 'raphael.allemand@live.fr', '457c82e14bc645525b4b63c78340d6eae6a85b4ebec75af524b76d79f7f4beb0840dfd01484c173ea9b7cc4dd65fe3697d8e05ff721191f4a45f35740d9a911f', 1, '577bcc914f9e55d5e4e4f82f9f00e7d4', NULL, 1),
-(132, 'coco', 'coco@alalal.fr', 'd9c0122b6df53ad055274fb8e39683789c4109046ce1644caca3da77ae1841477d6e2416aad9b764b478175e23150c4d3d3e468fad9e7f4d520ae24fd2e653ed', 0, 'dd8eb9f23fbd362da0e3f4e70b878c16', NULL, 1),
-(133, 'jwalle', 'punktumg@gmail.com', 'deccc2956cb2d84118fc4a33c9d85c7e3d5a4d6e438d4f9d4095186e4f46d844b5d5d4c1fdacf04a58720921d1e544f5c12baf834b4a172c85d27b07ef0b615e', 1, '6512bd43d9caa6e02c990b0a82652dca', NULL, 0),
-(134, 'keks', 'keks@totooto.fr', 'e69da91758a993638a93e1278d72b0bbd704e6b15fd3a2e06c3eb27d233b2b46e83610565df3a8ee74b8c675dd68ce4a325a88fe8417783997e5d5306b6af9e9', 0, '49182f81e6a13cf5eaa496d51fea6406', NULL, 1);
+(130, 'lucas', 'lucas.cordenod@live.fr', 'fa866917533c836615e23d2a83456ca198f93a0b80479fefa2d149f390a8f6bfaf6d0f7a333359553de25eb353f235f7f8dcb5411992cb4899817dccb9f2ab61', 1, '6766aa2750c19aad2fa1b32f36ed4aee', NULL, 1),
+(131, 'raph', 'raphael.allemand@live.fr', '723c1c48ab6e71ebb0288f34755c5172cf01d895c8a91953ac7194abec7261f0b71f4a8a623efc7ba94032f48f1fee2ec441a0de4491a918995e9418aecae118', 1, '577bcc914f9e55d5e4e4f82f9f00e7d4', NULL, 1),
+(132, 'coco', 'coco@alalal.fr', '723c1c48ab6e71ebb0288f34755c5172cf01d895c8a91953ac7194abec7261f0b71f4a8a623efc7ba94032f48f1fee2ec441a0de4491a918995e9418aecae118', 0, 'dd8eb9f23fbd362da0e3f4e70b878c16', NULL, 1),
+(133, 'jwalle', 'punktumg@gmail.com', '723c1c48ab6e71ebb0288f34755c5172cf01d895c8a91953ac7194abec7261f0b71f4a8a623efc7ba94032f48f1fee2ec441a0de4491a918995e9418aecae118', 1, '6512bd43d9caa6e02c990b0a82652dca', NULL, 0),
+(134, 'keks', 'keks@totooto.fr', '723c1c48ab6e71ebb0288f34755c5172cf01d895c8a91953ac7194abec7261f0b71f4a8a623efc7ba94032f48f1fee2ec441a0de4491a918995e9418aecae118', 0, '49182f81e6a13cf5eaa496d51fea6406', NULL, 1),
+(135, 'toto12345', 'toto12345@toto.fr', '723c1c48ab6e71ebb0288f34755c5172cf01d895c8a91953ac7194abec7261f0b71f4a8a623efc7ba94032f48f1fee2ec441a0de4491a918995e9418aecae118', 0, 'ef4e3b775c934dada217712d76f3d51f', NULL, 1);
 
 --
 -- Indexes for dumped tables
@@ -297,25 +311,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=337;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=351;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
