@@ -1,6 +1,6 @@
 <?php
-require_once "image-processing-controller.php";
 require_once "files-directories-management-controller.php";
+require_once "image-processing-controller.php";
 require_once "debug.php";
 session_start();
 
@@ -26,6 +26,12 @@ function generateTmpImageFileName($user_id)
         return ($file_name);
 }
 
+function createTmpDirIfNotExist() {
+        $dir_path = "../sources/tmp";
+        if (!file_exists($dir_path))
+                @mkdir($dir_path);
+}
+
 function createUserMontageTempDir($user_id)
 {
         $dir_path = "../sources/tmp/user-".$user_id;
@@ -37,6 +43,7 @@ if (isset($image_src))
 {
         if (isset($image_src) && isset($image_width) && isset($filter_src) && isset($filter_width) && isset($filter_top) && isset($filter_left))
         {
+                createTmpDirIfNotExist();
                 $dir_path = createUserMontageTempDir($_SESSION['auth']->user_id);
                 $file_name = generateMontageFileName($_SESSION['auth']->user_id);
                 $montage_url = $dir_path."/".$file_name.'.png';

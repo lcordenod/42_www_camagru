@@ -1,9 +1,28 @@
 <?php
+require_once "files-directories-management-controller.php";
 require_once "../controller/gallery-controller.php";
 require_once "../config/connect.php";
 
 $action = $_POST['action'];
 $img_id = (int)$_POST['img_id'];
+
+function    getImgPath($img_id)
+{
+    try
+    {
+        $get_img_path = db_connect()->prepare("SELECT img_path FROM images WHERE `img_id` =:img_id");
+        $get_img_path->bindParam(':img_id', $img_id);
+        $get_img_path->execute();
+        $get_img_path = $get_img_path->fetch(PDO::FETCH_OBJ);
+        $img_path = $get_img_path->img_path;
+        $img_path_relative = str_replace("/camagru", "..", $img_path);
+        return $img_path_relative;
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
+}
 
 function    deleteImgLikes($img_id)
 {
@@ -53,6 +72,7 @@ function    deleteImgData($img_id)
     {
         if (getImage($img_id))
         {
+            deleteFileFromDir(getImgPath($img_id));
             deleteImgLikes($img_id);
             deleteImgComments($img_id);
             deleteImg($img_id);

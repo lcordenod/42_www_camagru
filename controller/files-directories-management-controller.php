@@ -1,5 +1,11 @@
 <?php
 
+function deleteFileFromDir($file_path)
+{
+        if (is_file($file_path))
+                unlink($file_path);
+}
+
 function deleteFilesFromDir($dir_path)
 {
         $files = glob($dir_path."/*");

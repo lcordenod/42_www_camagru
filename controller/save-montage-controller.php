@@ -8,6 +8,12 @@ $content = trim(file_get_contents("php://input"));
 $decoded = json_decode($content, true);
 $file_tmp_path = $decoded['file_tmp_path'];
 
+function createGalleryDirIfNotExist() {
+        $dir_path = "../sources/tmp";
+        if (!file_exists($dir_path))
+                @mkdir($dir_path);
+}
+
 function        createUserMontageDir($user_id)
 {
         $dir_path = "../sources/gallery/user-".$user_id;
@@ -33,6 +39,7 @@ function        saveMontageToDb($user_id, $montage_path)
 
 function        saveMontage($user_id, $file_tmp_path)
 {
+        createGalleryDirIfNotExist();
         $dest_path = createUserMontageDir($user_id);
         if (($montage_path = copyFileToDir($file_tmp_path, $dest_path)) !== -1)
         {
