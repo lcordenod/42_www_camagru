@@ -35,7 +35,7 @@ function    getImgUserId($img_id)
         $get_img_user->execute();
         $get_img_user = $get_img_user->fetch(PDO::FETCH_OBJ);
         $img_user = $get_img_user->img_user;
-        return $img_user_;
+        return $img_user;
     }
     catch(Exception $e)
     {
