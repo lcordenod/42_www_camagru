@@ -2,9 +2,11 @@
 require_once "files-directories-management-controller.php";
 require_once "../controller/gallery-controller.php";
 require_once "../config/connect.php";
+session_start();
 
 $action = $_POST['action'];
 $img_id = (int)$_POST['img_id'];
+$user_id = $_SESSION['auth']->user_id;
 
 function    getImgPath($img_id)
 {
@@ -17,6 +19,23 @@ function    getImgPath($img_id)
         $img_path = $get_img_path->img_path;
         $img_path_relative = str_replace("/camagru", "..", $img_path);
         return $img_path_relative;
+    }
+    catch(Exception $e)
+    {
+        exit('<b> Catched exception at line '.$e->getLine().' :</b> '. $e->getMessage());
+    }
+}
+
+function    getImgUserId($img_id)
+{
+    try
+    {
+        $get_img_user = db_connect()->prepare("SELECT img_user FROM images WHERE `img_id` =:img_id");
+        $get_img_user->bindParam(':img_id', $img_id);
+        $get_img_user->execute();
+        $get_img_user = $get_img_user->fetch(PDO::FETCH_OBJ);
+        $img_user = $get_img_user->img_user;
+        return $img_user_;
     }
     catch(Exception $e)
     {
@@ -91,8 +110,13 @@ if (isset($action))
 {
     if ($action === "delete-img" && isset($img_id))
     {
-        if (deleteImgData($img_id))
-            echo "Image deleted";
+        if ($user_id === getImgUserId($img_id))
+        {
+            if (deleteImgData($img_id))
+                echo "Image deleted";
+            else
+                echo "Image deletion failed";
+        }
         else
             echo "Image deletion failed";
     }
