@@ -5,6 +5,12 @@ var filter_active = document.getElementById("filter-img-active");
 var filters_enabled = true;
 var filter_current = false;
 
+function enableTakingPicture() {
+  document.getElementById("camera-snap-btn").disabled = false;
+  document.getElementById("message-no-pictures-taken-box").innerHTML =
+    "Place the filter <br/> using click on camera feed<br/>👌";
+}
+
 function unselectOtherFilters(array, exclude) {
   for (var i = 0; i < array.length; i++) {
     if (array[i] !== exclude) array[i].style.opacity = "0.5";
@@ -26,9 +32,7 @@ function unselectOtherFilters(array, exclude) {
             filter_active.src = this.src;
           } else filter_active.style.display = "none";
           if (filter_selected == true) {
-            document.getElementById("camera-snap-btn").disabled = false;
-            document.getElementById("message-no-pictures-taken-box").innerHTML =
-              "Place the filter <br/> using click on camera feed<br/>👌";
+            setTimeout(enableTakingPicture, 600);
           }
           e.preventDefault();
         }
