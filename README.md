@@ -160,10 +160,10 @@ The platform has been completely designed with Responsive Design in mind with mu
 ![User account](https://user-images.githubusercontent.com/45239771/62547453-83907180-b865-11e9-89e9-8110985d21aa.png)
 <p align=center><i>User account</i></p>
 
-![User gallery](https://user-images.githubusercontent.com/45239771/62547454-83907180-b865-11e9-9208-ba97e9dee679.png)
+<span align=center>![User gallery](https://user-images.githubusercontent.com/45239771/62547454-83907180-b865-11e9-9208-ba97e9dee679.png)</span>
 <p align=center><i>User gallery</i></p>
 
-![Registration page](https://user-images.githubusercontent.com/45239771/62547455-83907180-b865-11e9-88c8-2382db9e888c.png)
+<span align=center>![Registration page](https://user-images.githubusercontent.com/45239771/62547455-83907180-b865-11e9-88c8-2382db9e888c.png)</span>
 <p align=center><i>Registration page</i></p>
 
 ## Configuration (DB) and Additionnal security
