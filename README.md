@@ -89,7 +89,18 @@ If the user doesn't have a camera or didn't want to provide access to it, he wil
 There will be some security checks running to avoid uploading an incorrect file:
 * Checking the file format is an image (png, jpg, jpeg)
 * Checking the file size to avoid having too big images (< 5mb)
-* Checking the image isn't empty by verifying the object size
+* Checking the image isn't empty by verifying the image object size
+
+### Montage
+
+Montage will be processed by PHP with javascript helping by providing the images (picture, filter) data and specifications (base64, width, height...).
+
+Montage will be temporarily saved, if user decides to save it to his gallery, it will saved permanently, otherwise, it will be removed.
+
+![Montage](https://user-images.githubusercontent.com/45239771/62536778-225da380-b84f-11e9-88ad-a9ae52017c0c.png)
+<p align=center><i>Montage</i></p>
+
+User can see a preview of his recently taken pictures or access his full list of pictures in his gallery.
 
 ## Additionnal security
 
