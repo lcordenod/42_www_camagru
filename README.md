@@ -16,6 +16,7 @@ Objective of this project is to create a complete website that allows users to m
 ### Features
 
 My Camagru project handles:
+* DB creation PHP script
 * User creation and authentication
 * Camera and pictures upload
 * Picture and filter montage processing
@@ -214,3 +215,32 @@ Application is protected against:
 * Password breaches -> using Whirlpool hashing
 * Cross-site request forgery -> using unique IDs with expiration (password reset, email validation)
 * Cross-site resource sharing -> using authentication validation (logged out users limited)
+
+## Run project
+
+### Environment setup
+
+To run this project, you will need a server and a MySQL database. You can use Bitnami Mamp (MacOS) or Wamp (Windows) to do so, this will allow to run both.
+
+The configuration is the following:
+* MySQL Database -> Port `3306`
+* Apache Web Server -> Port `8080` (SSL port left to default)
+
+For the web server, you will also have to edit a config a file to set your `Directory` where you host the application files, to do so:
+* Edit `/Users/your_username/Applications/MAMP/apache2/conf/bitnami/bitnami.conf file` (MacOS example)
+* Change twice: `<Directory "your_directory">` and `DocumentRoot "your_directory"`
+
+### Create DB
+
+To create the database with already existing users and montages, you can just run the script I have created.
+
+To do so, either:
+* You run it from the browser using the url http://localhost:8080/camagru/config/setup.php
+* You run it using php command -> `php config/setup.php` from the root of the project
+
+### Start servers and website
+
+After having done both previous steps, you can start both MySQL Database and Apache Web Server from Bitnami software.
+Then, access the website using the following URL: http://localhost:8080/camagru/index.php
+
+Enjoy montages!
