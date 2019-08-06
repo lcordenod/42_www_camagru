@@ -237,7 +237,7 @@ For the web server, you will also have to edit a config a file to set your `Dire
 To create the database with already existing users and montages, you can just run the script I have created.
 
 To do so, either:
-* You run it from the browser using the url http://localhost:8080/camagru/config/setup.php
+* You run it from the browser using the URL: http://localhost:8080/camagru/config/setup.php
 * You run it using php command -> `php config/setup.php` from the root of the project
 
 ### Start servers and website
