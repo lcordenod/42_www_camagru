@@ -3,7 +3,7 @@ Recreate a web version of Snapchat with filters and picture gallery from camera 
 
 ## Summary
 
-[Features](#test)
+[Features](#-test)
 
 ## Intro
 
