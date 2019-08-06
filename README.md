@@ -5,15 +5,17 @@ Recreate a web version of Snapchat with filters and picture gallery from camera 
 
 Objective of this project is to create a complete website that allows users to make picture montages with filters, from camera upload or file upload.
 
-Technologies used:
+### Stack
+
 * Vanilla PHP (no framework)
 * Vanilla Javascript (no framework)
 * HTML/CSS (no framework)
 * MySQL
 * Apache server
 
-My Camagru project handles:
+### Features
 
+My Camagru project handles:
 * User creation and authentication
 * Camera and pictures upload
 * Picture and filter montage processing
@@ -212,4 +214,3 @@ Application is protected against:
 * Password breaches -> using Whirlpool hashing
 * Cross-site request forgery -> using unique IDs with expiration (password reset, email validation)
 * Cross-site resource sharing -> using authentication validation (logged out users limited)
-
