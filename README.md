@@ -154,10 +154,17 @@ The platform has been completely designed with Responsive Design in mind with mu
 
 *Depends of the page*
 
-![Screen Shot 2019-08-06 at 4 14 52 PM](https://user-images.githubusercontent.com/45239771/62547452-83907180-b865-11e9-931f-dac764e746c8.png)
-![Screen Shot 2019-08-06 at 4 15 13 PM](https://user-images.githubusercontent.com/45239771/62547453-83907180-b865-11e9-89e9-8110985d21aa.png)
-![Screen Shot 2019-08-06 at 4 15 25 PM](https://user-images.githubusercontent.com/45239771/62547454-83907180-b865-11e9-9208-ba97e9dee679.png)
-![Screen Shot 2019-08-06 at 4 15 42 PM](https://user-images.githubusercontent.com/45239771/62547455-83907180-b865-11e9-88c8-2382db9e888c.png)
+![Snap a picture view](https://user-images.githubusercontent.com/45239771/62547452-83907180-b865-11e9-931f-dac764e746c8.png)
+<p align=center><i>Snap a picture view</i></p>
+
+![User account](https://user-images.githubusercontent.com/45239771/62547453-83907180-b865-11e9-89e9-8110985d21aa.png)
+<p align=center><i>User account</i></p>
+
+![User gallery](https://user-images.githubusercontent.com/45239771/62547454-83907180-b865-11e9-9208-ba97e9dee679.png)
+<p align=center><i>User gallery</i></p>
+
+![Registration page](https://user-images.githubusercontent.com/45239771/62547455-83907180-b865-11e9-88c8-2382db9e888c.png)
+<p align=center><i>Registration page</i></p>
 
 ## Configuration (DB) and Additionnal security
 
