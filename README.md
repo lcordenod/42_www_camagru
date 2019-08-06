@@ -251,7 +251,7 @@ The configuration is the following:
 * MySQL Database -> Port `3306`
 * Apache Web Server -> Port `8080` (SSL port left to default)
 
-For the web server, you will also have to edit a config a file to set your `Directory` where you host the application files, to do so:
+For the web server, you will also have to edit a config file to set your `Directory` where you host the application files, to do so:
 * Edit `/Users/your_username/Applications/MAMP/apache2/conf/bitnami/bitnami.conf file` (MacOS example)
 * Change twice: `<Directory "your_directory">` and `DocumentRoot "your_directory"`
 
