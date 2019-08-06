@@ -152,6 +152,8 @@ The platform has been completely designed with Responsive Design in mind with mu
 * 920px
 * 1200px
 
+Difficulty has especially been on the montage functionality since the picture data changes from one device to another, so I made a smart Javascript logic that calculates a scaling to process the picture in order to have filter and picture aligned as per the montage preview.
+
 *Depends of the page*
 
 ![Snap a picture view](https://user-images.githubusercontent.com/45239771/62547452-83907180-b865-11e9-931f-dac764e746c8.png)
@@ -166,7 +168,21 @@ The platform has been completely designed with Responsive Design in mind with mu
 ![Registration page](https://user-images.githubusercontent.com/45239771/62547455-83907180-b865-11e9-88c8-2382db9e888c.png)
 <p><i>Registration page</i></p>
 
-## Configuration (DB) and Additionnal security
+## Configuration and additionnal security
 
-* Injections
-....
+### Database
+
+Database 
+
+### Security
+
+I added manually (no frameworks or ODM/ORM) checks in the front end and back end to protect the application from multiple attacks.
+
+Application is protected against:
+* HTML/Javascript injections -> using innerText and input checks
+* SQL injections -> using try/catch method and bindParam
+* Malware upload -> using upload checks
+* Password breaches -> using Whirlpool hashing
+* Cross-site request forgery -> using unique IDs with expiration (password reset, email validation)
+* Cross-site resource sharing -> using authentication validation (logged out users limited)
+
