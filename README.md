@@ -68,6 +68,29 @@ He can also access his pictures in his own gallery.
 
 If he doesn't have pictures yet, he will have a nice invitation to take a first one.
 
+## Creating montages
+
+### Camera upload
+
+Using MediaDevices.getUserMedia() javascript method, I will access user's camera if he allowed it, then user will be able to take a picture if he selected a filter (following onboarding present on "Snap" page right).
+
+![Create a montage](https://user-images.githubusercontent.com/45239771/62536217-b9c1f700-b84d-11e9-88dc-304000041a95.png)
+<p align=center><i>Create a montage</i></p>
+
+User will be able to move the filter using click or tap depending of the device used.
+
+### Picture upload
+
+If the user doesn't have a camera or didn't want to provide access to it, he will be able to upload pictures.
+
+![Picture upload](https://user-images.githubusercontent.com/45239771/62536323-060d3700-b84e-11e9-9099-3df59e2c59d0.png)
+<p align=center><i>Upload a picture</i></p>
+
+There will be some security checks running to avoid uploading an incorrect file:
+* Checking the file format is an image (png, jpg, jpeg)
+* Checking the file size to avoid having too big images (< 5mb)
+* Checking the image isn't empty by verifying the object size
+
 ## Additionnal security
 
 * Injections
