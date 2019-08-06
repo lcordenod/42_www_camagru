@@ -134,18 +134,30 @@ Whenever a user comment on another user's picture, this user will receive a noti
 
 The link sent on this email notification will lead to a preview of the montage commented so that the user can see in details what happenned on this picture.
 
-#### Picture preview
+#### Montage review link
 
 As described above, user can review a specific montage in details, depending on whether the montage belongs to the user or not, he will have the option to delete it.
 
 ![Montage link review](https://user-images.githubusercontent.com/45239771/62546484-d9641a00-b863-11e9-907b-d2f07dcfae94.png)
 <p align=center><i>Montage link review</i></p>
 
-Facebook sharing has been implemented as well so that user can share on Facebook this montage with his friends.
+Facebook sharing has been implemented as well so that user can share on Facebook this montage with his friends and see how many times the montage has been shared on Facebook.
 
 ## Responsive design
 
+The platform has been completely designed with Responsive Design in mind with multiple breakpoints to accommodate most common screen sizes (from iPhone 5 range to desktop/tablet resolutions):
+* 545px
+* 680px
+* 830px
+* 920px
+* 1200px
 
+*Depends of the page*
+
+![Screen Shot 2019-08-06 at 4 14 52 PM](https://user-images.githubusercontent.com/45239771/62547452-83907180-b865-11e9-931f-dac764e746c8.png)
+![Screen Shot 2019-08-06 at 4 15 13 PM](https://user-images.githubusercontent.com/45239771/62547453-83907180-b865-11e9-89e9-8110985d21aa.png)
+![Screen Shot 2019-08-06 at 4 15 25 PM](https://user-images.githubusercontent.com/45239771/62547454-83907180-b865-11e9-9208-ba97e9dee679.png)
+![Screen Shot 2019-08-06 at 4 15 42 PM](https://user-images.githubusercontent.com/45239771/62547455-83907180-b865-11e9-88c8-2382db9e888c.png)
 
 ## Configuration (DB) and Additionnal security
 
