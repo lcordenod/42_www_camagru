@@ -3,9 +3,10 @@ Recreate a web version of Snapchat with filters and picture gallery from camera 
 
 ## Summary
 
-- [Intro](##-intro)
-- [User account](##user-account)
-- [Creating montages](##creating-montages)
+- [Intro](#intro]
+-- [Intro](#intro]
+- [User account](#user-account)
+- [Creating montages](#creating-montages)
 - [User creation and authentication](#user-creation-and-authentication)
 
 ## Intro
