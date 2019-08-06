@@ -10,14 +10,14 @@ Recreate a web version of Snapchat with filters and picture gallery from camera 
   - [User creation and authentication](#user-creation-and-authentication)
   - [Forgot and change of password](#forgot-and-change-of-password)
   - [User profile](#user-profile)
- - [Creating montages](#creating-montages)
+- [Creating montages](#creating-montages)
   - [Camera upload](#camera-upload)
   - [Picture upload](#picture-upload)
   - [Montage](#montage)
- - [User interactions](#user-interactions)
+- [User interactions](#user-interactions)
   - [Home/Feed](#homefeed)
   - [Interactions](#interactions)
- - [Responsive design](#responsive-design)
+- [Responsive design](#responsive-design)
 
 ## Intro
 
