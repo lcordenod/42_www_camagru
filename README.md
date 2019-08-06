@@ -18,6 +18,13 @@ Recreate a web version of Snapchat with filters and picture gallery from camera 
   - [Home/Feed](#homefeed)
   - [Interactions](#interactions)
 - [Responsive design](#responsive-design)
+- [Configuration and additionnal security](#configuration-and-additionnal-security)
+  - [Database](#database)
+  - [Security](#security)
+- [Run project](#run-project)
+  - [Environment setup](#environment-setup)
+  - [Create DB](#create-db)
+  - [Start servers and website](#start-servers-and-website)
 
 ## Intro
 
