@@ -141,7 +141,7 @@ As described above, user can review a specific montage in details, depending on 
 ![Montage link review](https://user-images.githubusercontent.com/45239771/62546484-d9641a00-b863-11e9-907b-d2f07dcfae94.png)
 <p align=center><i>Montage link review</i></p>
 
-Facebook sharing has been implemented as well so that user can share with his friends this montage on Facebook.
+Facebook sharing has been implemented as well so that user can share on Facebook this montage with his friends.
 
 ## Responsive design
 
