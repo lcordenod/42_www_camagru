@@ -5,6 +5,8 @@ Recreate a web version of Snapchat with filters and picture gallery from camera 
 
 Objective of this project is to create a complete website that allows users to make picture montages with filters, from camera upload or file upload.
 
+*At the end of this README, I give you the setup to run the project*
+
 ### Stack
 
 * Vanilla PHP (no framework)
