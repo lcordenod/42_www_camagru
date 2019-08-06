@@ -10,6 +10,9 @@ My Camagru project handles:
 * User creation and authentication
 * .....
 
+
+## User account
+
 ### User creation and authentication
 
 User input has been secured on front and back end with immediate feedback for front end input validation. Also password security has been taken seriously with multiple layers of complexity validated on the go, including:
@@ -30,7 +33,16 @@ Before saving user, several checks will also be runned in the background, includ
 
 Once user is created, he will be receive an email to verify his account, while account isn't validated, he will have limited access to app, like not being able to make montages for example.
 
-### Additionnal security
+### Forgot and change of password
+
+If user has forgotten his password, he will be able to retrieve using his email, a password reset link will be sent to his email address entered.
+
+![Reset of password](https://user-images.githubusercontent.com/45239771/62534328-2e466700-b849-11e9-9c7a-5b6386c77665.png)
+<p align=center><i>Reset of password link</i></p>
+
+The reset of password link will have a unique ID, which will be the latest link sent, others will be made deprecated. This provides security to prevent intruders from resetting someone else password.
+
+## Additionnal security
 
 * Injections
 ....
