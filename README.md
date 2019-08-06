@@ -102,7 +102,13 @@ Montage will be temporarily saved, if user decides to save it to his gallery, it
 
 User can see a preview of his recently taken pictures or access his full list of pictures in his gallery.
 
-## Additionnal security
+## User interactions
+
+home feed, likes, comments, review picture, notifications, delete picture
+
+## Responsive design
+
+## Configuration (DB) and Additionnal security
 
 * Injections
 ....
