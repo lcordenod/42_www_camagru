@@ -45,6 +45,24 @@ If user has forgotten his password, he will be able to retrieve using his email,
 
 The reset of password link will have a unique ID, which will be the latest link sent, others will be made deprecated. This provides security to prevent intruders from resetting someone else password.
 
+### User profile
+
+#### Edition
+
+User will be able to manage completely his profile if he has validated his account with his email. For example, he will be able to edit his:
+* Username
+* Email
+* Password
+
+Or even delete his account (with a confirmation using his password) and manage his notifications (new comments on his pictures for example).
+
+![User account](https://user-images.githubusercontent.com/45239771/62535287-4cad6200-b84b-11e9-8b50-f8c8691b5c0d.png)
+<p align=center><i>User account</i></p>
+
+#### Gallery
+
+
+
 ## Additionnal security
 
 * Injections
