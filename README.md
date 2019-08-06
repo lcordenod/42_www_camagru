@@ -269,4 +269,4 @@ After having done both previous steps, you can start both MySQL Database and Apa
 Then, access the website using the following URL: http://localhost:8080/camagru/index.php
 
 Enjoy montages!
-<p align="center">[Go up](#42_www_camagru)<p>
+<p align=center>[Go up](#42_www_camagru)<p>
