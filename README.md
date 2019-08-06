@@ -1,5 +1,5 @@
 # 42_www_camagru
-Recreate a basic web version of Snapchat with filters and picture gallery from camera or upload
+Recreate a web version of Snapchat with filters and picture gallery from camera or upload
 
 ## Intro
 
