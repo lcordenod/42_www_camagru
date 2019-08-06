@@ -175,12 +175,12 @@ Difficulty has especially been on the montage functionality since the picture da
 Database is running on MySQL and I use PHPMyAdmin Web Interface to manage it, here is the structure:
 
 ![Camagru DB structure](https://user-images.githubusercontent.com/45239771/62552586-2d73fc00-b86e-11e9-8a9d-710e0ffe99c0.png)
-<p><i>Camagru DB structure</i></p>
+<p align=center><i>Camagru DB structure</i></p>
 
 And a focus on the user table:
 
 ![User table example](https://user-images.githubusercontent.com/45239771/62552689-5a281380-b86e-11e9-9946-1a6db8f49c07.png)
-<p><i>User table example</i></p>
+<p align=center><i>User table example</i></p>
 
 ### Security
 
