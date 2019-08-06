@@ -5,11 +5,30 @@ Recreate a web version of Snapchat with filters and picture gallery from camera 
 
 Objective of this project is to create a complete website that allows users to make picture montages with filters, from camera upload or file upload.
 
+Technologies used:
+* Vanilla PHP (no framework)
+* Vanilla Javascript (no framework)
+* HTML/CSS (no framework)
+* MySQL
+* Apache server
+
 My Camagru project handles:
 
 * User creation and authentication
-* .....
+* Camera and pictures upload
+* Picture and filter montage processing
+* User montages personal gallery
+* Montage review page with Facebook sharing
+* Email notifications for comments (with montage concerned link)
+* User profile edition (password, details, notifications switch)
+* Change and reset of email/forgot password with ID validation
+* Profile, pictures deletion and user DB cleanup
+* Responsive design from mobile to desktop/tablet
+* User input and upload checks (front/backend)
+* Password hashing (Whirlpool)
+* HTML/Javascript/SQL injections prevention
 
+Discover more details below.
 
 ## User account
 
@@ -136,7 +155,7 @@ The link sent on this email notification will lead to a preview of the montage c
 
 #### Montage review link
 
-As described above, user can review a specific montage in details, depending on whether the montage belongs to the user or not, he will have the option to delete it.
+As described above, user can review a specific montage in details, depending on whether the montage belongs to the user or not, he will have the option to delete it. When deleting his account, all user data and interactions will be removed from DB.
 
 ![Montage link review](https://user-images.githubusercontent.com/45239771/62546484-d9641a00-b863-11e9-907b-d2f07dcfae94.png)
 <p align=center><i>Montage link review</i></p>
