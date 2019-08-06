@@ -164,7 +164,7 @@ The platform has been completely designed with Responsive Design in mind with mu
 <p align=center><i>User gallery</i></p>
 
 ![Registration page](https://user-images.githubusercontent.com/45239771/62547455-83907180-b865-11e9-88c8-2382db9e888c.png)
-<p align=center><i>Registration page</i></p>
+<i>Registration page</i>
 
 ## Configuration (DB) and Additionnal security
 
