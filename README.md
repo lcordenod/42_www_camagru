@@ -104,9 +104,48 @@ User can see a preview of his recently taken pictures or access his full list of
 
 ## User interactions
 
-home feed, likes, comments, review picture, notifications, delete picture
+### Home/Feed
+
+From the homepage, if the user isn't logged in, he will have a presentation of the app and a look at the montages posted by users of the platform.
+
+![Logged out HP](https://user-images.githubusercontent.com/45239771/62544758-b2f0af80-b860-11e9-8b82-83b3520eb176.png)
+<p align=center><i>Logged out HP</i></p>
+
+If the user is logged in, he will have access to the same montages feed but he will be able to comment and like montages.
+
+![Logged in HP](https://user-images.githubusercontent.com/45239771/62544946-02cf7680-b861-11e9-8fb3-8e3990ca1ee1.png)
+<p align=center><i>Logged in HP</i></p>
+
+Which brings us to user interactions.
+
+### Interactions
+
+User can interact with each by:
+* Liking/Unliking pictures
+* Commenting on pictures
+* Sharing on Facebook
+
+#### Like/Comments
+
+![Like/Comments](https://user-images.githubusercontent.com/45239771/62545858-c6047f00-b862-11e9-897a-7a4cf8cf7348.png)
+<p align=center><i>Montage with like/comments</i></p>
+
+Whenever a user comment on another user's picture, this user will receive a notification by email if he is subscribed to notifications. Users commenting on their own pictures won't get notification for themselves, only when it's another user.
+
+The link sent on this email notification will lead to a preview of the montage commented so that the user can see in details what happenned on this picture.
+
+#### Picture preview
+
+As described above, user can review a specific montage in details, depending on whether the montage belongs to the user or not, he will have the option to delete it.
+
+![Montage link review](https://user-images.githubusercontent.com/45239771/62546484-d9641a00-b863-11e9-907b-d2f07dcfae94.png)
+<p align=center><i>Montage link review</i></p>
+
+Facebook sharing has been implemented as well so that user can share with his friends this montage on Facebook.
 
 ## Responsive design
+
+
 
 ## Configuration (DB) and Additionnal security
 
