@@ -61,7 +61,12 @@ Or even delete his account (with a confirmation using his password) and manage h
 
 #### Gallery
 
+He can also access his pictures in his own gallery.
 
+![User gallery](https://user-images.githubusercontent.com/45239771/62535446-b7f73400-b84b-11e9-8116-4c582eb0bb6d.png)
+<p align=center><i>User gallery</i></p>
+
+If he doesn't have pictures yet, he will have a nice invitation to take a first one.
 
 ## Additionnal security
 
