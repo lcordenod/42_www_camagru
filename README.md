@@ -33,6 +33,9 @@ Before saving user, several checks will also be runned in the background, includ
 
 Once user is created, he will be receive an email to verify his account, while account isn't validated, he will have limited access to app, like not being able to make montages for example.
 
+![User limited access](https://user-images.githubusercontent.com/45239771/62534534-b3ca1700-b849-11e9-8f73-d69cafdca119.png)
+<p align=center><i>User limited access</i></p>
+
 ### Forgot and change of password
 
 If user has forgotten his password, he will be able to retrieve using his email, a password reset link will be sent to his email address entered.
